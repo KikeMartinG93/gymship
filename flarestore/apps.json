@@ -18,12 +18,21 @@
       "category": "lifestyle",
       "versions": [
         {
+          "version": "1.2.2",
+          "buildVersion": "14",
+          "date": "2026-10-30",
+          "localizedDescription": "Official Sign in with Google button. Creates your Gymship account in Supabase.",
+          "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.2/Gymship.ipa",
+          "size": 2496052,
+          "minOSVersion": "27.0"
+        },
+        {
           "version": "1.2.1",
           "buildVersion": "13",
           "date": "2026-10-30",
           "localizedDescription": "Sign in with Google so sideloaded builds can create an account.",
           "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.1/Gymship.ipa",
-          "size": 2480764,
+          "size": 2500510,
           "minOSVersion": "27.0"
         },
         {

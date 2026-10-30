@@ -20,6 +20,63 @@ struct GymshipButtonStyle: ButtonStyle {
     }
 }
 
+/// Official Sign in with Google control.
+/// Light + pill, per https://developers.google.com/identity/branding-guidelines
+/// Size matches Gymship's primary buttons so it isn't visually weaker.
+struct GoogleSignInButton: View {
+    var isLoading = false
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 10) {
+                Image("GoogleG")
+                    .resizable()
+                    .renderingMode(.original)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20)
+                    .accessibilityHidden(true)
+
+                if isLoading {
+                    ProgressView()
+                        .tint(GoogleSignInChrome.label)
+                } else {
+                    Text("Sign in with Google")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundStyle(GoogleSignInChrome.label)
+                        .lineLimit(1)
+                }
+
+                Spacer(minLength: 0)
+            }
+            .padding(.horizontal, 12)
+            .frame(maxWidth: .infinity, minHeight: 50)
+            .contentShape(Capsule())
+        }
+        .buttonStyle(GoogleSignInChrome())
+        .disabled(isLoading)
+        .accessibilityLabel(Text("Sign in with Google"))
+    }
+}
+
+/// Light-theme Google chrome: white fill, #747775 hairline, 40pt+ pill.
+private struct GoogleSignInChrome: ButtonStyle {
+    static let fill = Color.white
+    static let pressedFill = Color(red: 242 / 255, green: 242 / 255, blue: 242 / 255)
+    static let stroke = Color(red: 116 / 255, green: 119 / 255, blue: 117 / 255)
+    static let label = Color(red: 31 / 255, green: 31 / 255, blue: 31 / 255)
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .background(configuration.isPressed ? Self.pressedFill : Self.fill, in: Capsule())
+            .overlay {
+                Capsule().strokeBorder(Self.stroke, lineWidth: 1)
+            }
+            .scaleEffect(configuration.isPressed ? 0.98 : 1)
+            .animation(.snappy(duration: 0.18), value: configuration.isPressed)
+    }
+}
+
 /// The compact primary action that sits inline on a card ("I'm in").
 struct PillButtonStyle: ButtonStyle {
     @Environment(ThemeManager.self) private var theme

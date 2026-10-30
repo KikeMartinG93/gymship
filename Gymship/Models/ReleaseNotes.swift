@@ -181,6 +181,15 @@ enum ReleaseNotes {
                      detail: String(localized: "Sideloaded builds can't use Sign in with Apple, so you create a profile with Google instead.")),
             ]
         ),
+        Release(
+            build: 14,
+            version: "1.2.2",
+            headline: String(localized: "The real Google button"),
+            items: [
+                Item(kind: .improved, symbol: "person.crop.circle.badge.checkmark", title: String(localized: "Sign in with Google"),
+                     detail: String(localized: "Onboarding now uses Google's official button. Tap it to create your Gymship account in one step.")),
+            ]
+        ),
     ]
 
     /// Newest first — the order people want to read them in.

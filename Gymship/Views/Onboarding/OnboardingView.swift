@@ -184,23 +184,15 @@ struct OnboardingView: View {
     private var signIn: some View {
         VStack(alignment: .leading, spacing: 24) {
             glyph("person.crop.circle.badge.checkmark")
-            headline(String(localized: "Make it yours"), String(localized: "Sign in with Google to create your profile. No password, and it works on a sideloaded build."))
+            headline(String(localized: "Make it yours"), String(localized: "Sign in with Google to create your Gymship account. No password."))
 
             if let errorMessage {
                 InlineMessage(text: errorMessage, isError: true)
             }
 
-            Button {
+            GoogleSignInButton(isLoading: isSigningIn) {
                 Task { await handleGoogleSignIn() }
-            } label: {
-                if isSigningIn {
-                    ProgressView()
-                } else {
-                    Text("Continue with Google")
-                }
             }
-            .buttonStyle(GymshipButtonStyle())
-            .disabled(isSigningIn)
         }
     }
 
