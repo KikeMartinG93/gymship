@@ -1,7 +1,7 @@
 {
   "name": "Gymship",
   "subtitle": "Find a time your crew can actually work out.",
-  "description": "Sideload Gymship with FlareStore, AltStore, SideStore, or Feather. After you add this source, download the IPA and sign it with your own Apple ID — no paid developer account required. Sign in with Apple will not work on a free Apple ID; testers should use a device that already has a Gymship account, or ask Kike for a demo build.",
+  "description": "Sideload Gymship with FlareStore, AltStore, SideStore, or Feather. After you add this source, download the IPA and sign it with your own Apple ID — no paid developer account required. Sign in with an email 6-digit code.",
   "identifier": "com.gymship.flarestore",
   "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/gymship/main/flarestore/icon.png",
   "website": "https://github.com/KikeMartinG93/gymship",
@@ -18,6 +18,15 @@
       "category": "lifestyle",
       "versions": [
         {
+          "version": "1.2.1",
+          "buildVersion": "13",
+          "date": "2026-10-30",
+          "localizedDescription": "Sign in with an email 6-digit code, then pick a unique username. Works on sideloaded builds without a paid Apple Developer account.",
+          "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.1/Gymship.ipa",
+          "size": 2500510,
+          "minOSVersion": "27.0"
+        },
+        {
           "version": "1.2.0",
           "buildVersion": "12",
           "date": "2026-10-30",
@@ -28,9 +37,7 @@
         }
       ],
       "appPermissions": {
-        "entitlements": [
-          "com.apple.developer.applesignin"
-        ],
+        "entitlements": [],
         "privacy": {
           "NSCalendarsFullAccessUsageDescription": "Gymship reads your calendars to find when you're busy and schedules your confirmed workout sessions on a dedicated Workout calendar."
         }

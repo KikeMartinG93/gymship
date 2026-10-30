@@ -172,6 +172,17 @@ enum ReleaseNotes {
                      detail: String(localized: "Workout suggestions wait until you ask or pull to refresh, instead of running every time you open a crew.")),
             ]
         ),
+        Release(
+            build: 13,
+            version: "1.2.1",
+            headline: String(localized: "Sign in without Apple"),
+            items: [
+                Item(kind: .new, symbol: "envelope.badge", title: String(localized: "Email code"),
+                     detail: String(localized: "Sideloaded builds can't use Sign in with Apple. Enter your email, then a 6-digit code — no paid developer account.")),
+                Item(kind: .new, symbol: "at", title: String(localized: "Pick a username"),
+                     detail: String(localized: "After the code, choose a unique username. That's how you'll be known in the app.")),
+            ]
+        ),
     ]
 
     /// Newest first — the order people want to read them in.

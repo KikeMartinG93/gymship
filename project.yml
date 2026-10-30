@@ -48,13 +48,10 @@ targets:
         ITSAppUsesNonExemptEncryption: false
     entitlements:
       path: Gymship/Resources/Gymship.entitlements
-      properties:
-        com.apple.developer.applesignin:
-          - Default
     settings:
       base:
-        MARKETING_VERSION: "1.2.0"
-        CURRENT_PROJECT_VERSION: "12"
+        MARKETING_VERSION: "1.2.1"
+        CURRENT_PROJECT_VERSION: "13"
         PRODUCT_BUNDLE_IDENTIFIER: com.gymship.app
         SWIFT_VERSION: 6.0
         SWIFT_STRICT_CONCURRENCY: complete

@@ -53,10 +53,10 @@ final class SupabaseService {
         client = SupabaseClient(supabaseURL: SupabaseConfig.url, supabaseKey: SupabaseConfig.anonKey)
     }
 
-    // MARK: - Auth (Sign in with Apple)
+    // MARK: - Auth
 
-    /// Restores a previously-established session (from an earlier Sign in
-    /// with Apple) if one exists, and loads the user's profile.
+    /// Restores a previously-established session if one exists, and loads
+    /// the user's profile.
     func restoreSession() async {
         guard let session = try? await client.auth.session else { return }
         currentUserId = session.user.id
@@ -80,72 +80,56 @@ final class SupabaseService {
         lastError = nil
     }
 
-    /// Completes Sign in with Apple: exchanges the identity token from
-    /// `ASAuthorizationController` for a Supabase session, then loads the
-    /// existing profile or creates one, auto-generating a unique handle.
-    /// Apple only supplies the user's name on their very first authorization,
-    /// so it is passed in here rather than read from the session.
+    /// Emails a 6-digit one-time code. Works on sideloaded builds — unlike
+    /// Sign in with Apple, which needs a paid Apple Developer Program team.
+    func sendEmailOTP(to email: String) async throws {
+        let trimmed = email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        try await client.auth.signInWithOTP(email: trimmed, shouldCreateUser: true)
+    }
+
+    /// Exchanges the emailed code for a Supabase session and loads an existing
+    /// profile if there is one. New accounts pick a username next — we do not
+    /// auto-create a profile here.
     @discardableResult
-    func signInWithApple(idToken: String, nonce: String, fullName: String?) async throws -> Session {
-        let session = try await client.auth.signInWithIdToken(
-            credentials: OpenIDConnectCredentials(provider: .apple, idToken: idToken, nonce: nonce)
-        )
+    func verifyEmailOTP(_ token: String, email: String) async throws -> Session {
+        let trimmedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        let code = token.trimmingCharacters(in: .whitespacesAndNewlines)
+        let response: AuthResponse
+        do {
+            response = try await client.auth.verifyOTP(email: trimmedEmail, token: code, type: .email)
+        } catch {
+            response = try await client.auth.verifyOTP(email: trimmedEmail, token: code, type: .magiclink)
+        }
+        guard let session = response.session else {
+            throw SupabaseServiceError.notSignedIn
+        }
         currentUserId = session.user.id
-
-        if try await fetchProfile() != nil {
-            return session
-        }
-
-        var resolvedName = fullName?.trimmingCharacters(in: .whitespacesAndNewlines)
-        if resolvedName == nil || resolvedName?.isEmpty == true {
-            let metadata = session.user.userMetadata
-            resolvedName = metadata["full_name"]?.stringValue ?? metadata["name"]?.stringValue
-        }
-        if resolvedName == nil || resolvedName?.isEmpty == true {
-            // Apple's private relay addresses are gibberish; only use a real one.
-            if let email = session.user.email, !email.hasSuffix("privaterelay.appleid.com") {
-                resolvedName = email.split(separator: "@").first.map(String.init)
-            }
-        }
-        if resolvedName == nil || resolvedName?.isEmpty == true {
-            resolvedName = String(localized: "Athlete")
-        }
-
-        let handle = try await generateUniqueHandle(from: resolvedName!)
-        try await createProfile(handle: handle, name: resolvedName!)
+        _ = try await fetchProfile()
         return session
     }
 
-    /// Picks an available `[a-z0-9]{3,20}` handle stem derived from `name`,
-    /// appending a numeric suffix if it's already taken.
-    private func generateUniqueHandle(from name: String) async throws -> String {
-        let folded = name
-            .lowercased()
-            .folding(options: .diacriticInsensitive, locale: .current)
-            .unicodeScalars
-            .filter { CharacterSet.alphanumerics.contains($0) }
-        var stem = String(String.UnicodeScalarView(folded).prefix(16))
-        if stem.count < 3 { stem = "athlete" }
-
-        var candidate = stem
-        var attempt = 0
-        while try await findProfile(byHandle: candidate) != nil {
-            attempt += 1
-            let suffix = String(attempt)
-            candidate = String(stem.prefix(max(3, 16 - suffix.count))) + suffix
-        }
-        return candidate
+    /// True when nobody else is using this handle.
+    func isHandleAvailable(_ handle: String) async throws -> Bool {
+        try await findProfile(byHandle: GymshipHandle.sanitize(handle)) == nil
     }
 
     // MARK: - Profile
 
     func createProfile(handle: String, name: String) async throws {
         guard let userId = currentUserId else { throw SupabaseServiceError.notSignedIn }
-        let normalizedHandle = handle.lowercased()
+        let normalizedHandle = GymshipHandle.sanitize(handle)
+        guard GymshipHandle.isValid(normalizedHandle) else {
+            throw SupabaseServiceError.handleInvalid
+        }
         if try await findProfile(byHandle: normalizedHandle) != nil {
             throw SupabaseServiceError.handleTaken
         }
-        let insert = ProfileInsert(id: userId, handle: normalizedHandle, name: name)
+        let displayName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        let insert = ProfileInsert(
+            id: userId,
+            handle: normalizedHandle,
+            name: displayName.isEmpty ? normalizedHandle : displayName
+        )
         do {
             let saved: Profile = try await client
                 .from("profiles")
@@ -805,13 +789,15 @@ enum SupabaseServiceError: LocalizedError {
     case groupNotFound
     case groupFull
     case handleTaken
+    case handleInvalid
 
     var errorDescription: String? {
         switch self {
         case .notSignedIn: return String(localized: "You're not signed in yet.")
         case .groupNotFound: return String(localized: "No group matches that invite code.")
         case .groupFull: return String(localized: "This group already has the maximum of \(Group.maxMembers) members.")
-        case .handleTaken: return String(localized: "That @handle is already taken. Try another one.")
+        case .handleTaken: return String(localized: "That username is already taken. Try another one.")
+        case .handleInvalid: return String(localized: "Usernames are 3–20 letters, numbers, or underscores.")
         }
     }
 }
