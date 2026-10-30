@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// First run: four beats — hello, calendar, email sign-in, and a
+/// First run: four beats — hello, calendar, Google sign-in, and a
 /// short tour. Big type sits directly on the background; only the controls
 /// are glass.
 struct OnboardingView: View {
@@ -14,35 +14,9 @@ struct OnboardingView: View {
     @State private var isSigningIn = false
     @State private var errorMessage: String?
     @State private var tutorialPage = 0
-    @State private var email = ""
-    @State private var otp = ""
-    @State private var otpSent = false
-    @State private var username = ""
-    @State private var handleStatus: HandleStatus = .empty
-    @State private var handleCheckTask: Task<Void, Never>?
 
     enum Step: Int, CaseIterable {
-        case welcome, calendarAccess, signIn, pickUsername, howItWorks
-    }
-
-    private enum HandleStatus: Equatable {
-        case empty, tooShort, checking, available, taken, failed(String)
-
-        var caption: String {
-            switch self {
-            case .empty: String(localized: "3–20 letters, numbers, or underscores.")
-            case .tooShort: String(localized: "At least 3 characters.")
-            case .checking: String(localized: "Checking…")
-            case .available: String(localized: "Available. This is how you'll be known.")
-            case .taken: String(localized: "That username is taken.")
-            case .failed(let message): message
-            }
-        }
-
-        var isAvailable: Bool {
-            if case .available = self { return true }
-            return false
-        }
+        case welcome, calendarAccess, signIn, howItWorks
     }
 
     private struct TutorialSlide {
@@ -93,7 +67,6 @@ struct OnboardingView: View {
                 case .welcome: welcome
                 case .calendarAccess: calendarAccess
                 case .signIn: signIn
-                case .pickUsername: pickUsername
                 case .howItWorks: howItWorks
                 }
             }
@@ -110,15 +83,6 @@ struct OnboardingView: View {
         .padding(.horizontal, 28)
         .padding(.bottom, 20)
         .animation(.smooth(duration: 0.45), value: step)
-        .task { await resumeIncompleteSignIn() }
-        .onChange(of: username) { _, newValue in
-            let sanitized = GymshipHandle.sanitize(newValue)
-            if sanitized != newValue {
-                username = sanitized
-                return
-            }
-            scheduleHandleCheck()
-        }
     }
 
     // MARK: Chrome
@@ -219,134 +183,24 @@ struct OnboardingView: View {
 
     private var signIn: some View {
         VStack(alignment: .leading, spacing: 24) {
-            glyph("envelope.badge")
-            if otpSent {
-                headline(
-                    String(localized: "Check your email"),
-                    String(localized: "Enter the 6-digit code we sent to \(email).")
-                )
-            } else {
-                headline(
-                    String(localized: "Make it yours"),
-                    String(localized: "We'll email you a 6-digit code. No password — and it works on a sideloaded build.")
-                )
-            }
-
-            if otpSent {
-                TextField("000000", text: $otp)
-                    .keyboardType(.numberPad)
-                    .textContentType(.oneTimeCode)
-                    .font(.system(.title2, design: .monospaced, weight: .semibold))
-                    .multilineTextAlignment(.center)
-                    .glassTextFieldStyle()
-                    .onChange(of: otp) { _, newValue in
-                        let digits = newValue.filter(\.isNumber)
-                        if digits != newValue { otp = String(digits.prefix(6)) }
-                        else if newValue.count > 6 { otp = String(newValue.prefix(6)) }
-                    }
-                    .disabled(isSigningIn)
-            } else {
-                TextField("Email", text: $email)
-                    .keyboardType(.emailAddress)
-                    .textContentType(.emailAddress)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-                    .glassTextFieldStyle()
-                    .submitLabel(.send)
-                    .onSubmit { Task { await sendCode() } }
-                    .disabled(isSigningIn)
-            }
+            glyph("person.crop.circle.badge.checkmark")
+            headline(String(localized: "Make it yours"), String(localized: "Sign in with Google to create your profile. No password, and it works on a sideloaded build."))
 
             if let errorMessage {
                 InlineMessage(text: errorMessage, isError: true)
             }
 
             Button {
-                Task { otpSent ? await verifyCode() : await sendCode() }
+                Task { await handleGoogleSignIn() }
             } label: {
                 if isSigningIn {
                     ProgressView()
                 } else {
-                    Text(otpSent ? "Verify code" : "Send code")
+                    Text("Continue with Google")
                 }
             }
             .buttonStyle(GymshipButtonStyle())
-            .disabled(isSigningIn || (otpSent ? otp.count != 6 : !emailLooksValid))
-
-            if otpSent {
-                HStack(spacing: 16) {
-                    Button("Resend code") {
-                        Task { await sendCode() }
-                    }
-                    Button("Different email") {
-                        otp = ""
-                        otpSent = false
-                        errorMessage = nil
-                    }
-                }
-                .font(.system(.subheadline, weight: .semibold))
-                .foregroundStyle(.secondary)
-                .disabled(isSigningIn)
-            }
-        }
-    }
-
-    private var pickUsername: some View {
-        VStack(alignment: .leading, spacing: 24) {
-            glyph("at")
-            headline(
-                String(localized: "Pick a username"),
-                String(localized: "This is how you'll be known in the app.")
-            )
-
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(spacing: 2) {
-                    Text("@")
-                        .font(.system(.title3, weight: .semibold))
-                        .foregroundStyle(.secondary)
-                    TextField("username", text: $username)
-                        .textInputAutocapitalization(.never)
-                        .autocorrectionDisabled()
-                        .textContentType(.username)
-                        .font(.system(.title3, weight: .semibold))
-                        .submitLabel(.continue)
-                        .onSubmit { Task { await saveUsername() } }
-                        .disabled(isSigningIn)
-                }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 14)
-                .background(.white.opacity(0.08), in: Metrics.concentric(minimum: 18))
-
-                Text(handleStatus.caption)
-                    .font(.system(.footnote, weight: .medium))
-                    .foregroundStyle(handleStatusColor)
-                    .padding(.horizontal, 4)
-            }
-
-            if let errorMessage {
-                InlineMessage(text: errorMessage, isError: true)
-            }
-
-            Button {
-                Task { await saveUsername() }
-            } label: {
-                if isSigningIn {
-                    ProgressView()
-                } else {
-                    Text("Continue")
-                }
-            }
-            .buttonStyle(GymshipButtonStyle())
-            .disabled(isSigningIn || !handleStatus.isAvailable)
-        }
-        .onAppear { scheduleHandleCheck() }
-    }
-
-    private var handleStatusColor: Color {
-        switch handleStatus {
-        case .available: theme.accent
-        case .taken, .failed, .tooShort: .red.opacity(0.9)
-        case .empty, .checking: .secondary
+            .disabled(isSigningIn)
         }
     }
 
@@ -410,104 +264,14 @@ struct OnboardingView: View {
         }
     }
 
-    private var emailLooksValid: Bool {
-        let trimmed = email.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard let at = trimmed.firstIndex(of: "@") else { return false }
-        let domain = trimmed[trimmed.index(after: at)...]
-        return trimmed.count >= 5 && domain.contains(".")
-    }
-
-    private func sendCode() async {
-        guard emailLooksValid else { return }
+    private func handleGoogleSignIn() async {
+        errorMessage = nil
         isSigningIn = true
-        errorMessage = nil
         do {
-            try await supabase.sendEmailOTP(to: email)
-            otp = ""
-            otpSent = true
-        } catch {
-            if !error.isCancellation { errorMessage = error.localizedDescription }
-        }
-        isSigningIn = false
-    }
-
-    private func verifyCode() async {
-        guard otp.count == 6 else { return }
-        isSigningIn = true
-        errorMessage = nil
-        do {
-            try await supabase.verifyEmailOTP(otp, email: email)
-            advanceAfterSignIn()
-        } catch {
-            if !error.isCancellation { errorMessage = error.localizedDescription }
-        }
-        isSigningIn = false
-    }
-
-    /// If the app was killed after the email code but before a username,
-    /// skip back to the right beat.
-    private func resumeIncompleteSignIn() async {
-        await supabase.restoreSession()
-        if supabase.profile != nil {
-            step = .howItWorks
-        } else if supabase.currentUserId != nil {
-            if username.isEmpty, let mail = email.split(separator: "@").first {
-                username = GymshipHandle.sanitize(String(mail))
-            }
-            step = .pickUsername
-        }
-    }
-
-    private func advanceAfterSignIn() {
-        if supabase.profile != nil {
-            step = .howItWorks
-            return
-        }
-        if username.isEmpty, let mail = email.split(separator: "@").first {
-            username = GymshipHandle.sanitize(String(mail))
-        }
-        errorMessage = nil
-        step = .pickUsername
-    }
-
-    private func scheduleHandleCheck() {
-        handleCheckTask?.cancel()
-        errorMessage = nil
-        guard !username.isEmpty else {
-            handleStatus = .empty
-            return
-        }
-        guard username.count >= GymshipHandle.minLength else {
-            handleStatus = .tooShort
-            return
-        }
-        handleStatus = .checking
-        handleCheckTask = Task {
-            try? await Task.sleep(for: .milliseconds(350))
-            guard !Task.isCancelled else { return }
-            do {
-                let available = try await supabase.isHandleAvailable(username)
-                guard !Task.isCancelled else { return }
-                handleStatus = available ? .available : .taken
-            } catch {
-                guard !Task.isCancelled, !error.isCancellation else { return }
-                handleStatus = .failed(error.localizedDescription)
-            }
-        }
-    }
-
-    private func saveUsername() async {
-        guard handleStatus.isAvailable else { return }
-        isSigningIn = true
-        errorMessage = nil
-        do {
-            try await supabase.createProfile(handle: username, name: username)
+            try await supabase.signInWithGoogle()
             step = .howItWorks
         } catch {
             if !error.isCancellation { errorMessage = error.localizedDescription }
-            if case .handleTaken = error as? SupabaseServiceError {
-                handleStatus = .taken
-            }
         }
         isSigningIn = false
     }

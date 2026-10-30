@@ -175,12 +175,10 @@ enum ReleaseNotes {
         Release(
             build: 13,
             version: "1.2.1",
-            headline: String(localized: "Sign in without Apple"),
+            headline: String(localized: "Sign in with Google"),
             items: [
-                Item(kind: .new, symbol: "envelope.badge", title: String(localized: "Email code"),
-                     detail: String(localized: "Sideloaded builds can't use Sign in with Apple. Enter your email, then a 6-digit code — no paid developer account.")),
-                Item(kind: .new, symbol: "at", title: String(localized: "Pick a username"),
-                     detail: String(localized: "After the code, choose a unique username. That's how you'll be known in the app.")),
+                Item(kind: .new, symbol: "person.crop.circle.badge.checkmark", title: String(localized: "Sign in with Google"),
+                     detail: String(localized: "Sideloaded builds can't use Sign in with Apple, so you create a profile with Google instead.")),
             ]
         ),
     ]

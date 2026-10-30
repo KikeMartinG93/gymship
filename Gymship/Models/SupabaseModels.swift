@@ -2,30 +2,6 @@ import Foundation
 
 // MARK: - Database row models (Codable, snake_case columns via CodingKeys)
 
-/// Public @handle: 3–20 lowercase letters, numbers, or underscores.
-enum GymshipHandle {
-    static let minLength = 3
-    static let maxLength = 20
-
-    static func sanitize(_ raw: String) -> String {
-        var result = ""
-        result.reserveCapacity(min(raw.count, maxLength))
-        for scalar in raw.lowercased().folding(options: .diacriticInsensitive, locale: .current).unicodeScalars {
-            let isLetter = scalar.value >= 97 && scalar.value <= 122
-            let isDigit = scalar.value >= 48 && scalar.value <= 57
-            if isLetter || isDigit || scalar == "_" {
-                result.unicodeScalars.append(scalar)
-                if result.count == maxLength { break }
-            }
-        }
-        return result
-    }
-
-    static func isValid(_ handle: String) -> Bool {
-        handle.count >= minLength && handle == sanitize(handle)
-    }
-}
-
 struct Profile: Codable, Identifiable, Hashable, Sendable {
     let id: UUID
     var handle: String

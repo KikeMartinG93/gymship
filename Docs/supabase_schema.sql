@@ -5,7 +5,7 @@
 create extension if not exists pgcrypto;
 
 -- ---------------------------------------------------------------------------
--- profiles: one row per authenticated user (Sign in with Apple is used by the app)
+-- profiles: one row per authenticated user (Sign in with Google is used by the app)
 -- ---------------------------------------------------------------------------
 create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,

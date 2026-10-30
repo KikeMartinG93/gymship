@@ -70,7 +70,7 @@ The `.xcodeproj` is generated, not hand-maintained — see below.
   writes a confirmed `EKEvent` to it; `removeWorkoutSlot(eventIdentifier:)` to undo
 
 **Supabase (`Services/SupabaseService.swift`)**
-- Email one-time code (sideload-friendly; Sign in with Apple needs a paid Apple team)
+- Sign in with Google (Supabase OAuth — works on sideloaded builds)
 - `createProfile(handle:name:)` / `fetchProfile()` / `findProfile(byHandle:)`
 - `createGroup(name:)` / `joinGroup(withInviteCode:)` — 5-member cap enforced both
   client-side (pre-check) and server-side (DB trigger)
@@ -92,9 +92,9 @@ There is no paid Apple Developer Program on this project, so builds go out as an
    `https://raw.githubusercontent.com/KikeMartinG93/gymship/main/flarestore/apps.json`
 
 3. Download Gymship, **Sign** it with your Apple ID, then **Install**.
-4. Free Apple IDs expire after 7 days and cap at 3 sideloaded apps. Sign in is an **email 6-digit code** (Sign in with Apple is a paid Apple capability and does not work after a free-ID re-sign).
+4. Free Apple IDs expire after 7 days and cap at 3 sideloaded apps. Sign in uses **Google** (not Apple), so it still works after you re-sign the IPA.
 
-In the Supabase dashboard, Authentication → Providers → Email must be enabled, and the Magic Link template should include `{{ .Token }}` so the 6-digit code arrives in the email.
+In the Supabase dashboard, Authentication → URL Configuration → Redirect URLs must include `com.gymship.app://**` (the app's OAuth callback). Google itself should already be enabled under Authentication → Providers.
 
 To build the IPA locally:
 
