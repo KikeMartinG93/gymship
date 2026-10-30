@@ -1,0 +1,47 @@
+{
+  "fill": {
+    "solid": "extended-srgb:0.29020,0.07843,0.50980,1.00000"
+  },
+  "groups": [
+    {
+      "layers": [
+        {
+          "image-name": "background.png",
+          "name": "background"
+        }
+      ],
+      "name": "background"
+    },
+    {
+      "layers": [
+        {
+          "glass": true,
+          "image-name": "dumbbell.png",
+          "name": "dumbbell"
+        }
+      ],
+      "name": "dumbbell",
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.5
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.5
+      }
+    },
+    {
+      "layers": [
+        {
+          "glass": true,
+          "image-name": "sparkles.png",
+          "name": "sparkles"
+        }
+      ],
+      "name": "sparkles"
+    }
+  ],
+  "supported-platforms": {
+    "squares": "shared"
+  }
+}

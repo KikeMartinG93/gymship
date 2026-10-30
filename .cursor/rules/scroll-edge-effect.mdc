@@ -1,0 +1,21 @@
+---
+description: Every scroll container in Gymship must use a soft scroll-edge effect
+globs: "**/*.swift"
+alwaysApply: true
+---
+
+# Soft scroll-edge effect
+
+Every `ScrollView`, `List`, and `Form` in Gymship must use `.scrollEdgeEffectStyle(.soft, for: .all)` (via `.gymshipScrollEdges()`).
+
+- Do not ship a new scroll container without it.
+- Do not use `.hard`.
+- Do not pass a `for:` edge set that leaves another edge unstyled — always `for: .all`.
+- Apply it on the scroll container itself, including horizontal `ScrollView`s.
+
+```swift
+ScrollView {
+    // content
+}
+.scrollEdgeEffectStyle(.soft, for: .all)
+```

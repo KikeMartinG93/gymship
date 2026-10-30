@@ -1,0 +1,3296 @@
+{
+  "sourceLanguage": "en",
+  "version": "1.0",
+  "strings": {
+    "Couldn't find that address.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontró esa dirección."
+          }
+        }
+      }
+    },
+    "Couldn't calculate a driving route.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo calcular una ruta en coche."
+          }
+        }
+      }
+    },
+    "Calendar access has not been granted.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha concedido acceso al calendario."
+          }
+        }
+      }
+    },
+    "No calendar source is available to create the Workout calendar.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay ninguna fuente de calendario disponible para crear el calendario de entrenamientos."
+          }
+        }
+      }
+    },
+    "Ice": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hielo"
+          }
+        }
+      }
+    },
+    "Sky": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cielo"
+          }
+        }
+      }
+    },
+    "Classic": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clásico"
+          }
+        }
+      }
+    },
+    "Electric": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eléctrico"
+          }
+        }
+      }
+    },
+    "Neon": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neón"
+          }
+        }
+      }
+    },
+    "Deep": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Profundo"
+          }
+        }
+      }
+    },
+    "Muted": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suave"
+          }
+        }
+      }
+    },
+    "Slate": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pizarra"
+          }
+        }
+      }
+    },
+    "Unknown": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desconocido"
+          }
+        }
+      }
+    },
+    "Athlete": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atleta"
+          }
+        }
+      }
+    },
+    "New": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo"
+          }
+        }
+      }
+    },
+    "Better": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mejorado"
+          }
+        }
+      }
+    },
+    "Fixed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corregido"
+          }
+        }
+      }
+    },
+    "A whole new look": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un aspecto totalmente nuevo"
+          }
+        }
+      }
+    },
+    "The week dial": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El dial semanal"
+          }
+        }
+      }
+    },
+    "Your Plan tab is now a dial. Each day fills in when you say you're in, and glows once the workout is locked.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu pestaña Plan ahora es un dial. Cada día se rellena cuando dices que te apuntas y brilla cuando el entrenamiento queda confirmado."
+          }
+        }
+      }
+    },
+    "One-tap “I'm in”": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“Me apunto” con un toque"
+          }
+        }
+      }
+    },
+    "Sessions are tickets now. Tap I'm in, and when a second person joins, the workout locks.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las sesiones ahora son entradas. Toca Me apunto y, cuando se une una segunda persona, el entrenamiento queda confirmado."
+          }
+        }
+      }
+    },
+    "Leave times": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horas de salida"
+          }
+        }
+      }
+    },
+    "The ride planner shows a map and tells everyone when to leave, or when to be ready for pickup.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El planificador de trayecto muestra un mapa e indica a todos cuándo salir o cuándo estar listos para que los recojan."
+          }
+        }
+      }
+    },
+    "Sign in with Apple": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar sesión con Apple"
+          }
+        }
+      }
+    },
+    "No more Google sign-in. One tap with Apple, and no password.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se acabó el inicio de sesión con Google. Un toque con Apple y sin contraseña."
+          }
+        }
+      }
+    },
+    "Liquid Glass": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liquid Glass"
+          }
+        }
+      }
+    },
+    "New glass surfaces, rounded type throughout, and a color background that slowly drifts. Needs iOS 26.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevas superficies de cristal, tipografía redondeada en todo el app y un fondo de color que se desplaza lentamente. Requiere iOS 26."
+          }
+        }
+      }
+    },
+    "Crews you can share": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crews que puedes compartir"
+          }
+        }
+      }
+    },
+    "Send your invite code straight from the crew screen.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envía tu código de invitación directamente desde la pantalla del crew."
+          }
+        }
+      }
+    },
+    "Launch crash on iOS 27": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cierre al abrir en iOS 27"
+          }
+        }
+      }
+    },
+    "The app no longer closes itself on launch on iOS 27.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La app ya no se cierra sola al abrirse en iOS 27."
+          }
+        }
+      }
+    },
+    "Cleaner, and higher contrast": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más limpio y con más contraste"
+          }
+        }
+      }
+    },
+    "High contrast mode": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de alto contraste"
+          }
+        }
+      }
+    },
+    "Turn it on in You. Pure black and white, with no glass anywhere except the tab bar.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actívalo en Tú. Blanco y negro puros, sin cristal en ningún sitio salvo la barra de pestañas."
+          }
+        }
+      }
+    },
+    "Font choice": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elección de fuente"
+          }
+        }
+      }
+    },
+    "Switch between SF Pro Rounded and the standard system font in You.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambia entre SF Pro Rounded y la fuente estándar del sistema en Tú."
+          }
+        }
+      }
+    },
+    "What's new": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novedades"
+          }
+        }
+      }
+    },
+    "This screen. You'll see it after every update, and you can reopen it any time from You.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta pantalla. La verás tras cada actualización y puedes volver a abrirla cuando quieras desde Tú."
+          }
+        }
+      }
+    },
+    "Today on the dial": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy en el dial"
+          }
+        }
+      }
+    },
+    "Today is now marked with an outline around its segment instead of a circle behind the number.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy ahora se marca con un contorno alrededor de su segmento en lugar de un círculo detrás del número."
+          }
+        }
+      }
+    },
+    "A calmer Plan tab": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una pestaña Plan más tranquila"
+          }
+        }
+      }
+    },
+    "The week dial floats on the background instead of sitting in a card, with more room around it.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El dial semanal flota sobre el fondo en lugar de estar en una tarjeta, con más espacio alrededor."
+          }
+        }
+      }
+    },
+    "Roomier session cards": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarjetas de sesión más amplias"
+          }
+        }
+      }
+    },
+    "Who's in and whether it's locked now read at a glance, and the “In” button stops getting squeezed.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quién se apunta y si está confirmado se lee de un vistazo, y el botón “Apuntado” ya no queda apretado."
+          }
+        }
+      }
+    },
+    "Week dial numbers": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Números del dial semanal"
+          }
+        }
+      }
+    },
+    "The day numbers now sit inside their segments instead of hanging off the edge.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los números de los días ahora quedan dentro de sus segmentos en lugar de sobresalir por el borde."
+          }
+        }
+      }
+    },
+    "Phantom error banner": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aviso de error fantasma"
+          }
+        }
+      }
+    },
+    "The red “cancellation error” message no longer pops up when a refresh is interrupted.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El mensaje rojo de “error de cancelación” ya no aparece cuando se interrumpe una actualización."
+          }
+        }
+      }
+    },
+    "Faster, and easier on the eyes": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más rápido y más agradable a la vista"
+          }
+        }
+      }
+    },
+    "What to test": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qué probar"
+          }
+        }
+      }
+    },
+    "A tester's guide to Gymship, shown once after onboarding and reachable any time from You — with a one-tap way to invite a friend.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una guía para probadores de Gymship, que se muestra una vez tras la introducción y está siempre disponible en Tú, con una forma rápida de invitar a un amigo."
+          }
+        }
+      }
+    },
+    "A softer high contrast": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un alto contraste más suave"
+          }
+        }
+      }
+    },
+    "Less stark: soft tonal surfaces and the system's own switches, instead of hard white outlines and glowing edges.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menos áspero: superficies tonales suaves y los interruptores del propio sistema, en lugar de contornos blancos duros y bordes brillantes."
+          }
+        }
+      }
+    },
+    "Faster AI suggestions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sugerencias de IA más rápidas"
+          }
+        }
+      }
+    },
+    "Solo and crew workout suggestions for the week now compute all at once instead of one day at a time.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las sugerencias de entrenamiento individuales y de crew para la semana ahora se calculan todas a la vez en lugar de día por día."
+          }
+        }
+      }
+    },
+    "Quicker ride planning": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planificación de trayectos más rápida"
+          }
+        }
+      }
+    },
+    "Everyone's ETA calculates at the same time now, instead of waiting on each person in turn.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La hora de llegada de todos se calcula ahora a la vez, en lugar de esperar a cada persona por turno."
+          }
+        }
+      }
+    },
+    "Refined proportions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proporciones refinadas"
+          }
+        }
+      }
+    },
+    "A pass over spacing and sizing across the app so it feels more like it was designed by Apple, on every screen size.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un repaso a espacios y tamaños en toda la app para que parezca diseñada por Apple, en cualquier tamaño de pantalla."
+          }
+        }
+      }
+    },
+    "Calendar list": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista de calendarios"
+          }
+        }
+      }
+    },
+    "Birthdays and Holidays no longer show up in the list of calendars you can mark busy.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cumpleaños y Festivos ya no aparecen en la lista de calendarios que puedes marcar como ocupados."
+          }
+        }
+      }
+    },
+    "False error on “I'm in”": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error falso al pulsar “Me apunto”"
+          }
+        }
+      }
+    },
+    "Accepting a workout no longer shows an error banner if a background step hiccups — your RSVP still goes through.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aceptar un entrenamiento ya no muestra un aviso de error si falla un paso en segundo plano; tu confirmación se envía igualmente."
+          }
+        }
+      }
+    },
+    "Gymship finds the free time you share with your crew and turns it into a workout — no group chat back-and-forth.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gymship encuentra el tiempo libre que compartes con tu crew y lo convierte en un entrenamiento, sin idas y venidas en el chat de grupo."
+          }
+        }
+      }
+    },
+    "Sync your calendar": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincroniza tu calendario"
+          }
+        }
+      }
+    },
+    "In You → Availability, mark which calendars count as busy. Nothing about *why* you're busy ever leaves your phone.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Tú → Disponibilidad, marca qué calendarios cuentan como ocupados. Nada sobre *por qué* estás ocupado sale nunca de tu teléfono."
+          }
+        }
+      }
+    },
+    "Start or join a crew": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea un crew o únete a uno"
+          }
+        }
+      }
+    },
+    "Make a crew and send your invite code, or join a friend's from You → Start or join a crew. Up to five people.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea un crew y envía tu código de invitación, o únete al de un amigo desde Tú → Crea un crew o únete a uno. Hasta cinco personas."
+          }
+        }
+      }
+    },
+    "Say you're in": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Di que te apuntas"
+          }
+        }
+      }
+    },
+    "Once your crew's synced, tap a proposed session and hit I'm in. A second person joining locks the workout for everyone.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuando tu crew esté sincronizado, toca una sesión propuesta y pulsa Me apunto. Cuando se une una segunda persona, el entrenamiento queda confirmado para todos."
+          }
+        }
+      }
+    },
+    "Plan the ride": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planifica el trayecto"
+          }
+        }
+      }
+    },
+    "On a locked session, tap Plan the ride to pick a driver and see when everyone should leave.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En una sesión confirmada, toca Planificar el trayecto para elegir conductor y ver cuándo debe salir cada uno."
+          }
+        }
+      }
+    },
+    "Watch your week fill in": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mira cómo se llena tu semana"
+          }
+        }
+      }
+    },
+    "The Plan tab's dial tracks your weekly goal, and suggests solo sessions to fill the gaps your crew can't.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El dial de la pestaña Plan sigue tu objetivo semanal y sugiere sesiones individuales para cubrir los huecos que tu crew no puede."
+          }
+        }
+      }
+    },
+    "Try high contrast & fonts": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prueba el alto contraste y las fuentes"
+          }
+        }
+      }
+    },
+    "In You, flip High contrast for an all black-and-white look, or switch between rounded and standard type.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Tú, activa Alto contraste para un aspecto totalmente en blanco y negro, o cambia entre tipografía redondeada y estándar."
+          }
+        }
+      }
+    },
+    "Found something broken or confusing? Shake your phone to send feedback straight from TestFlight — screenshots included.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Algo roto o confuso? Agita el teléfono para enviar comentarios directamente desde TestFlight, con capturas incluidas."
+          }
+        }
+      }
+    },
+    "You're not signed in yet.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no has iniciado sesión."
+          }
+        }
+      }
+    },
+    "No group matches that invite code.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ningún grupo coincide con ese código de invitación."
+          }
+        }
+      }
+    },
+    "This group already has the maximum of %lld members.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este grupo ya tiene el máximo de %lld miembros."
+          }
+        }
+      }
+    },
+    "That @handle is already taken. Try another one.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ese @usuario ya está en uso. Prueba con otro."
+          }
+        }
+      }
+    },
+    "No starting address set.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ha indicado una dirección de salida."
+          }
+        }
+      }
+    },
+    "Waiting on the driver's starting address.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esperando la dirección de salida del conductor."
+          }
+        }
+      }
+    },
+    "Set the gym location first.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Primero define la ubicación del gimnasio."
+          }
+        }
+      }
+    },
+    "Calendar access was denied. You can enable it later in Settings.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se denegó el acceso al calendario. Puedes activarlo más tarde en Ajustes."
+          }
+        }
+      }
+    },
+    "Apple didn't return a valid identity token.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple no devolvió un token de identidad válido."
+          }
+        }
+      }
+    },
+    "Your calendar, private": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu calendario, privado"
+          }
+        }
+      }
+    },
+    "Mark which calendars count as busy. Gymship shares only when you're busy — never why.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marca qué calendarios cuentan como ocupados. Gymship solo comparte cuándo estás ocupado, nunca por qué."
+          }
+        }
+      }
+    },
+    "Start a crew": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea un crew"
+          }
+        }
+      }
+    },
+    "Make a crew and share its invite code, or join a friend's. Up to five people per crew.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea un crew y comparte su código de invitación, o únete al de un amigo. Hasta cinco personas por crew."
+          }
+        }
+      }
+    },
+    "Let AI find the time": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deja que la IA encuentre el momento"
+          }
+        }
+      }
+    },
+    "Once everyone's synced, Apple Intelligence suggests the best slot on each free day.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuando todos estén sincronizados, Apple Intelligence sugiere el mejor horario en cada día libre."
+          }
+        }
+      }
+    },
+    "Tap I'm in. When a second person joins, the workout locks — then plan the ride and see who's leaving when.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca Me apunto. Cuando se une una segunda persona, el entrenamiento queda confirmado; después planifica el trayecto y mira quién sale y cuándo."
+          }
+        }
+      }
+    },
+    "Hit your week": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cumple tu semana"
+          }
+        }
+      }
+    },
+    "The Plan dial tracks your weekly goal and suggests solo sessions to fill the gaps.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El dial del Plan sigue tu objetivo semanal y sugiere sesiones individuales para cubrir los huecos."
+          }
+        }
+      }
+    },
+    "Gymship": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gymship"
+          }
+        }
+      }
+    },
+    "Your crew's free time, turned into workouts.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El tiempo libre de tu crew, convertido en entrenamientos."
+          }
+        }
+      }
+    },
+    "See when you're free": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mira cuándo estás libre"
+          }
+        }
+      }
+    },
+    "Gymship reads your calendar to find gaps, and writes locked-in workouts to its own calendar.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gymship lee tu calendario para encontrar huecos y escribe los entrenamientos confirmados en su propio calendario."
+          }
+        }
+      }
+    },
+    "Make it yours": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hazlo tuyo"
+          }
+        }
+      }
+    },
+    "Sign in with Apple to create your profile. No password, and you choose what to share.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia sesión con Apple para crear tu perfil. Sin contraseña y tú decides qué compartir."
+          }
+        }
+      }
+    },
+    "Get started": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar"
+          }
+        }
+      }
+    },
+    "Allow calendar access": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir acceso al calendario"
+          }
+        }
+      }
+    },
+    "Let's go": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vamos"
+          }
+        }
+      }
+    },
+    "Next": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siguiente"
+          }
+        }
+      }
+    },
+    "Continue": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar"
+          }
+        }
+      }
+    },
+    "Nobody yet": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nadie todavía"
+          }
+        }
+      }
+    },
+    "Be the first in": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sé el primero en apuntarte"
+          }
+        }
+      }
+    },
+    "Locked in": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmado"
+          }
+        }
+      }
+    },
+    "One more locks it": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uno más y se confirma"
+          }
+        }
+      }
+    },
+    "AI pick": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elección de la IA"
+          }
+        }
+      }
+    },
+    "Step out": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retirarme"
+          }
+        }
+      }
+    },
+    "In": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apuntado"
+          }
+        }
+      }
+    },
+    "I'm in": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Me apunto"
+          }
+        }
+      }
+    },
+    "Good night": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buenas noches"
+          }
+        }
+      }
+    },
+    "This week": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta semana"
+          }
+        }
+      }
+    },
+    "Next week": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La próxima semana"
+          }
+        }
+      }
+    },
+    "Last week": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La semana pasada"
+          }
+        }
+      }
+    },
+    "%lld weeks ago": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hace %lld semanas"
+          }
+        }
+      }
+    },
+    "Let Gymship see your calendar": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permite que Gymship vea tu calendario"
+          }
+        }
+      }
+    },
+    "It only reads when you're busy, so your crew can find time that works for everyone.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo lee cuándo estás ocupado, para que tu crew encuentre un momento que le venga bien a todos."
+          }
+        }
+      }
+    },
+    "Sessions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesiones"
+          }
+        }
+      }
+    },
+    "Say you're in — two people locks it": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apúntate: con dos personas se confirma"
+          }
+        }
+      }
+    },
+    "Show all": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver todo"
+          }
+        }
+      }
+    },
+    "Add to calendar": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir al calendario"
+          }
+        }
+      }
+    },
+    "Past sessions aren't kept — the dial shows the days you trained.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las sesiones pasadas no se guardan; el dial muestra los días que entrenaste."
+          }
+        }
+      }
+    },
+    "Nothing proposed yet. Open a crew and find a time.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay propuestas. Abre un crew y busca un horario."
+          }
+        }
+      }
+    },
+    "Solo slots": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huecos individuales"
+          }
+        }
+      }
+    },
+    "Picked from your own free time": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegidos de tu propio tiempo libre"
+          }
+        }
+      }
+    },
+    "Length": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duración"
+          }
+        }
+      }
+    },
+    "1 hr": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 h"
+          }
+        }
+      }
+    },
+    "1.5 hrs": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1,5 h"
+          }
+        }
+      }
+    },
+    "2 hrs": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 h"
+          }
+        }
+      }
+    },
+    "2 hr": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 h"
+          }
+        }
+      }
+    },
+    "2.5 hr": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2,5 h"
+          }
+        }
+      }
+    },
+    "1.5 hr": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1,5 h"
+          }
+        }
+      }
+    },
+    "30 min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "30 min"
+          }
+        }
+      }
+    },
+    "You've hit your goal this week. Nice work.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Has cumplido tu objetivo de esta semana. ¡Buen trabajo!"
+          }
+        }
+      }
+    },
+    "Looking through your week…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisando tu semana…"
+          }
+        }
+      }
+    },
+    "No free block that long is left this week.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta semana ya no queda ningún bloque libre tan largo."
+          }
+        }
+      }
+    },
+    "%lld hr": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld h"
+          }
+        }
+      }
+    },
+    "%lf hr": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lf h"
+          }
+        }
+      }
+    },
+    "%@ hr": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ h"
+          }
+        }
+      }
+    },
+    "%lld min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min"
+          }
+        }
+      }
+    },
+    "%lldh %lldm": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld h %lld min"
+          }
+        }
+      }
+    },
+    "Added": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadido"
+          }
+        }
+      }
+    },
+    "Add": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir"
+          }
+        }
+      }
+    },
+    "Solo workout": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrenamiento individual"
+          }
+        }
+      }
+    },
+    "Suggested workout": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrenamiento sugerido"
+          }
+        }
+      }
+    },
+    "Workout": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrenamiento"
+          }
+        }
+      }
+    },
+    "Workout with %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrenamiento con %@"
+          }
+        }
+      }
+    },
+    "Added ^[%lld workout](inflect: true) to your Gymship calendar.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se ha añadido ^[%lld entrenamiento](inflect: true) a tu calendario de Gymship."
+          }
+        }
+      }
+    },
+    "Weekly goal": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivo semanal"
+          }
+        }
+      }
+    },
+    "of %lld this week": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "de %lld esta semana"
+          }
+        }
+      }
+    },
+    "Goal hit": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objetivo cumplido"
+          }
+        }
+      }
+    },
+    "Today": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy"
+          }
+        }
+      }
+    },
+    "Workout locked in": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrenamiento confirmado"
+          }
+        }
+      }
+    },
+    "You're in": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estás apuntado"
+          }
+        }
+      }
+    },
+    "Nothing planned": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada planeado"
+          }
+        }
+      }
+    },
+    "Calendar access needed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se necesita acceso al calendario"
+          }
+        }
+      }
+    },
+    "Gymship reads when you're busy so your crew can find time that works.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gymship lee cuándo estás ocupado para que tu crew encuentre un momento que funcione."
+          }
+        }
+      }
+    },
+    "Availability": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponibilidad"
+          }
+        }
+      }
+    },
+    "Block time": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloquear tiempo"
+          }
+        }
+      }
+    },
+    "free hours\nthis week": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "horas libres\nesta semana"
+          }
+        }
+      }
+    },
+    "%lld busy hours": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld horas ocupadas"
+          }
+        }
+      }
+    },
+    "Calendars": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calendarios"
+          }
+        }
+      }
+    },
+    "Switch on the ones that mean you're busy": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa los que indican que estás ocupado"
+          }
+        }
+      }
+    },
+    "No calendars found.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontraron calendarios."
+          }
+        }
+      }
+    },
+    "Blocked by you": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloqueado por ti"
+          }
+        }
+      }
+    },
+    "Time your calendars don't cover": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiempo que tus calendarios no cubren"
+          }
+        }
+      }
+    },
+    "Nothing blocked. Tap + to block off time.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada bloqueado. Toca + para bloquear tiempo."
+          }
+        }
+      }
+    },
+    "Remove": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitar"
+          }
+        }
+      }
+    },
+    "Starts": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empieza"
+          }
+        }
+      }
+    },
+    "Ends": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Termina"
+          }
+        }
+      }
+    },
+    "Mark unavailable": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marcar como no disponible"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        }
+      }
+    },
+    "%lld of %lld calendars count as busy": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld de %lld calendarios cuentan como ocupados"
+          }
+        }
+      }
+    },
+    "Invite a friend to test": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invita a un amigo a probar"
+          }
+        }
+      }
+    },
+    "I'm testing Gymship — it finds the free time your crew shares and turns it into a workout. Join me on TestFlight: %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estoy probando Gymship: encuentra el tiempo libre que comparte tu crew y lo convierte en un entrenamiento. Únete en TestFlight: %@"
+          }
+        }
+      }
+    },
+    "WHAT TO TEST": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "QUÉ PROBAR"
+          }
+        }
+      }
+    },
+    "Try Gymship\nwith your crew": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prueba Gymship\ncon tu crew"
+          }
+        }
+      }
+    },
+    "WHAT'S NEW": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NOVEDADES"
+          }
+        }
+      }
+    },
+    "Since your last update": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desde tu última actualización"
+          }
+        }
+      }
+    },
+    "Version %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión %@"
+          }
+        }
+      }
+    },
+    "Double booked": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doble reserva"
+          }
+        }
+      }
+    },
+    "These two overlap. Which one are you going to?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estas dos coinciden. ¿A cuál vas a ir?"
+          }
+        }
+      }
+    },
+    "or": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "o"
+          }
+        }
+      }
+    },
+    "Going": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voy"
+          }
+        }
+      }
+    },
+    "Propose a workout": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proponer un entrenamiento"
+          }
+        }
+      }
+    },
+    "%lld of %lld members": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld de %lld miembros"
+          }
+        }
+      }
+    },
+    "Join my Gymship crew \"%@\" — invite code %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Únete a mi crew de Gymship \"%@\" — código de invitación %@"
+          }
+        }
+      }
+    },
+    "Session length": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duración de la sesión"
+          }
+        }
+      }
+    },
+    "Find best times": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar mejores horarios"
+          }
+        }
+      }
+    },
+    "Everyone's synced. Apple Intelligence picks a %@ slot for each free day.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos están sincronizados. Apple Intelligence elige un horario de %@ para cada día libre."
+          }
+        }
+      }
+    },
+    "Syncing everyone's calendars…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sincronizando los calendarios de todos…"
+          }
+        }
+      }
+    },
+    "Waiting on %@ to open Gymship and sync their calendar.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esperando a que %@ abra Gymship y sincronice su calendario."
+          }
+        }
+      }
+    },
+    "Two people in locks a workout": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con dos personas apuntadas se confirma un entrenamiento"
+          }
+        }
+      }
+    },
+    "No sessions yet. Find best times, or tap + to propose your own.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay sesiones. Busca los mejores horarios o toca + para proponer la tuya."
+          }
+        }
+      }
+    },
+    "No shared free time of that length was found this week.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta semana no se encontró tiempo libre compartido de esa duración."
+          }
+        }
+      }
+    },
+    "You're up to date — no new days to suggest.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estás al día: no hay días nuevos que sugerir."
+          }
+        }
+      }
+    },
+    "What are you doing?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Qué vas a hacer?"
+          }
+        }
+      }
+    },
+    "Duration": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duración"
+          }
+        }
+      }
+    },
+    "Propose": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proponer"
+          }
+        }
+      }
+    },
+    "Join a crew": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Únete a un crew"
+          }
+        }
+      }
+    },
+    "Mode": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo"
+          }
+        }
+      }
+    },
+    "Name your crew": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ponle nombre a tu crew"
+          }
+        }
+      }
+    },
+    "Enter the invite code": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Introduce el código de invitación"
+          }
+        }
+      }
+    },
+    "You'll get an invite code to share with up to four friends.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recibirás un código de invitación para compartir con hasta cuatro amigos."
+          }
+        }
+      }
+    },
+    "Ask a friend for their crew's code — it's on their Crews tab.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pide a un amigo el código de su crew; está en su pestaña Crews."
+          }
+        }
+      }
+    },
+    "Crew name": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre del crew"
+          }
+        }
+      }
+    },
+    "Invite code": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Código de invitación"
+          }
+        }
+      }
+    },
+    "Create crew": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear crew"
+          }
+        }
+      }
+    },
+    "Join crew": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unirse al crew"
+          }
+        }
+      }
+    },
+    "Crews": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crews"
+          }
+        }
+      }
+    },
+    "Close": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
+          }
+        }
+      }
+    },
+    "Find your crew": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encuentra tu crew"
+          }
+        }
+      }
+    },
+    "Start a crew or join a friend's with their invite code. Gymship finds the time you're all free.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea un crew o únete al de un amigo con su código de invitación. Gymship encuentra el momento en que todos estáis libres."
+          }
+        }
+      }
+    },
+    "New crew": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo crew"
+          }
+        }
+      }
+    },
+    "Next · %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siguiente · %@"
+          }
+        }
+      }
+    },
+    "No sessions yet": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay sesiones"
+          }
+        }
+      }
+    },
+    "Getting there": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cómo llegar"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listo"
+          }
+        }
+      }
+    },
+    "Gym": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gimnasio"
+          }
+        }
+      }
+    },
+    "Shared by the whole crew": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compartido por todo el crew"
+          }
+        }
+      }
+    },
+    "Gym address": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dirección del gimnasio"
+          }
+        }
+      }
+    },
+    "Save location": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar ubicación"
+          }
+        }
+      }
+    },
+    "Edit": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar"
+          }
+        }
+      }
+    },
+    "Your ride": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu trayecto"
+          }
+        }
+      }
+    },
+    "I'm driving": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voy conduciendo"
+          }
+        }
+      }
+    },
+    "Need a ride": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Necesito que me lleven"
+          }
+        }
+      }
+    },
+    "No one else is in yet, so there's no one to ride with.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todavía no se ha apuntado nadie más, así que no hay con quién ir."
+          }
+        }
+      }
+    },
+    "Who's picking you up?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quién te recoge?"
+          }
+        }
+      }
+    },
+    "Where are you leaving from?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Desde dónde sales?"
+          }
+        }
+      }
+    },
+    "Pickup address": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dirección de recogida"
+          }
+        }
+      }
+    },
+    "Save my ride": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar mi trayecto"
+          }
+        }
+      }
+    },
+    "For the %@ start": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para el inicio de las %@"
+          }
+        }
+      }
+    },
+    "Calculate": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calcular"
+          }
+        }
+      }
+    },
+    "Leave %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir a las %@"
+          }
+        }
+      }
+    },
+    "Ready %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estar listo a las %@"
+          }
+        }
+      }
+    },
+    "Hasn't set a ride yet": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no ha definido su trayecto"
+          }
+        }
+      }
+    },
+    "Driving from %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conduciendo desde %@"
+          }
+        }
+      }
+    },
+    "%@ picks up at %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ recoge en %@"
+          }
+        }
+      }
+    },
+    "an unknown address": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "una dirección desconocida"
+          }
+        }
+      }
+    },
+    "someone": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "alguien"
+          }
+        }
+      }
+    },
+    "Plan": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan"
+          }
+        }
+      }
+    },
+    "You": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tú"
+          }
+        }
+      }
+    },
+    "Next up · %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A continuación · %@"
+          }
+        }
+      }
+    },
+    "High contrast": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alto contraste"
+          }
+        }
+      }
+    },
+    "Black & white, no glass": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blanco y negro, sin cristal"
+          }
+        }
+      }
+    },
+    "Rounded font": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuente redondeada"
+          }
+        }
+      }
+    },
+    "SF Pro Rounded": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SF Pro Rounded"
+          }
+        }
+      }
+    },
+    "Standard SF Pro": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SF Pro estándar"
+          }
+        }
+      }
+    },
+    "Appearance": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apariencia"
+          }
+        }
+      }
+    },
+    "Off while High contrast is on": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desactivado mientras el alto contraste está activo"
+          }
+        }
+      }
+    },
+    "Background & highlight": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fondo y color de acento"
+          }
+        }
+      }
+    },
+    "What Gymship does, and what to try": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qué hace Gymship y qué probar"
+          }
+        }
+      }
+    },
+    "See what changed in each update": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mira qué cambió en cada actualización"
+          }
+        }
+      }
+    },
+    "Version": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión"
+          }
+        }
+      }
+    },
+    "Testing": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pruebas"
+          }
+        }
+      }
+    },
+    "Reset to factory defaults": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restablecer valores de fábrica"
+          }
+        }
+      }
+    },
+    "Signs out and clears this device's local data": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cierra sesión y borra los datos locales de este dispositivo"
+          }
+        }
+      }
+    },
+    "Reset to factory defaults?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Restablecer valores de fábrica?"
+          }
+        }
+      }
+    },
+    "Reset": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restablecer"
+          }
+        }
+      }
+    },
+    "This signs you out and clears all local app data (profile, groups, availability, goals) on this device. Nothing on the server is deleted. For testing only.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esto cierra tu sesión y borra todos los datos locales de la app (perfil, grupos, disponibilidad, objetivos) en este dispositivo. No se elimina nada del servidor. Solo para pruebas."
+          }
+        }
+      }
+    },
+    "Edit profile": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar perfil"
+          }
+        }
+      }
+    },
+    "Not signed in": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin iniciar sesión"
+          }
+        }
+      }
+    },
+    "Full name": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre completo"
+          }
+        }
+      }
+    },
+    "Handle": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuario"
+          }
+        }
+      }
+    },
+    "Friends find you by your handle: 3–20 lowercase letters or numbers.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus amigos te encuentran por tu usuario: de 3 a 20 letras minúsculas o números."
+          }
+        }
+      }
+    },
+    "Save": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
+          }
+        }
+      }
+    },
+    "Background": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fondo"
+          }
+        }
+      }
+    },
+    "Every screen adopts the hue": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas las pantallas adoptan el tono"
+          }
+        }
+      }
+    },
+    "Shuffle": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aleatorio"
+          }
+        }
+      }
+    },
+    "Highlight": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acento"
+          }
+        }
+      }
+    },
+    "Buttons, the week dial and accents": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Botones, el dial semanal y los acentos"
+          }
+        }
+      }
+    },
+    "Thursday · 6:30 PM": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jueves · 18:30"
+          }
+        }
+      }
+    },
+    "Good morning": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buenos días"
+          }
+        }
+      }
+    },
+    "Good afternoon": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buenas tardes"
+          }
+        }
+      }
+    },
+    "Good evening": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buenas noches"
+          }
+        }
+      }
+    },
+    "Now in Spanish": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahora en español"
+          }
+        }
+      }
+    },
+    "Spanish translation": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Traducción al español"
+          }
+        }
+      }
+    },
+    "Gymship now speaks Spanish. It follows your iPhone's language automatically.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gymship ahora habla español. Sigue automáticamente el idioma de tu iPhone."
+          }
+        }
+      }
+    },
+    "Consistent capitalization": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mayúsculas coherentes"
+          }
+        }
+      }
+    },
+    "Buttons, titles and alerts now use the same sentence-style capitalization everywhere.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Botones, títulos y alertas usan ahora el mismo estilo de mayúsculas en todas partes."
+          }
+        }
+      }
+    },
+    "Curved day labels": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etiquetas de día curvas"
+          }
+        }
+      }
+    },
+    "The weekday letters and numbers on the week dial now bend gently with the ring.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las letras y números de los días del dial semanal ahora se curvan suavemente con el anillo."
+          }
+        }
+      }
+    },
+    "Preferences": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferencias"
+          }
+        }
+      }
+    },
+    "Hours, mornings or evenings, rest days": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horarios, mañanas o tardes, días de descanso"
+          }
+        }
+      }
+    },
+    "Never outside": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nunca fuera de"
+          }
+        }
+      }
+    },
+    "Workouts are never suggested beyond these hours": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nunca se sugieren entrenamientos fuera de estas horas"
+          }
+        }
+      }
+    },
+    "Never before": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nunca antes de"
+          }
+        }
+      }
+    },
+    "Never after": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nunca después de"
+          }
+        }
+      }
+    },
+    "Preferred time": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hora preferida"
+          }
+        }
+      }
+    },
+    "A nudge, not a rule — used when a day has options": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una preferencia, no una regla: se usa cuando un día tiene opciones"
+          }
+        }
+      }
+    },
+    "No preference": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin preferencia"
+          }
+        }
+      }
+    },
+    "Before": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes"
+          }
+        }
+      }
+    },
+    "After": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Después"
+          }
+        }
+      }
+    },
+    "Prefer before": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferir antes de"
+          }
+        }
+      }
+    },
+    "Prefer after": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferir después de"
+          }
+        }
+      }
+    },
+    "Rest days": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Días de descanso"
+          }
+        }
+      }
+    },
+    "No workouts on these days": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin entrenamientos estos días"
+          }
+        }
+      }
+    },
+    "Rest day": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Día de descanso"
+          }
+        }
+      }
+    },
+    "These apply to suggestions made on this device, for you and for your crews.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se aplican a las sugerencias hechas en este dispositivo, para ti y para tus crews."
+          }
+        }
+      }
+    },
+    "Scheduling that fits you": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horarios a tu medida"
+          }
+        }
+      }
+    },
+    "In You, set hours workouts never go outside of, a preferred time like before 9am or after 10pm, and rest days.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Tú, define las horas fuera de las cuales nunca hay entrenamientos, una hora preferida como antes de las 9:00 o después de las 22:00, y días de descanso."
+          }
+        }
+      }
+    },
+    "Agent": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agente"
+          }
+        }
+      }
+    },
+    "Ask about your week": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregunta sobre tu semana"
+          }
+        }
+      }
+    },
+    "Apple Intelligence is off": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence está desactivado"
+          }
+        }
+      }
+    },
+    "Turn on Apple Intelligence in Settings to chat with your scheduling agent.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa Apple Intelligence en Ajustes para chatear con tu agente de horarios."
+          }
+        }
+      }
+    },
+    "Your scheduling agent": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu agente de horarios"
+          }
+        }
+      }
+    },
+    "It sees your calendar, your crews' commitments and your preferences. Ask it anything about your week.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ve tu calendario, los compromisos de tus crews y tus preferencias. Pregúntale lo que quieras sobre tu semana."
+          }
+        }
+      }
+    },
+    "When should I work out this week?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Cuándo debería entrenar esta semana?"
+          }
+        }
+      }
+    },
+    "Which crew session fits my schedule best?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Qué sesión de crew encaja mejor con mi agenda?"
+          }
+        }
+      }
+    },
+    "Am I on track for my weekly goal?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Voy bien con mi objetivo semanal?"
+          }
+        }
+      }
+    },
+    "Find me a solo slot that avoids my busy days.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Búscame un hueco individual que evite mis días ocupados."
+          }
+        }
+      }
+    },
+    "Sorry, I couldn't answer that. Try again in a moment.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo siento, no pude responder. Inténtalo de nuevo en un momento."
+          }
+        }
+      }
+    },
+    "Meet your agent": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conoce a tu agente"
+          }
+        }
+      }
+    },
+    "A new tab: chat with Apple Intelligence about your week. It sees your calendar, your crews' commitments and your preferences.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una pestaña nueva: chatea con Apple Intelligence sobre tu semana. Ve tu calendario, los compromisos de tus crews y tus preferencias."
+          }
+        }
+      }
+    },
+    "A bigger week dial": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un dial semanal más grande"
+          }
+        }
+      }
+    },
+    "The dial on the Plan tab is larger, with roomier spacing and larger week arrows.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El dial de la pestaña Plan es más grande, con más espacio y flechas de semana más grandes."
+          }
+        }
+      }
+    },
+    "Screen titles": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Títulos de pantalla"
+          }
+        }
+      }
+    },
+    "Good morning, Crews and You headers now always show.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los títulos Buenos días, Crews y Tú ahora siempre se muestran."
+          }
+        }
+      }
+    },
+    "A cleaner top": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una parte superior más limpia"
+          }
+        }
+      }
+    },
+    "No more headers": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin encabezados"
+          }
+        }
+      }
+    },
+    "Screen titles are gone everywhere, so content starts right at the top.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los títulos de pantalla ya no aparecen, así que el contenido empieza justo arriba."
+          }
+        }
+      }
+    },
+    "Labels that follow the ring": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etiquetas que siguen el anillo"
+          }
+        }
+      }
+    },
+    "Dial labels": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etiquetas del dial"
+          }
+        }
+      }
+    },
+    "Each day now reads on one line, like “M 21”, smaller, and curves along its segment of the week dial.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada día ahora se lee en una sola línea, como “L 21”, más pequeño, y se curva siguiendo su segmento del dial semanal."
+          }
+        }
+      }
+    }
+  }
+}

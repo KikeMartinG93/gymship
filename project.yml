@@ -1,0 +1,66 @@
+name: Gymship
+options:
+  bundleIdPrefix: com.gymship
+  deploymentTarget:
+    iOS: "27.0"
+  createIntermediateGroups: true
+  lastUpgradeCheck: "2700"
+
+packages:
+  Supabase:
+    url: https://github.com/supabase/supabase-swift
+    from: 2.20.0
+
+targets:
+  Gymship:
+    type: application
+    platform: iOS
+    sources:
+      - path: Gymship
+        excludes:
+          - "**/.DS_Store"
+          - "Resources/Info.plist"
+    resources:
+      - path: Gymship/Resources/Assets.xcassets
+      - path: Gymship/Resources/PrivacyInfo.xcprivacy
+    dependencies:
+      - package: Supabase
+        product: Supabase
+      - sdk: FoundationModels.framework
+        weak: true
+    info:
+      path: Gymship/Resources/Info.plist
+      properties:
+        CFBundleDevelopmentRegion: en
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        LSRequiresIPhoneOS: true
+        NSCalendarsFullAccessUsageDescription: "Gymship reads your calendars to find when you're busy and schedules your confirmed workout sessions on a dedicated Workout calendar."
+        CFBundleURLTypes:
+          - CFBundleURLSchemes:
+              - com.gymship.app
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        ITSAppUsesNonExemptEncryption: false
+    entitlements:
+      path: Gymship/Resources/Gymship.entitlements
+      properties:
+        com.apple.developer.applesignin:
+          - Default
+    settings:
+      base:
+        MARKETING_VERSION: "1.2.0"
+        CURRENT_PROJECT_VERSION: "12"
+        PRODUCT_BUNDLE_IDENTIFIER: com.gymship.app
+        SWIFT_VERSION: 6.0
+        SWIFT_STRICT_CONCURRENCY: complete
+        TARGETED_DEVICE_FAMILY: "1"
+        ENABLE_PREVIEWS: YES
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: G7C5D28VAK
+        ENABLE_USER_SCRIPT_SANDBOXING: YES
+        STRING_CATALOG_GENERATE_SYMBOLS: YES
