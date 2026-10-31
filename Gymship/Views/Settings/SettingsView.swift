@@ -264,6 +264,7 @@ struct SettingsView: View {
         theme.highContrast = false
         theme.usesRoundedFont = true
         theme.appearance = .dark
+        theme.applyAppIcon()
 
         isResetting = false
         appState.isOnboarded = false
@@ -439,6 +440,7 @@ private struct AppearanceView: View {
         }
         .scrollEdgeEffectStyle(.soft, for: .all)
         .navigationBarTitleDisplayMode(.inline)
+        .onDisappear { theme.applyAppIcon() }
     }
 
     /// A miniature of the real UI, so a change is judged in context.

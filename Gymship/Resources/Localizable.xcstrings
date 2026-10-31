@@ -3571,6 +3571,36 @@
           }
         }
       }
+    },
+    "Your icon, your color": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu icono, tu color"
+          }
+        }
+      }
+    },
+    "Home Screen icon": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Icono de inicio"
+          }
+        }
+      }
+    },
+    "Leave Appearance and the Gymship icon on the Home Screen takes the accent you picked. iOS will ask once to confirm.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al salir de Apariencia, el icono de Gymship en la pantalla de inicio toma el color que elegiste. iOS pide confirmación una vez."
+          }
+        }
+      }
     }
   }
 }

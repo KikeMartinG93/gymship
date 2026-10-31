@@ -28,7 +28,10 @@ struct RootView: View {
         }
         .preferredColorScheme(theme.appearance.preferredColorScheme)
         .gymshipAnimation(Motion.screen, value: appState.isOnboarded)
-        .onAppear { theme.sync(from: colorScheme) }
+        .onAppear {
+            theme.sync(from: colorScheme)
+            theme.applyAppIcon()
+        }
         .onChange(of: colorScheme) { theme.sync(from: colorScheme) }
         .onChange(of: theme.appearance) { theme.sync(from: colorScheme) }
         .fullScreenCover(isPresented: $isShowingWhatToTest) {

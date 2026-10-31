@@ -294,6 +294,29 @@ final class ThemeManager {
     static func randomHues(count: Int = 12) -> [Double] {
         (0..<count).map { _ in Double.random(in: 0...1) }
     }
+
+    /// Alternate home-screen icons are quantized to this many hue buckets
+    /// times the eight highlight tones.
+    static let appIconHueSteps = 12
+
+    /// Bundled alternate-icon name for this hue and highlight, e.g. `AppIcon-8-3`.
+    static func appIconName(hue: Double, highlight: Int) -> String {
+        let wrapped = hue.truncatingRemainder(dividingBy: 1)
+        let stepped = wrapped < 0 ? wrapped + 1 : wrapped
+        let bucket = Int((stepped * Double(appIconHueSteps)).rounded()) % appIconHueSteps
+        let tone = min(max(highlight, 0), highlightVariations.count - 1)
+        return "AppIcon-\(bucket)-\(tone)"
+    }
+
+    /// Points the home-screen icon at the bundled variant for the current accent.
+    /// iOS shows its own confirmation when the name actually changes, so call
+    /// this when leaving Appearance — not on every swatch tap.
+    func applyAppIcon() {
+        let name = Self.appIconName(hue: backgroundHue, highlight: highlightIndex)
+        guard UIApplication.shared.supportsAlternateIcons else { return }
+        guard UIApplication.shared.alternateIconName != name else { return }
+        Task { try? await UIApplication.shared.setAlternateIconName(name) }
+    }
 }
 
 /// The font design for the whole app. SwiftUI text inherits it from

@@ -408,11 +408,12 @@
 		18FDFAABA3C0AAE9411E3346 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-0-0 AppIcon-0-1 AppIcon-0-2 AppIcon-0-3 AppIcon-0-4 AppIcon-0-5 AppIcon-0-6 AppIcon-0-7 AppIcon-1-0 AppIcon-1-1 AppIcon-1-2 AppIcon-1-3 AppIcon-1-4 AppIcon-1-5 AppIcon-1-6 AppIcon-1-7 AppIcon-2-0 AppIcon-2-1 AppIcon-2-2 AppIcon-2-3 AppIcon-2-4 AppIcon-2-5 AppIcon-2-6 AppIcon-2-7 AppIcon-3-0 AppIcon-3-1 AppIcon-3-2 AppIcon-3-3 AppIcon-3-4 AppIcon-3-5 AppIcon-3-6 AppIcon-3-7 AppIcon-4-0 AppIcon-4-1 AppIcon-4-2 AppIcon-4-3 AppIcon-4-4 AppIcon-4-5 AppIcon-4-6 AppIcon-4-7 AppIcon-5-0 AppIcon-5-1 AppIcon-5-2 AppIcon-5-3 AppIcon-5-4 AppIcon-5-5 AppIcon-5-6 AppIcon-5-7 AppIcon-6-0 AppIcon-6-1 AppIcon-6-2 AppIcon-6-3 AppIcon-6-4 AppIcon-6-5 AppIcon-6-6 AppIcon-6-7 AppIcon-7-0 AppIcon-7-1 AppIcon-7-2 AppIcon-7-3 AppIcon-7-4 AppIcon-7-5 AppIcon-7-6 AppIcon-7-7 AppIcon-8-0 AppIcon-8-1 AppIcon-8-2 AppIcon-8-3 AppIcon-8-4 AppIcon-8-5 AppIcon-8-6 AppIcon-8-7 AppIcon-9-0 AppIcon-9-1 AppIcon-9-2 AppIcon-9-3 AppIcon-9-4 AppIcon-9-5 AppIcon-9-6 AppIcon-9-7 AppIcon-10-0 AppIcon-10-1 AppIcon-10-2 AppIcon-10-3 AppIcon-10-4 AppIcon-10-5 AppIcon-10-6 AppIcon-10-7 AppIcon-11-0 AppIcon-11-1 AppIcon-11-2 AppIcon-11-3 AppIcon-11-4 AppIcon-11-5 AppIcon-11-6 AppIcon-11-7";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Gymship/Resources/Gymship.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = G7C5D28VAK;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -421,7 +422,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gymship.app;
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -553,11 +554,12 @@
 		B19195BB718C6B93BBC00BD3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-0-0 AppIcon-0-1 AppIcon-0-2 AppIcon-0-3 AppIcon-0-4 AppIcon-0-5 AppIcon-0-6 AppIcon-0-7 AppIcon-1-0 AppIcon-1-1 AppIcon-1-2 AppIcon-1-3 AppIcon-1-4 AppIcon-1-5 AppIcon-1-6 AppIcon-1-7 AppIcon-2-0 AppIcon-2-1 AppIcon-2-2 AppIcon-2-3 AppIcon-2-4 AppIcon-2-5 AppIcon-2-6 AppIcon-2-7 AppIcon-3-0 AppIcon-3-1 AppIcon-3-2 AppIcon-3-3 AppIcon-3-4 AppIcon-3-5 AppIcon-3-6 AppIcon-3-7 AppIcon-4-0 AppIcon-4-1 AppIcon-4-2 AppIcon-4-3 AppIcon-4-4 AppIcon-4-5 AppIcon-4-6 AppIcon-4-7 AppIcon-5-0 AppIcon-5-1 AppIcon-5-2 AppIcon-5-3 AppIcon-5-4 AppIcon-5-5 AppIcon-5-6 AppIcon-5-7 AppIcon-6-0 AppIcon-6-1 AppIcon-6-2 AppIcon-6-3 AppIcon-6-4 AppIcon-6-5 AppIcon-6-6 AppIcon-6-7 AppIcon-7-0 AppIcon-7-1 AppIcon-7-2 AppIcon-7-3 AppIcon-7-4 AppIcon-7-5 AppIcon-7-6 AppIcon-7-7 AppIcon-8-0 AppIcon-8-1 AppIcon-8-2 AppIcon-8-3 AppIcon-8-4 AppIcon-8-5 AppIcon-8-6 AppIcon-8-7 AppIcon-9-0 AppIcon-9-1 AppIcon-9-2 AppIcon-9-3 AppIcon-9-4 AppIcon-9-5 AppIcon-9-6 AppIcon-9-7 AppIcon-10-0 AppIcon-10-1 AppIcon-10-2 AppIcon-10-3 AppIcon-10-4 AppIcon-10-5 AppIcon-10-6 AppIcon-10-7 AppIcon-11-0 AppIcon-11-1 AppIcon-11-2 AppIcon-11-3 AppIcon-11-4 AppIcon-11-5 AppIcon-11-6 AppIcon-11-7";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Gymship/Resources/Gymship.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = G7C5D28VAK;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -566,7 +568,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.7;
+				MARKETING_VERSION = 1.2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gymship.app;
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;

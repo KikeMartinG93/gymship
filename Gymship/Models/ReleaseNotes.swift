@@ -247,6 +247,15 @@ enum ReleaseNotes {
                      detail: String(localized: "The Agent tab is a conversation now, like Messages — bubbles, a field, and suggested questions above it.")),
             ]
         ),
+        Release(
+            build: 20,
+            version: "1.2.8",
+            headline: String(localized: "Your icon, your color"),
+            items: [
+                Item(kind: .new, symbol: "app.fill", title: String(localized: "Home Screen icon"),
+                     detail: String(localized: "Leave Appearance and the Gymship icon on the Home Screen takes the accent you picked. iOS will ask once to confirm.")),
+            ]
+        ),
     ]
 
     /// Newest first — the order people want to read them in.

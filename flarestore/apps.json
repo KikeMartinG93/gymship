@@ -17,13 +17,22 @@
       "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/gymship/main/flarestore/icon.png",
       "tintColor": "#244EF2",
       "category": "lifestyle",
-      "version": "1.2.7",
-      "buildVersion": "19",
-      "versionDate": "2026-10-31T21:30:00-07:00",
-      "versionDescription": "The Agent tab is a conversation now, like Messages.",
-      "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.7/Gymship.ipa",
-      "size": 7237905,
+      "version": "1.2.8",
+      "buildVersion": "20",
+      "versionDate": "2026-10-31T22:05:00-07:00",
+      "versionDescription": "The Home Screen icon now matches the accent you pick in Appearance.",
+      "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.8/Gymship.ipa",
+      "size": 9313122,
       "versions": [
+        {
+          "version": "1.2.8",
+          "buildVersion": "20",
+          "date": "2026-10-31T22:05:00-07:00",
+          "localizedDescription": "The Home Screen icon now matches the accent you pick in Appearance.",
+          "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.8/Gymship.ipa",
+          "size": 9313122,
+          "minOSVersion": "27.0"
+        },
         {
           "version": "1.2.7",
           "buildVersion": "19",
@@ -108,10 +117,10 @@
   ],
   "news": [
     {
-      "title": "Gymship 1.2.7",
-      "identifier": "gymship-1.2.7",
-      "caption": "The Agent tab is a conversation now, like Messages.",
-      "date": "2026-10-31T21:30:00-07:00",
+      "title": "Gymship 1.2.8",
+      "identifier": "gymship-1.2.8",
+      "caption": "The Home Screen icon now matches the accent you pick in Appearance.",
+      "date": "2026-10-31T22:05:00-07:00",
       "tintColor": "#244EF2",
       "notify": true,
       "appID": "com.gymship.app"
