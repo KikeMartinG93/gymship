@@ -11,24 +11,13 @@ struct Avatar: View {
     var ring: Color?
 
     var body: some View {
-        let hue = Self.hue(for: name)
+        let shift = Self.hueShift(for: name)
+        let fills = theme.iconFill(shift: shift)
         Text(Self.initials(for: name))
             .font(.system(size: size * 0.38, weight: .bold))
-            .foregroundStyle(.white)
+            .foregroundStyle(theme.ink(on: fills[0]))
             .frame(width: size, height: size)
-            .background(
-                theme.highContrast
-                    ? AnyShapeStyle(Color(white: 0.20))
-                    : AnyShapeStyle(LinearGradient(
-                        colors: [
-                            Color(hue: hue, saturation: 0.55, brightness: 0.95),
-                            Color(hue: (hue + 0.07).truncatingRemainder(dividingBy: 1), saturation: 0.78, brightness: 0.62),
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )),
-                in: Circle()
-            )
+            .background(theme.iconGradient(shift: shift), in: Circle())
             .overlay(Circle().strokeBorder(.white.opacity(0.28), lineWidth: 1))
             .overlay {
                 if let ring {
@@ -43,9 +32,11 @@ struct Avatar: View {
         return letters.isEmpty ? "?" : letters.uppercased()
     }
 
-    static func hue(for name: String) -> Double {
-        let sum = name.unicodeScalars.reduce(0) { ($0 &* 31 &+ Int($1.value)) % 360 }
-        return Double(sum) / 360
+    /// Small hue offset in the current theme so people stay distinct without
+    /// leaving the selected color family.
+    static func hueShift(for name: String) -> Double {
+        let sum = name.unicodeScalars.reduce(0) { ($0 &* 31 &+ Int($1.value)) % 100 }
+        return (Double(sum) / 100 - 0.5) * 0.12
     }
 }
 

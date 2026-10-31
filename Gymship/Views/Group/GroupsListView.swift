@@ -118,24 +118,16 @@ private struct CrewCard: View {
         .glassCard(cornerRadius: 30)
     }
 
-    /// A big rounded monogram, colored from the crew's name.
+    /// A big rounded monogram, painted from the selected theme.
     private var crest: some View {
-        let hue = Avatar.hue(for: group.name)
+        let shift = Avatar.hueShift(for: group.name)
+        let fills = theme.iconFill(shift: shift)
         return Text(Avatar.initials(for: group.name))
             .font(.display(24))
-            .foregroundStyle(.white)
+            .foregroundStyle(theme.ink(on: fills[0]))
             .frame(width: 60, height: 60)
             .background(
-                theme.highContrast
-                    ? AnyShapeStyle(Color(white: 0.20))
-                    : AnyShapeStyle(LinearGradient(
-                        colors: [
-                            Color(hue: hue, saturation: 0.55, brightness: 0.95),
-                            Color(hue: (hue + 0.08).truncatingRemainder(dividingBy: 1), saturation: 0.8, brightness: 0.55),
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )),
+                theme.iconGradient(shift: shift),
                 in: Metrics.concentric(minimum: 18)
             )
             .overlay(Metrics.concentric(minimum: 18).stroke(.white.opacity(0.25), lineWidth: 1))

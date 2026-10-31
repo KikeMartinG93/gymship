@@ -24,7 +24,7 @@ struct WhatToTestView: View {
 
                     VStack(alignment: .leading, spacing: 16) {
                         ForEach(Array(WhatToTest.steps.enumerated()), id: \.element.id) { index, step in
-                            row(step)
+                            row(step, shift: Double(index) * 0.05)
                                 .opacity(appeared ? 1 : 0)
                                 .offset(y: appeared ? 0 : 18)
                                 .gymshipAnimation(
@@ -87,9 +87,9 @@ struct WhatToTestView: View {
         .gymshipAnimation(Motion.screen, value: appeared)
     }
 
-    private func row(_ step: WhatToTest.Step) -> some View {
+    private func row(_ step: WhatToTest.Step, shift: Double) -> some View {
         HStack(alignment: .top, spacing: 16) {
-            GlyphBadge(symbol: step.symbol, size: 48)
+            GlyphBadge(symbol: step.symbol, size: 48, shift: shift)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(step.title)

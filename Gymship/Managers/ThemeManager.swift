@@ -101,6 +101,40 @@ final class ThemeManager {
         return Color(hue: shiftedHue(by: shift), saturation: saturation, brightness: brightness)
     }
 
+    /// Two-stop fill for icon tiles, glyph badges, and avatars. Uses the
+    /// selected hue and highlight, nudged by `shift` so siblings stay related.
+    func iconFill(shift: Double = 0) -> [Color] {
+        if highContrast {
+            return [Color(white: 0.22), Color(white: 0.14)]
+        }
+        let variation = currentVariation
+        return [
+            Color(
+                hue: shiftedHue(by: shift),
+                saturation: variation.saturation,
+                brightness: min(1, variation.brightness + 0.05)
+            ),
+            Color(
+                hue: shiftedHue(by: shift + 0.04),
+                saturation: min(1, variation.saturation + 0.18),
+                brightness: max(0.32, variation.brightness - 0.22)
+            ),
+        ]
+    }
+
+    func iconGradient(shift: Double = 0) -> LinearGradient {
+        LinearGradient(colors: iconFill(shift: shift), startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+
+    /// Readable ink for a glyph sitting on `fill`.
+    func ink(on fill: Color) -> Color {
+        if highContrast { return .white }
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+        UIColor(fill).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        let luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue
+        return luminance > 0.62 ? Color(white: 0.06) : .white
+    }
+
     private struct PaletteKey: Equatable {
         var hue: Double
         var highlight: Int

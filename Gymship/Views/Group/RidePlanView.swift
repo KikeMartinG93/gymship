@@ -144,7 +144,7 @@ struct RidePlanView: View {
                 }
             } else {
                 HStack(spacing: 14) {
-                    IconTile(symbol: "mappin.and.ellipse", color: theme.accent)
+                    IconTile(symbol: "mappin.and.ellipse")
                     Text(currentGroup.gymAddress ?? gymAddressText)
                         .font(.system(.subheadline, weight: .medium))
                         .lineLimit(2)

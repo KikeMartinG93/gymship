@@ -24,7 +24,7 @@ struct WhatsNewView: View {
                                 SectionHeader(title: release.versionLabel, subtitle: release.headline)
                             }
                             ForEach(Array(release.items.enumerated()), id: \.element.id) { itemIndex, item in
-                                row(item)
+                                row(item, shift: Double(itemIndex) * 0.05)
                                     .opacity(appeared ? 1 : 0)
                                     .offset(y: appeared ? 0 : 18)
                                     .gymshipAnimation(
@@ -73,9 +73,9 @@ struct WhatsNewView: View {
         .gymshipAnimation(Motion.screen, value: appeared)
     }
 
-    private func row(_ item: ReleaseNotes.Item) -> some View {
+    private func row(_ item: ReleaseNotes.Item, shift: Double) -> some View {
         HStack(alignment: .top, spacing: 16) {
-            GlyphBadge(symbol: item.symbol, size: 48)
+            GlyphBadge(symbol: item.symbol, size: 48, shift: shift)
 
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 8) {

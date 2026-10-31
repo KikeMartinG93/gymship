@@ -27,7 +27,6 @@ struct SettingsView: View {
                         } label: {
                             SettingsRow(
                                 symbol: "calendar",
-                                color: theme.companion(0),
                                 title: String(localized: "Availability"),
                                 detail: availabilitySummary
                             )
@@ -41,7 +40,7 @@ struct SettingsView: View {
                         } label: {
                             SettingsRow(
                                 symbol: "person.badge.plus",
-                                color: theme.companion(0.08),
+                                shift: 0.05,
                                 title: String(localized: "Start or join a crew")
                             )
                         }
@@ -51,7 +50,7 @@ struct SettingsView: View {
 
                         Toggle(isOn: $theme.highContrast.animation(Motion.ui)) {
                             HStack(spacing: 14) {
-                                IconTile(symbol: "circle.lefthalf.filled", color: .gray)
+                                IconTile(symbol: "circle.lefthalf.filled", shift: -0.06)
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text("High contrast")
                                         .font(.system(.body, weight: .medium))
@@ -69,7 +68,7 @@ struct SettingsView: View {
 
                         Toggle(isOn: $theme.usesRoundedFont) {
                             HStack(spacing: 14) {
-                                IconTile(symbol: "textformat", color: theme.companion(-0.16))
+                                IconTile(symbol: "textformat", shift: -0.04)
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text("Rounded font")
                                         .font(.system(.body, weight: .medium))
@@ -90,7 +89,7 @@ struct SettingsView: View {
                         } label: {
                             SettingsRow(
                                 symbol: "slider.horizontal.3",
-                                color: theme.companion(0.16),
+                                shift: 0.07,
                                 title: String(localized: "Preferences"),
                                 detail: String(localized: "Hours, rest days, mornings or evenings")
                             )
@@ -104,7 +103,7 @@ struct SettingsView: View {
                         } label: {
                             SettingsRow(
                                 symbol: "paintpalette.fill",
-                                color: theme.companion(-0.08),
+                                shift: 0.03,
                                 title: String(localized: "Appearance"),
                                 detail: theme.highContrast ? String(localized: "Off while High contrast is on") : String(localized: "Background & highlight")
                             )
@@ -118,7 +117,7 @@ struct SettingsView: View {
                         } label: {
                             SettingsRow(
                                 symbol: "checklist",
-                                color: theme.companion(0.24),
+                                shift: 0.09,
                                 title: String(localized: "What to test"),
                                 detail: String(localized: "What Gymship does, and what to try")
                             )
@@ -132,7 +131,7 @@ struct SettingsView: View {
                         } label: {
                             SettingsRow(
                                 symbol: "megaphone.fill",
-                                color: theme.companion(0.16),
+                                shift: 0.06,
                                 title: String(localized: "What's new"),
                                 detail: String(localized: "See what changed in each update")
                             )
@@ -142,7 +141,7 @@ struct SettingsView: View {
                         RowDivider()
 
                         HStack {
-                            IconTile(symbol: "info.circle.fill", color: .gray)
+                            IconTile(symbol: "info.circle.fill", shift: -0.08)
                             Text("Version")
                                 .font(.system(.body, weight: .medium))
                             Spacer()

@@ -205,6 +205,15 @@ enum ReleaseNotes {
                      detail: String(localized: "Wide symbols like the crew icon now fill their circle instead of looking cramped.")),
             ]
         ),
+        Release(
+            build: 16,
+            version: "1.2.4",
+            headline: String(localized: "Icons that match your color"),
+            items: [
+                Item(kind: .improved, symbol: "paintpalette.fill", title: String(localized: "Themed icon backgrounds"),
+                     detail: String(localized: "Tiles, empty-state badges, avatars and crew crests now pick up the hue and highlight you chose in Appearance.")),
+            ]
+        ),
     ]
 
     /// Newest first — the order people want to read them in.

@@ -181,24 +181,29 @@ struct RowDivider: View {
     }
 }
 
-/// An iOS-Settings-style rounded icon tile.
+/// An iOS-Settings-style rounded icon tile, painted from the selected theme.
 struct IconTile: View {
     @Environment(ThemeManager.self) private var theme
 
     let symbol: String
-    var color: Color
+    var shift: Double = 0
+    var color: Color?
     var size: CGFloat = 30
 
     var body: some View {
-        FittedSymbol(symbol, color: .white)
+        let fills = fillColors
+        FittedSymbol(symbol, color: theme.ink(on: fills[0]))
             .padding(size * Metrics.glyphInsetRatio)
             .frame(width: size, height: size)
             .background(
-                theme.highContrast
-                    ? AnyShapeStyle(Color(white: 0.18))
-                    : AnyShapeStyle(LinearGradient(colors: [color, color.opacity(0.65)], startPoint: .top, endPoint: .bottom)),
+                LinearGradient(colors: fills, startPoint: .top, endPoint: .bottom),
                 in: RoundedRectangle(cornerRadius: size * 0.225, style: .continuous)
             )
+    }
+
+    private var fillColors: [Color] {
+        if let color { return [color, color.opacity(0.7)] }
+        return theme.iconFill(shift: shift)
     }
 }
 
@@ -222,19 +227,21 @@ struct FittedSymbol: View {
     }
 }
 
-/// Circular glass badge. Same inset ratio at every size, so `person.3` and
-/// `sparkles` sit equally in the circle.
+/// Circular badge painted from the selected theme. Same inset ratio at every
+/// size, so `person.3` and `sparkles` sit equally in the circle.
 struct GlyphBadge: View {
     @Environment(ThemeManager.self) private var theme
 
     let symbol: String
     var size: CGFloat = 84
+    var shift: Double = 0
 
     var body: some View {
-        FittedSymbol(symbol, color: theme.accent)
+        let fills = theme.iconFill(shift: shift)
+        FittedSymbol(symbol, color: theme.ink(on: fills[0]))
             .padding(size * Metrics.glyphInsetRatio)
             .frame(width: size, height: size)
-            .glassSurface(Circle())
+            .background(theme.iconGradient(shift: shift), in: Circle())
             .accessibilityHidden(true)
     }
 }
@@ -243,7 +250,8 @@ struct GlyphBadge: View {
 /// or `Button` (with `.buttonStyle(.plain)`) at the call site.
 struct SettingsRow: View {
     let symbol: String
-    let color: Color
+    var shift: Double = 0
+    var color: Color?
     let title: String
     var detail: String?
     var showsChevron = true
@@ -251,7 +259,7 @@ struct SettingsRow: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            IconTile(symbol: symbol, color: color)
+            IconTile(symbol: symbol, shift: shift, color: color)
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
                     .font(.system(.body, weight: .medium))

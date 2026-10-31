@@ -18,6 +18,15 @@
       "category": "lifestyle",
       "versions": [
         {
+          "version": "1.2.4",
+          "buildVersion": "16",
+          "date": "2026-10-30",
+          "localizedDescription": "Icon tiles, badges, avatars and crew crests now match the color you pick in Appearance.",
+          "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.4/Gymship.ipa",
+          "size": 2508363,
+          "minOSVersion": "27.0"
+        },
+        {
           "version": "1.2.3",
           "buildVersion": "15",
           "date": "2026-10-30",
