@@ -130,6 +130,6 @@ private struct CrewCard: View {
                 theme.iconGradient(shift: shift),
                 in: Metrics.concentric(minimum: 18)
             )
-            .overlay(Metrics.concentric(minimum: 18).stroke(.white.opacity(0.25), lineWidth: 1))
+            .overlay(Metrics.concentric(minimum: 18).stroke(Color.white.opacity(theme.isDark ? 0.25 : 0.45), lineWidth: 1))
     }
 }

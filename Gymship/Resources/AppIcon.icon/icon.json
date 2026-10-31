@@ -1,0 +1,62 @@
+{
+  "fill-specializations": [
+    {
+      "value": {
+        "automatic-gradient": "extended-srgb:0.14250,0.30400,0.95000,1.00000"
+      }
+    },
+    {
+      "appearance": "dark",
+      "value": {
+        "automatic-gradient": "extended-srgb:0.06080,0.08064,0.16000,1.00000"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "name": "Runner",
+      "blur-material": 0.42,
+      "lighting": "combined",
+      "specular": true,
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.38
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.18
+      },
+      "layers": [
+        {
+          "name": "Glyph",
+          "image-name": "runner.png",
+          "glass": true,
+          "fill-specializations": [
+            {
+              "value": {
+                "solid": "extended-srgb:0.04500,0.05600,0.10000,1.00000"
+              }
+            },
+            {
+              "appearance": "dark",
+              "value": {
+                "solid": "extended-srgb:0.76000,0.79800,0.95000,1.00000"
+              }
+            },
+            {
+              "appearance": "tinted",
+              "value": {
+                "solid": "extended-srgb:1.00000,1.00000,1.00000,1.00000"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "supported-platforms": {
+    "squares": [
+      "iOS"
+    ]
+  }
+}

@@ -12,6 +12,7 @@
 		0F9019628956CA88FABB1AEA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEED170C46FE412E0C23AE4 /* SettingsView.swift */; };
 		183E98E96381EE2245FEDB21 /* CalendarModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D79557B623FCFA06C2DF13 /* CalendarModels.swift */; };
 		30994879B164D3C454E70594 /* GymshipControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC1AD355CF50141B8CF1E1 /* GymshipControls.swift */; };
+		30C95546BE9CC7D1E1962E72 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 5A4CFE59745EECBD99334979 /* AppIcon.icon */; };
 		3E1AC5EC9F34BA459E370C15 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 70CA328402F5600D06AAAC1F /* Supabase */; };
 		3F3EBF4C5FCB0128E466C266 /* WhatToTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D96C2FB99D556D7213F4B6 /* WhatToTest.swift */; };
 		4A0FF6F495827309F6C67AD7 /* WorkoutPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E7548FDD9CFF5C1D33E53B /* WorkoutPreferences.swift */; };
@@ -60,6 +61,7 @@
 		4BAC6FE4AF25FCC0792EE55E /* RidePlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RidePlanView.swift; sourceTree = "<group>"; };
 		51E7548FDD9CFF5C1D33E53B /* WorkoutPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPreferences.swift; sourceTree = "<group>"; };
 		5517ACBA2762D9C407F34E83 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		5A4CFE59745EECBD99334979 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		60D96C2FB99D556D7213F4B6 /* WhatToTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatToTest.swift; sourceTree = "<group>"; };
 		6175E74C22E18D369141A8C0 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		712AA561F13028328271881D /* CalendarRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarRow.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		84F79DA17307E436B4B063C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5A4CFE59745EECBD99334979 /* AppIcon.icon */,
 				1D0A9390A5DC147C243E9B63 /* Assets.xcassets */,
 				D8BF2718486CCF1E58F6938A /* Gymship.entitlements */,
 				81CE32D41748DA7F21842EB8 /* Localizable.xcstrings */,
@@ -349,6 +352,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30C95546BE9CC7D1E1962E72 /* AppIcon.icon in Resources */,
 				BE1BB58C138ED4A67F28372A /* Assets.xcassets in Resources */,
 				AB7C28021FDCC4B0E69F0188 /* Localizable.xcstrings in Resources */,
 				8D9BF205DD3C2C3BCD1DD472 /* PrivacyInfo.xcprivacy in Resources */,
@@ -408,7 +412,7 @@
 				CODE_SIGN_ENTITLEMENTS = Gymship/Resources/Gymship.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = G7C5D28VAK;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -417,7 +421,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gymship.app;
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -553,7 +557,7 @@
 				CODE_SIGN_ENTITLEMENTS = Gymship/Resources/Gymship.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = G7C5D28VAK;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -562,7 +566,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.5;
+				MARKETING_VERSION = 1.2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gymship.app;
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;

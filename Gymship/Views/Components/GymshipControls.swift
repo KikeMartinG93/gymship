@@ -125,18 +125,21 @@ struct PillButtonStyle: ButtonStyle {
 
 // MARK: - Text input
 
-struct GlassTextFieldStyle: TextFieldStyle {
-    func _body(configuration: TextField<Self._Label>) -> some View {
-        configuration
+private struct GlassTextFieldModifier: ViewModifier {
+    @Environment(ThemeManager.self) private var theme
+
+    func body(content: Content) -> some View {
+        content
+            .textFieldStyle(.plain)
             .padding(.horizontal, 16)
             .padding(.vertical, 14)
-            .background(.white.opacity(0.08), in: Metrics.concentric(minimum: 18))
+            .background(theme.wash, in: Metrics.concentric(minimum: 18))
     }
 }
 
 extension View {
     func glassTextFieldStyle() -> some View {
-        textFieldStyle(GlassTextFieldStyle())
+        modifier(GlassTextFieldModifier())
     }
 }
 
@@ -162,16 +165,16 @@ struct SegmentedChoice<Value: Hashable>: View {
                     } label: {
                         Text(option.label)
                             .font(.system(.subheadline, weight: selected ? .bold : .medium))
-                            .foregroundStyle(selected ? .white : .secondary)
+                            .foregroundStyle(selected ? Color.primary : Color.secondary)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 8)
-                            .background(selected ? Color.white.opacity(0.16) : .clear, in: Capsule())
+                            .background(selected ? theme.washStrong : .clear, in: Capsule())
                     }
                     .buttonStyle(.plain)
                 }
             }
             .padding(2)
-            .background(Color.white.opacity(0.06), in: Capsule())
+            .background(theme.wash, in: Capsule())
             .accessibilityElement(children: .contain)
             .accessibilityLabel(title)
         } else {
@@ -201,9 +204,11 @@ struct GlassGroup<Content: View>: View {
 
 /// Inset divider matching `SettingsRow`'s icon column.
 struct RowDivider: View {
+    @Environment(ThemeManager.self) private var theme
+
     var body: some View {
         Divider()
-            .overlay(.white.opacity(0.06))
+            .overlay(theme.hairline)
             .padding(.leading, 60)
     }
 }

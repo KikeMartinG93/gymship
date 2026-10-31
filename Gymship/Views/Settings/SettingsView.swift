@@ -22,6 +22,16 @@ struct SettingsView: View {
                     profileHeader
 
                     GlassGroup {
+                        SegmentedChoice(
+                            title: String(localized: "Appearance"),
+                            selection: $theme.appearance,
+                            options: ThemeManager.Appearance.allCases.map { ($0, $0.label) }
+                        )
+                        .padding(16)
+                        .gymshipAnimation(Motion.ui, value: theme.appearance)
+
+                        RowDivider()
+
                         NavigationLink {
                             CalendarSetupView()
                         } label: {
@@ -105,7 +115,9 @@ struct SettingsView: View {
                                 symbol: "paintpalette.fill",
                                 shift: 0.03,
                                 title: String(localized: "Appearance"),
-                                detail: theme.highContrast ? String(localized: "Off while High contrast is on") : String(localized: "Background & highlight")
+                                detail: theme.highContrast
+                                    ? String(localized: "Off while High contrast is on")
+                                    : "\(theme.appearance.label) · \(String(localized: "Background & highlight"))"
                             )
                         }
                         .buttonStyle(.plain)
@@ -251,6 +263,7 @@ struct SettingsView: View {
         theme.highlightIndex = 0
         theme.highContrast = false
         theme.usesRoundedFont = true
+        theme.appearance = .dark
 
         isResetting = false
         appState.isOnboarded = false
@@ -357,12 +370,29 @@ private struct AppearanceView: View {
 
     @State private var randomHues: [Double] = ThemeManager.randomHues(count: 11)
 
+    private var appearanceBinding: Binding<ThemeManager.Appearance> {
+        Binding(get: { theme.appearance }, set: { theme.appearance = $0 })
+    }
+
     private var backgroundHues: [Double] { [theme.backgroundHue] + randomHues }
 
     var body: some View {
         ScrollView {
             VStack(spacing: 28) {
                 preview
+
+                VStack(alignment: .leading, spacing: 12) {
+                    SectionHeader(title: String(localized: "Mode"), subtitle: String(localized: "Light, dark, or match the iPhone"))
+                    SegmentedChoice(
+                        title: String(localized: "Mode"),
+                        selection: appearanceBinding,
+                        options: ThemeManager.Appearance.allCases.map { ($0, $0.label) }
+                    )
+                    .padding(16)
+                    .glassCard(cornerRadius: 24)
+                    .gymshipAnimation(Motion.ui, value: theme.appearance)
+                    .sensoryFeedback(.selection, trigger: theme.appearance)
+                }
 
                 VStack(alignment: .leading, spacing: 12) {
                     SectionHeader(title: String(localized: "Background"), subtitle: String(localized: "Every screen adopts the hue")) {
@@ -419,7 +449,7 @@ private struct AppearanceView: View {
                     Circle()
                         .trim(from: Double(index) / 7 + 0.02, to: Double(index + 1) / 7 - 0.02)
                         .stroke(
-                            index < 3 ? AnyShapeStyle(theme.accent) : AnyShapeStyle(.white.opacity(0.1)),
+                            index < 3 ? AnyShapeStyle(theme.accent) : AnyShapeStyle(theme.emptyTrack),
                             style: StrokeStyle(lineWidth: 12, lineCap: .round)
                         )
                         .rotationEffect(.degrees(-90))
@@ -446,10 +476,10 @@ private struct AppearanceView: View {
             Circle()
                 .fill(color)
                 .frame(width: 38, height: 38)
-                .overlay(Circle().strokeBorder(.white.opacity(0.35), lineWidth: 1))
+                .overlay(Circle().strokeBorder(theme.hairline.opacity(2), lineWidth: 1))
                 .overlay {
                     if selected {
-                        Circle().strokeBorder(.white, lineWidth: 3).padding(-5)
+                        Circle().strokeBorder(Color.primary, lineWidth: 3).padding(-5)
                     }
                 }
                 .frame(maxWidth: .infinity)

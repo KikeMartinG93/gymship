@@ -90,7 +90,7 @@ struct SessionCard: View {
                 .font(.display(26))
         }
         .frame(width: 54, height: 58)
-        .background(.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .background(theme.wash, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
     }
 
     private var subtitle: some View {

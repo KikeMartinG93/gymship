@@ -72,7 +72,7 @@ struct ConflictResolutionView: View {
                         .font(.display(26))
                 }
                 .frame(width: 54, height: 58)
-                .background(.white.opacity(0.08), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .background(theme.wash, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
 
                 VStack(alignment: .leading, spacing: 3) {
                     Text(item.groupName)

@@ -18,10 +18,10 @@ struct Avatar: View {
             .foregroundStyle(theme.ink(on: fills[0]))
             .frame(width: size, height: size)
             .background(theme.iconGradient(shift: shift), in: Circle())
-            .overlay(Circle().strokeBorder(.white.opacity(0.28), lineWidth: 1))
+            .overlay(Circle().strokeBorder(Color.white.opacity(theme.isDark ? 0.28 : 0.45), lineWidth: 1))
             .overlay {
                 if let ring {
-                    Circle().strokeBorder(theme.highContrast ? .white.opacity(0.55) : ring, lineWidth: 2.5).padding(-4)
+                    Circle().strokeBorder(theme.highContrast ? Color.primary.opacity(0.55) : ring, lineWidth: 2.5).padding(-4)
                 }
             }
     }

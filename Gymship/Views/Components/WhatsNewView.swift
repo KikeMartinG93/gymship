@@ -12,8 +12,6 @@ struct WhatsNewView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            GymshipBackground(allowsMotion: false)
-
             ScrollView {
                 VStack(alignment: .leading, spacing: 34) {
                     header
@@ -25,12 +23,7 @@ struct WhatsNewView: View {
                             }
                             ForEach(Array(release.items.enumerated()), id: \.element.id) { itemIndex, item in
                                 row(item, shift: Double(itemIndex) * 0.05)
-                                    .opacity(appeared ? 1 : 0)
-                                    .offset(y: appeared ? 0 : 18)
-                                    .gymshipAnimation(
-                                        Motion.screen.delay(Double(releaseIndex * 4 + itemIndex) * 0.03),
-                                        value: appeared
-                                    )
+                                    .gymshipAppear(appeared, delay: Double(releaseIndex * 4 + itemIndex) * 0.03)
                             }
                         }
                     }
@@ -46,6 +39,9 @@ struct WhatsNewView: View {
                 .buttonStyle(GymshipButtonStyle())
                 .padding(.horizontal, 28)
                 .padding(.bottom, 20)
+        }
+        .presentationBackground {
+            GymshipBackground(allowsMotion: false)
         }
         .onAppear { appeared = true }
         .sensoryFeedback(.success, trigger: appeared)
@@ -68,9 +64,7 @@ struct WhatsNewView: View {
                     .glassPill(isActive: false)
             }
         }
-        .opacity(appeared ? 1 : 0)
-        .offset(y: appeared ? 0 : 12)
-        .gymshipAnimation(Motion.screen, value: appeared)
+        .gymshipAppear(appeared, from: 12)
     }
 
     private func row(_ item: ReleaseNotes.Item, shift: Double) -> some View {

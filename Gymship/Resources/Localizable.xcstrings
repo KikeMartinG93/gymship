@@ -3381,6 +3381,126 @@
           }
         }
       }
+    },
+    "System": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistema"
+          }
+        }
+      }
+    },
+    "Light": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claro"
+          }
+        }
+      }
+    },
+    "Dark": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscuro"
+          }
+        }
+      }
+    },
+    "Mode": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo"
+          }
+        }
+      }
+    },
+    "Light, dark, or match the iPhone": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claro, oscuro, o el del iPhone"
+          }
+        }
+      }
+    },
+    "Light, and a new icon": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claro, y un icono nuevo"
+          }
+        }
+      }
+    },
+    "Light theme": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tema claro"
+          }
+        }
+      }
+    },
+    "Dark, Light, or match the iPhone — from You or Appearance.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oscuro, Claro, o el del iPhone — desde Tú o Apariencia."
+          }
+        }
+      }
+    },
+    "The runner icon": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El icono de la corredora"
+          }
+        }
+      }
+    },
+    "The original running mark is back, in Liquid Glass and the Gymship blue.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La marca original de la corredora vuelve, en Liquid Glass y el azul de Gymship."
+          }
+        }
+      }
+    },
+    "What's New dismiss": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar Novedades"
+          }
+        }
+      }
+    },
+    "Closing it no longer flashes an empty mesh over You.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al cerrarlo ya no parpadea un fondo vacío sobre Tú."
+          }
+        }
+      }
     }
   }
 }

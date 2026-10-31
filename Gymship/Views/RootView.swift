@@ -3,6 +3,8 @@ import SwiftUI
 struct RootView: View {
     @Environment(AppState.self) private var appState
     @Environment(SupabaseService.self) private var supabase
+    @Environment(ThemeManager.self) private var theme
+    @Environment(\.colorScheme) private var colorScheme
 
     /// The newest TestFlight build whose notes this device has already shown.
     @AppStorage("gymship.lastSeenBuild") private var lastSeenBuild = 0
@@ -10,6 +12,7 @@ struct RootView: View {
     @AppStorage("gymship.hasSeenWhatToTest") private var hasSeenWhatToTest = false
     @State private var pendingReleases: [ReleaseNotes.Release] = []
     @State private var isShowingWhatToTest = false
+    @State private var isShowingWhatsNew = false
 
     var body: some View {
         ZStack {
@@ -23,8 +26,11 @@ struct RootView: View {
                     .transition(.opacity)
             }
         }
-        .preferredColorScheme(.dark)
+        .preferredColorScheme(theme.appearance.preferredColorScheme)
         .gymshipAnimation(Motion.screen, value: appState.isOnboarded)
+        .onAppear { theme.sync(from: colorScheme) }
+        .onChange(of: colorScheme) { theme.sync(from: colorScheme) }
+        .onChange(of: theme.appearance) { theme.sync(from: colorScheme) }
         .fullScreenCover(isPresented: $isShowingWhatToTest) {
             WhatToTestView {
                 hasSeenWhatToTest = true
@@ -32,13 +38,13 @@ struct RootView: View {
                 checkWhatsNew()
             }
         }
-        .fullScreenCover(isPresented: Binding(
-            get: { !pendingReleases.isEmpty },
-            set: { if !$0 { pendingReleases = [] } }
-        )) {
+        .fullScreenCover(isPresented: $isShowingWhatsNew, onDismiss: {
+            lastSeenBuild = ReleaseNotes.currentBuild
+            pendingReleases = []
+        }) {
             WhatsNewView(releases: pendingReleases) {
                 lastSeenBuild = ReleaseNotes.currentBuild
-                pendingReleases = []
+                isShowingWhatsNew = false
             }
         }
         .onChange(of: appState.isOnboarded) { checkFirstRunSplashes() }
@@ -68,7 +74,10 @@ struct RootView: View {
     private func checkWhatsNew() {
         guard appState.isOnboarded else { return }
         let unseen = ReleaseNotes.unseen(since: lastSeenBuild)
-        if !unseen.isEmpty { pendingReleases = unseen }
+        if !unseen.isEmpty {
+            pendingReleases = unseen
+            isShowingWhatsNew = true
+        }
     }
 }
 

@@ -50,8 +50,8 @@ targets:
       path: Gymship/Resources/Gymship.entitlements
     settings:
       base:
-        MARKETING_VERSION: "1.2.5"
-        CURRENT_PROJECT_VERSION: "17"
+        MARKETING_VERSION: "1.2.6"
+        CURRENT_PROJECT_VERSION: "18"
         PRODUCT_BUNDLE_IDENTIFIER: com.gymship.app
         SWIFT_VERSION: 6.0
         SWIFT_STRICT_CONCURRENCY: complete
@@ -61,3 +61,4 @@ targets:
         DEVELOPMENT_TEAM: G7C5D28VAK
         ENABLE_USER_SCRIPT_SANDBOXING: YES
         STRING_CATALOG_GENERATE_SYMBOLS: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon

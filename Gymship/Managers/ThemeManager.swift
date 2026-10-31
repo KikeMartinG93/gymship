@@ -17,8 +17,8 @@ final class ThemeManager {
         didSet { UserDefaults.standard.set(highlightIndex, forKey: Self.highlightKey) }
     }
 
-    /// Black-and-white mode: solid black background, no glass surfaces (bar
-    /// the tab bar), white accent. For maximum legibility.
+    /// Black-and-white mode: no glass, maximum legibility. Follows Light/Dark
+    /// (white-on-black or black-on-white).
     var highContrast: Bool {
         didSet { UserDefaults.standard.set(highContrast, forKey: Self.highContrastKey) }
     }
@@ -31,10 +31,48 @@ final class ThemeManager {
         }
     }
 
+    /// Dark (the original look), Light, or follow the iPhone.
+    var appearance: Appearance {
+        didSet {
+            UserDefaults.standard.set(appearance.rawValue, forKey: Self.appearanceKey)
+            switch appearance {
+            case .light: isDark = false
+            case .dark: isDark = true
+            case .system: break
+            }
+        }
+    }
+
+    /// Whether surfaces currently use the dark palette. `.system` updates this
+    /// from the window's color scheme in `sync(from:)`.
+    var isDark = true
+
     private static let roundedFontKey = "gymship.theme.roundedFont"
     private static let highContrastKey = "gymship.theme.highContrast"
     private static let hueKey = "gymship.theme.backgroundHue"
     private static let highlightKey = "gymship.theme.highlightIndex"
+    private static let appearanceKey = "gymship.theme.appearance"
+
+    enum Appearance: String, CaseIterable, Identifiable, Hashable {
+        case system, light, dark
+        var id: String { rawValue }
+
+        var label: String {
+            switch self {
+            case .system: String(localized: "System")
+            case .light: String(localized: "Light")
+            case .dark: String(localized: "Dark")
+            }
+        }
+
+        var preferredColorScheme: ColorScheme? {
+            switch self {
+            case .system: nil
+            case .light: .light
+            case .dark: .dark
+            }
+        }
+    }
 
     /// Deep navy/ice-blue — the hue the app's look was originally seeded from.
     static let defaultHue = 228.0 / 360.0
@@ -49,6 +87,22 @@ final class ThemeManager {
         highlightIndex = defaults.object(forKey: Self.highlightKey) != nil
             ? defaults.integer(forKey: Self.highlightKey)
             : 0
+        if let raw = defaults.string(forKey: Self.appearanceKey), let stored = Appearance(rawValue: raw) {
+            appearance = stored
+        } else {
+            appearance = .dark
+        }
+        isDark = appearance != .light
+    }
+
+    func sync(from colorScheme: ColorScheme) {
+        let dark: Bool
+        switch appearance {
+        case .dark: dark = true
+        case .light: dark = false
+        case .system: dark = colorScheme == .dark
+        }
+        if dark != isDark { isDark = dark }
     }
 
     /// A named saturation/brightness combination, applied at the current
@@ -81,23 +135,60 @@ final class ThemeManager {
     /// The app-wide accent color: the current highlight variation at the
     /// current background hue.
     var accent: Color {
-        highContrast ? .white : highlightColor(currentVariation)
+        if highContrast { return isDark ? .white : .black }
+        return highlightColor(currentVariation)
     }
 
     func highlightColor(_ variation: HighlightVariation) -> Color {
-        Color(hue: backgroundHue, saturation: variation.saturation, brightness: variation.brightness)
+        if isDark {
+            return Color(hue: backgroundHue, saturation: variation.saturation, brightness: variation.brightness)
+        }
+        // Pale highlights wash out on a light mesh — deepen them so buttons and
+        // labels still read.
+        return Color(
+            hue: backgroundHue,
+            saturation: min(1, variation.saturation + 0.14),
+            brightness: min(0.68, variation.brightness * 0.74)
+        )
     }
 
-    /// The darkest tone of the palette.
+    /// The canvas behind glass. Near-black in Dark, near-white in Light.
     var baseColor: Color {
-        if highContrast { return Color(white: 0.02) }
-        return Color(hue: backgroundHue, saturation: 0.62, brightness: 0.07)
+        if highContrast { return Color(white: isDark ? 0.02 : 0.97) }
+        if isDark {
+            return Color(hue: backgroundHue, saturation: 0.62, brightness: 0.07)
+        }
+        return Color(hue: backgroundHue, saturation: 0.18, brightness: 0.96)
+    }
+
+    /// Translucent card fill so the mesh shows through.
+    var wash: Color {
+        if highContrast { return Color(white: isDark ? 0.13 : 0.90) }
+        return isDark ? Color.white.opacity(0.08) : Color.white.opacity(0.55)
+    }
+
+    /// A slightly stronger wash — composer, selected chips.
+    var washStrong: Color {
+        if highContrast { return Color(white: isDark ? 0.22 : 0.84) }
+        return isDark ? Color.white.opacity(0.14) : Color.white.opacity(0.72)
+    }
+
+    /// Hairline on cards, avatars, maps.
+    var hairline: Color {
+        if highContrast { return Color.primary.opacity(isDark ? 0.12 : 0.16) }
+        return isDark ? Color.white.opacity(0.12) : Color.black.opacity(0.10)
+    }
+
+    /// Unfilled week-dial segments, progress tracks, idle dots.
+    var emptyTrack: Color {
+        if highContrast { return Color.primary.opacity(0.22) }
+        return isDark ? Color.white.opacity(0.09) : Color.black.opacity(0.08)
     }
 
     /// A companion color in the same family, offset in hue — used for icon
     /// tiles and avatars so accents feel related without all being identical.
     func companion(_ shift: Double, saturation: Double = 0.55, brightness: Double = 0.9) -> Color {
-        if highContrast { return .white }
+        if highContrast { return isDark ? .white : .black }
         return Color(hue: shiftedHue(by: shift), saturation: saturation, brightness: brightness)
     }
 
@@ -105,7 +196,9 @@ final class ThemeManager {
     /// selected hue and highlight, nudged by `shift` so siblings stay related.
     func iconFill(shift: Double = 0) -> [Color] {
         if highContrast {
-            return [Color(white: 0.22), Color(white: 0.14)]
+            return isDark
+                ? [Color(white: 0.22), Color(white: 0.14)]
+                : [Color(white: 0.88), Color(white: 0.78)]
         }
         let variation = currentVariation
         return [
@@ -128,7 +221,7 @@ final class ThemeManager {
 
     /// Readable ink for a glyph sitting on `fill`.
     func ink(on fill: Color) -> Color {
-        if highContrast { return .white }
+        if highContrast { return isDark ? .white : .black }
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
         UIColor(fill).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         let luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue
@@ -139,12 +232,13 @@ final class ThemeManager {
         var hue: Double
         var highlight: Int
         var highContrast: Bool
+        var isDark: Bool
     }
 
     @ObservationIgnored private var paletteCache: (key: PaletteKey, onAccent: Color, mesh: [Color])?
 
     private var paletteKey: PaletteKey {
-        PaletteKey(hue: backgroundHue, highlight: highlightIndex, highContrast: highContrast)
+        PaletteKey(hue: backgroundHue, highlight: highlightIndex, highContrast: highContrast, isDark: isDark)
     }
 
     /// Readable foreground (near-black or white) for content drawn on `accent`.
@@ -162,13 +256,13 @@ final class ThemeManager {
         let packed = (
             key: key,
             onAccent: luminance > 0.62 ? Color(white: 0.06) : Color.white,
-            mesh: meshColorsUncached
+            mesh: isDark ? meshColorsDark : meshColorsLight
         )
         paletteCache = packed
         return packed
     }
 
-    private var meshColorsUncached: [Color] {
+    private var meshColorsDark: [Color] {
         func tone(_ shift: Double, _ saturation: Double, _ brightness: Double) -> Color {
             Color(hue: shiftedHue(by: shift), saturation: saturation, brightness: brightness)
         }
@@ -176,6 +270,17 @@ final class ThemeManager {
             tone(0.00, 0.64, 0.13), tone(0.01, 0.64, 0.16), tone(0.02, 0.62, 0.20),
             tone(0.00, 0.66, 0.24), tone(0.03, 0.74, 0.46), tone(-0.02, 0.62, 0.15),
             tone(-0.03, 0.60, 0.10), tone(0.00, 0.72, 0.34), tone(0.05, 0.70, 0.24),
+        ]
+    }
+
+    private var meshColorsLight: [Color] {
+        func tone(_ shift: Double, _ saturation: Double, _ brightness: Double) -> Color {
+            Color(hue: shiftedHue(by: shift), saturation: saturation, brightness: brightness)
+        }
+        return [
+            tone(0.00, 0.22, 0.97), tone(0.02, 0.18, 0.99), tone(-0.01, 0.24, 0.95),
+            tone(0.01, 0.28, 0.93), tone(0.04, 0.32, 0.88), tone(-0.02, 0.20, 0.96),
+            tone(-0.03, 0.16, 0.98), tone(0.00, 0.26, 0.91), tone(0.05, 0.22, 0.94),
         ]
     }
 
@@ -210,8 +315,8 @@ enum Typography {
         let tabSelected = font(10, .bold, rounded: rounded)
 
         // Bars created from now on.
-        UINavigationBar.appearance().largeTitleTextAttributes = [.font: largeTitle, .foregroundColor: UIColor.white]
-        UINavigationBar.appearance().titleTextAttributes = [.font: title, .foregroundColor: UIColor.white]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font: largeTitle, .foregroundColor: UIColor.label]
+        UINavigationBar.appearance().titleTextAttributes = [.font: title, .foregroundColor: UIColor.label]
         UITabBarItem.appearance().setTitleTextAttributes([.font: tab], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([.font: tabSelected], for: .selected)
 
@@ -231,9 +336,9 @@ enum Typography {
             func updated(_ appearance: UINavigationBarAppearance) -> UINavigationBarAppearance {
                 let copy = appearance.copy()
                 copy.largeTitleTextAttributes[.font] = largeTitle
-                copy.largeTitleTextAttributes[.foregroundColor] = UIColor.white
+                copy.largeTitleTextAttributes[.foregroundColor] = UIColor.label
                 copy.titleTextAttributes[.font] = title
-                copy.titleTextAttributes[.foregroundColor] = UIColor.white
+                copy.titleTextAttributes[.foregroundColor] = UIColor.label
                 return copy
             }
             bar.standardAppearance = updated(bar.standardAppearance)

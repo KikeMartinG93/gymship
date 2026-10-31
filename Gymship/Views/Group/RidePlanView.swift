@@ -110,7 +110,7 @@ struct RidePlanView: View {
                         member.name.split(separator: " ").first.map(String.init) ?? member.name,
                         coordinate: CLLocationCoordinate2D(latitude: start.latitude, longitude: start.longitude)
                     )
-                    .tint(.white)
+                    .tint(theme.accent)
                 }
             }
         }
@@ -118,7 +118,7 @@ struct RidePlanView: View {
         .mapControlVisibility(.hidden)
         .frame(height: 210)
         .clipShape(Metrics.concentric(minimum: 30))
-        .overlay(Metrics.concentric(minimum: 30).stroke(.white.opacity(0.15), lineWidth: 1))
+        .overlay(Metrics.concentric(minimum: 30).stroke(theme.hairline, lineWidth: 1))
         .allowsHitTesting(false)
     }
 

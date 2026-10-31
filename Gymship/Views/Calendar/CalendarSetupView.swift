@@ -112,7 +112,7 @@ struct CalendarSetupView: View {
         return VStack(spacing: 8) {
             GeometryReader { proxy in
                 ZStack(alignment: .bottom) {
-                    Capsule().fill(.white.opacity(0.09))
+                    Capsule().fill(theme.emptyTrack)
                     Capsule()
                         .fill(theme.accent.opacity(0.9))
                         .frame(height: max(10, proxy.size.height * fraction))

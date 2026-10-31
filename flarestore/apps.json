@@ -5,7 +5,7 @@
   "identifier": "com.gymship.flarestore",
   "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/gymship/main/flarestore/icon.png",
   "website": "https://github.com/KikeMartinG93/gymship",
-  "tintColor": "#7AA2F7",
+  "tintColor": "#244EF2",
   "apps": [
     {
       "name": "Gymship",
@@ -14,9 +14,18 @@
       "subtitle": "Shared free time, turned into a workout.",
       "localizedDescription": "Gymship reads when you're busy (never why), syncs that with a crew of up to five, and proposes times you can all train. iOS 27 Liquid Glass, built to be gentle on iPhone Air.",
       "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/gymship/main/flarestore/icon.png",
-      "tintColor": "#7AA2F7",
+      "tintColor": "#244EF2",
       "category": "lifestyle",
       "versions": [
+        {
+          "version": "1.2.6",
+          "buildVersion": "18",
+          "date": "2026-10-31",
+          "localizedDescription": "Light theme, the runner icon in Liquid Glass, and a cleaner What's New dismiss.",
+          "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.6/Gymship.ipa",
+          "size": 7228658,
+          "minOSVersion": "27.0"
+        },
         {
           "version": "1.2.5",
           "buildVersion": "17",

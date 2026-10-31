@@ -225,6 +225,19 @@ enum ReleaseNotes {
                      detail: String(localized: "The week dial fills more of Air's screen, and the count in the middle scales with the ring.")),
             ]
         ),
+        Release(
+            build: 18,
+            version: "1.2.6",
+            headline: String(localized: "Light, and a new icon"),
+            items: [
+                Item(kind: .new, symbol: "sun.max.fill", title: String(localized: "Light theme"),
+                     detail: String(localized: "Dark, Light, or match the iPhone — from You or Appearance.")),
+                Item(kind: .new, symbol: "app.fill", title: String(localized: "The runner icon"),
+                     detail: String(localized: "The original running mark is back, in Liquid Glass and the Gymship blue.")),
+                Item(kind: .fixed, symbol: "rectangle.portrait.and.arrow.right", title: String(localized: "What's New dismiss"),
+                     detail: String(localized: "Closing it no longer flashes an empty mesh over You.")),
+            ]
+        ),
     ]
 
     /// Newest first — the order people want to read them in.

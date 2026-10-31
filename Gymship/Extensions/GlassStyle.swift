@@ -76,6 +76,12 @@ extension View {
     func gymshipNumericText(_ value: Double) -> some View {
         modifier(GymshipNumericText(value: value))
     }
+
+    /// Entrance only — never runs in reverse. Cover dismiss used to replay this
+    /// as a fade/slide-out, leaving an empty mesh on screen.
+    func gymshipAppear(_ appeared: Bool, delay: Double = 0, from: CGFloat = 18) -> some View {
+        modifier(GymshipAppear(appeared: appeared, delay: delay, from: from))
+    }
 }
 
 private struct SymbolBounceIfAllowed<V: Equatable>: ViewModifier {
@@ -102,6 +108,21 @@ private struct GymshipAnimation<V: Equatable>: ViewModifier {
     }
 }
 
+private struct GymshipAppear: ViewModifier {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    let appeared: Bool
+    let delay: Double
+    let from: CGFloat
+
+    func body(content: Content) -> some View {
+        content
+            .opacity(appeared ? 1 : 0)
+            .offset(y: appeared ? 0 : from)
+            .animation((appeared && !reduceMotion) ? Motion.screen.delay(delay) : nil, value: appeared)
+            .transition(.identity)
+    }
+}
+
 private struct GymshipNumericText: ViewModifier {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     let value: Double
@@ -124,13 +145,12 @@ struct ContentSurface<S: Shape>: ViewModifier {
 
     func body(content: Content) -> some View {
         if theme.highContrast {
-            let emphasized = tint != nil
+            let fill = tint != nil ? theme.washStrong : theme.wash
             content
-                .background(shape.fill(Color(white: emphasized ? 0.22 : 0.13)))
-                .overlay(shape.stroke(.white.opacity(emphasized ? 0.12 : 0.06), lineWidth: 1))
+                .background(shape.fill(fill))
+                .overlay(shape.stroke(theme.hairline, lineWidth: 1))
         } else {
-            let fill = tint ?? Color.white.opacity(0.08)
-            content.background(fill, in: shape)
+            content.background(tint ?? theme.wash, in: shape)
         }
     }
 }
@@ -148,10 +168,10 @@ struct GlassSurface<S: Shape>: ViewModifier {
 
     func body(content: Content) -> some View {
         if theme.highContrast {
-            let emphasized = tint != nil
+            let fill = tint != nil ? theme.washStrong : theme.wash
             content
-                .background(shape.fill(Color(white: emphasized ? 0.22 : 0.13)))
-                .overlay(shape.stroke(.white.opacity(emphasized ? 0.12 : 0.06), lineWidth: 1))
+                .background(shape.fill(fill))
+                .overlay(shape.stroke(theme.hairline, lineWidth: 1))
         } else {
             let base: Glass = tint.map { Glass.regular.tint($0) } ?? .regular
             content
@@ -182,7 +202,7 @@ extension View {
     /// A flat, faint inset — for rows nested *inside* a card, where a second
     /// layer of glass would muddy the surface.
     func inset(cornerRadius: CGFloat = Metrics.tileRadius) -> some View {
-        background(.white.opacity(0.07), in: Metrics.concentric(minimum: cornerRadius))
+        modifier(InsetSurface(cornerRadius: cornerRadius))
     }
 
     /// Native glass button — or an outlined black/white one in High Contrast.
@@ -207,6 +227,15 @@ extension View {
     /// Solid black sheets in High Contrast (the default is glass).
     func highContrastSheetBackground() -> some View {
         modifier(HighContrastSheetBackground())
+    }
+}
+
+private struct InsetSurface: ViewModifier {
+    @Environment(ThemeManager.self) private var theme
+    let cornerRadius: CGFloat
+
+    func body(content: Content) -> some View {
+        content.background(theme.wash, in: Metrics.concentric(minimum: cornerRadius))
     }
 }
 
@@ -244,15 +273,18 @@ private struct GlassButton: ViewModifier {
 struct HighContrastButtonStyle: ButtonStyle {
     var isCircle = false
     @Environment(\.isEnabled) private var isEnabled
+    @Environment(ThemeManager.self) private var theme
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .foregroundStyle(.white)
+            .foregroundStyle(theme.isDark ? Color.white : Color.black)
             .padding(.horizontal, isCircle ? 0 : 16)
             .padding(.vertical, isCircle ? 0 : 9)
             .frame(minWidth: isCircle ? Metrics.circleButton : nil, minHeight: isCircle ? Metrics.circleButton : nil)
             .background {
-                let fill = Color(white: configuration.isPressed ? 0.26 : 0.16)
+                let fill = theme.isDark
+                    ? Color(white: configuration.isPressed ? 0.26 : 0.16)
+                    : Color(white: configuration.isPressed ? 0.82 : 0.90)
                 if isCircle {
                     Circle().fill(fill)
                 } else {
@@ -275,7 +307,7 @@ private struct AdaptiveToggle: ViewModifier {
 
     func body(content: Content) -> some View {
         if theme.highContrast {
-            content.tint(Color(white: 0.4))
+            content.tint(theme.isDark ? Color(white: 0.4) : Color(white: 0.45))
         } else {
             content
         }
@@ -287,7 +319,7 @@ private struct HighContrastSheetBackground: ViewModifier {
 
     func body(content: Content) -> some View {
         if theme.highContrast {
-            content.presentationBackground(Color(white: 0.02))
+            content.presentationBackground(theme.baseColor)
         } else {
             content
         }
@@ -363,7 +395,7 @@ struct GymshipBackground: View {
     var body: some View {
         SwiftUI.Group {
             if theme.highContrast || reduceTransparency {
-                Color(white: 0.02)
+                theme.baseColor
             } else if shouldAnimate {
                 TimelineView(.periodic(from: .now, by: 0.5)) { context in
                     mesh(at: context.date.timeIntervalSinceReferenceDate)

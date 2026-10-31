@@ -105,7 +105,7 @@ struct AgentView: View {
                 if mine {
                     Metrics.concentric(minimum: 22).fill(theme.accent)
                 } else {
-                    Metrics.concentric(minimum: 22).fill(.white.opacity(theme.highContrast ? 0.16 : 0.10))
+                    Metrics.concentric(minimum: 22).fill(theme.washStrong)
                 }
             }
             if !mine { Spacer(minLength: 48) }
@@ -134,9 +134,9 @@ struct AgentView: View {
             } label: {
                 Image(systemName: "arrow.up")
                     .font(.system(size: 15, weight: .bold))
-                    .foregroundStyle(canSend ? theme.onAccent : Color.white.opacity(0.35))
+                    .foregroundStyle(canSend ? theme.onAccent : Color.secondary)
                     .frame(width: Metrics.circleButton, height: Metrics.circleButton)
-                    .background(canSend ? theme.accent : Color.white.opacity(0.12), in: Circle())
+                    .background(canSend ? theme.accent : theme.washStrong, in: Circle())
             }
             .buttonStyle(.plain)
             .disabled(!canSend)
@@ -145,14 +145,14 @@ struct AgentView: View {
         .padding(.leading, 16)
         .padding(.trailing, 6)
         .padding(.vertical, 6)
-        .background(Color.white.opacity(0.14), in: Capsule())
+        .background(theme.washStrong, in: Capsule())
         .padding(.horizontal, 16)
         .padding(.top, 10)
         .padding(.bottom, 8)
         .frame(maxWidth: .infinity)
         .background {
             if inputFocused {
-                Color.black.ignoresSafeArea(edges: .bottom)
+                theme.baseColor.ignoresSafeArea(edges: .bottom)
             }
         }
     }

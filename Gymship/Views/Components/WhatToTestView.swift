@@ -16,8 +16,6 @@ struct WhatToTestView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            GymshipBackground(allowsMotion: false)
-
             ScrollView {
                 VStack(alignment: .leading, spacing: 30) {
                     header
@@ -25,12 +23,7 @@ struct WhatToTestView: View {
                     VStack(alignment: .leading, spacing: 16) {
                         ForEach(Array(WhatToTest.steps.enumerated()), id: \.element.id) { index, step in
                             row(step, shift: Double(index) * 0.05)
-                                .opacity(appeared ? 1 : 0)
-                                .offset(y: appeared ? 0 : 18)
-                                .gymshipAnimation(
-                                    Motion.screen.delay(Double(index) * 0.03),
-                                    value: appeared
-                                )
+                                .gymshipAppear(appeared, delay: Double(index) * 0.03)
                         }
                     }
 
@@ -39,8 +32,7 @@ struct WhatToTestView: View {
                         .foregroundStyle(.secondary)
                         .padding(16)
                         .glassCard(cornerRadius: 18)
-                        .opacity(appeared ? 1 : 0)
-                        .gymshipAnimation(Motion.screen.delay(Double(WhatToTest.steps.count) * 0.03), value: appeared)
+                        .gymshipAppear(appeared, delay: Double(WhatToTest.steps.count) * 0.03)
                 }
                 .padding(.horizontal, 28)
                 .padding(.top, 64)
@@ -62,6 +54,9 @@ struct WhatToTestView: View {
             .padding(.horizontal, 28)
             .padding(.bottom, 20)
         }
+        .presentationBackground {
+            GymshipBackground(allowsMotion: false)
+        }
         .onAppear { appeared = true }
         .sensoryFeedback(.success, trigger: appeared)
     }
@@ -82,9 +77,7 @@ struct WhatToTestView: View {
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
         }
-        .opacity(appeared ? 1 : 0)
-        .offset(y: appeared ? 0 : 12)
-        .gymshipAnimation(Motion.screen, value: appeared)
+        .gymshipAppear(appeared, from: 12)
     }
 
     private func row(_ step: WhatToTest.Step, shift: Double) -> some View {

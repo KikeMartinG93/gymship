@@ -120,7 +120,7 @@ struct OnboardingView: View {
         HStack(spacing: 8) {
             ForEach(Step.allCases, id: \.rawValue) { candidate in
                 Capsule()
-                    .fill(candidate == step ? theme.accent : .white.opacity(0.25))
+                    .fill(candidate == step ? theme.accent : theme.emptyTrack)
                     .frame(width: candidate == step ? 26 : 8, height: 8)
             }
         }

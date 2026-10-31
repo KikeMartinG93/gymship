@@ -50,7 +50,7 @@ struct WeekRingView: View {
                             .trim(from: Double(index) / 7 + inset, to: Double(index + 1) / 7 - inset)
                             .path(in: CGRect(x: 0, y: 0, width: size, height: size))
                             .strokedPath(StrokeStyle(lineWidth: (isSelected ? lineWidth + 6 : lineWidth) + 2.5, lineCap: .round))
-                            .stroke(.white, lineWidth: 3)
+                            .stroke(theme.isDark ? Color.white : Color.black.opacity(0.28), lineWidth: 3)
                             .rotationEffect(.degrees(-90))
                             .allowsHitTesting(false)
                             .transition(.opacity)
@@ -122,7 +122,7 @@ struct WeekRingView: View {
     private func fill(for day: Date) -> AnyShapeStyle {
         if isLocked(day) { return AnyShapeStyle(theme.accent) }
         if isCommitted(day) { return AnyShapeStyle(theme.accent.opacity(0.45)) }
-        return AnyShapeStyle(.white.opacity(theme.highContrast ? 0.22 : 0.09))
+        return AnyShapeStyle(theme.emptyTrack)
     }
 
     private func dayLabel(_ day: Date, scale k: CGFloat, angle: Double, ringRadius: CGFloat) -> some View {
