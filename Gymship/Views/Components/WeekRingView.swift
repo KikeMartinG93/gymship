@@ -95,19 +95,19 @@ struct WeekRingView: View {
     // MARK: Centre
 
     private func center(scale k: CGFloat) -> some View {
-        VStack(spacing: 2) {
+        VStack(spacing: 2 * k) {
             Text("\(count)")
                 .font(.display(64 * k))
                 .gymshipNumericText(Double(count))
                 .gymshipAnimation(value: count)
             Text("of \(goal) this week")
-                .font(.display(.subheadline, .semibold))
+                .font(.system(size: 15 * k, weight: .semibold))
                 .foregroundStyle(.secondary)
             if goalHit {
                 Label("Goal hit", systemImage: "sparkles")
-                    .font(.display(.caption, .bold))
+                    .font(.system(size: 12 * k, weight: .bold))
                     .foregroundStyle(theme.accent)
-                    .padding(.top, 4)
+                    .padding(.top, 4 * k)
                     .transition(.scale.combined(with: .opacity))
             }
         }

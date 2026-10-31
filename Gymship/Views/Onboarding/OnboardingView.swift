@@ -105,11 +105,14 @@ struct OnboardingView: View {
                 showsLabels: false
             ) { _ in }
             Image(systemName: "figure.strengthtraining.traditional")
-                .font(.system(size: 64, weight: .semibold))
+                .font(.system(size: 68, weight: .semibold))
+                .minimumScaleFactor(0.7)
                 .foregroundStyle(theme.accent)
                 .symbolBounceIfAllowed(value: step)
         }
-        .frame(width: 240, height: 240)
+        .frame(maxWidth: 268, maxHeight: 268)
+        .aspectRatio(1, contentMode: .fit)
+        .frame(maxWidth: .infinity)
         .accessibilityHidden(true)
     }
 
@@ -215,15 +218,9 @@ struct OnboardingView: View {
 
             HStack(spacing: 12) {
                 if tutorialPage > 0 {
-                    Button {
+                    GlassCircleButton("chevron.left", label: "Back") {
                         tutorialPage -= 1
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .font(.system(.headline))
-                            .frame(width: 30, height: 30)
                     }
-                    .glassButton(circle: true)
-                    .buttonBorderShape(.circle)
                 }
                 Button(isLast ? "Let's go" : "Next") {
                     if isLast {

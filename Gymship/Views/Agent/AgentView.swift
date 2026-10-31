@@ -133,9 +133,9 @@ struct AgentView: View {
                 send(input)
             } label: {
                 Image(systemName: "arrow.up")
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.system(size: 15, weight: .bold))
                     .foregroundStyle(canSend ? theme.onAccent : Color.white.opacity(0.35))
-                    .frame(width: 32, height: 32)
+                    .frame(width: Metrics.circleButton, height: Metrics.circleButton)
                     .background(canSend ? theme.accent : Color.white.opacity(0.12), in: Circle())
             }
             .buttonStyle(.plain)

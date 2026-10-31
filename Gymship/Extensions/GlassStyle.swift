@@ -8,6 +8,14 @@ enum Metrics {
     static let cardRadius: CGFloat = 28
     static let tileRadius: CGFloat = 18
 
+    /// Square layout box for icon-only glass circles. Thin glyphs like `minus`
+    /// would otherwise shrink the glass versus their pair (`plus`).
+    static let circleButton: CGFloat = 36
+
+    /// Hero week dial. Fills iPhone Air's 420pt content width without
+    /// becoming a billboard on Pro Max.
+    static let weekRingMax: CGFloat = 368
+
     /// Shape that follows the device / container corners, never tighter than `minimum`.
     static func concentric(minimum: CGFloat = cardRadius) -> ConcentricRectangle {
         ConcentricRectangle(corners: .concentric(minimum: .fixed(minimum)), isUniform: true)
@@ -182,6 +190,15 @@ extension View {
         modifier(GlassButton(circle: circle))
     }
 
+    /// Square hit/layout box so every glass circle is the same diameter,
+    /// regardless of the symbol's tight bounding box (`minus` vs `plus`).
+    func glassCircleSymbol(size: CGFloat = Metrics.circleButton) -> some View {
+        font(.system(size: 15, weight: .semibold))
+            .frame(width: size, height: size)
+            .background(Circle().fill(.clear))
+            .contentShape(Circle())
+    }
+
     /// Native switch — or a bold outlined one in High Contrast.
     func adaptiveToggle() -> some View {
         modifier(AdaptiveToggle())
@@ -233,7 +250,7 @@ struct HighContrastButtonStyle: ButtonStyle {
             .foregroundStyle(.white)
             .padding(.horizontal, isCircle ? 0 : 16)
             .padding(.vertical, isCircle ? 0 : 9)
-            .frame(minWidth: isCircle ? 44 : nil, minHeight: isCircle ? 44 : nil)
+            .frame(minWidth: isCircle ? Metrics.circleButton : nil, minHeight: isCircle ? Metrics.circleButton : nil)
             .background {
                 let fill = Color(white: configuration.isPressed ? 0.26 : 0.16)
                 if isCircle {

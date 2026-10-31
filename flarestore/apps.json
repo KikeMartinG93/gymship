@@ -18,6 +18,15 @@
       "category": "lifestyle",
       "versions": [
         {
+          "version": "1.2.5",
+          "buildVersion": "17",
+          "date": "2026-10-31",
+          "localizedDescription": "The weekly goal minus and plus are the same size, and the week dial fills more of iPhone Air.",
+          "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.5/Gymship.ipa",
+          "size": 2510185,
+          "minOSVersion": "27.0"
+        },
+        {
           "version": "1.2.4",
           "buildVersion": "16",
           "date": "2026-10-30",

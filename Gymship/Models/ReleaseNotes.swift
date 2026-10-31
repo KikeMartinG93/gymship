@@ -214,6 +214,17 @@ enum ReleaseNotes {
                      detail: String(localized: "Tiles, empty-state badges, avatars and crew crests now pick up the hue and highlight you chose in Appearance.")),
             ]
         ),
+        Release(
+            build: 17,
+            version: "1.2.5",
+            headline: String(localized: "Even circles"),
+            items: [
+                Item(kind: .fixed, symbol: "plusminus", title: String(localized: "Weekly goal buttons"),
+                     detail: String(localized: "The minus and plus on Plan are the same size now — the glass behind minus was shrinking to the thin bar.")),
+                Item(kind: .improved, symbol: "iphone", title: String(localized: "iPhone Air layout"),
+                     detail: String(localized: "The week dial fills more of Air's screen, and the count in the middle scales with the ring.")),
+            ]
+        ),
     ]
 
     /// Newest first — the order people want to read them in.

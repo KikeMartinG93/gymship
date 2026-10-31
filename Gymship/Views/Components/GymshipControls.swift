@@ -2,6 +2,33 @@ import SwiftUI
 
 // MARK: - Buttons
 
+/// Icon-only glass circle. Glass is drawn in a fixed `Circle` so thin glyphs
+/// like `minus` don't shrink the material versus their pair (`plus`).
+struct GlassCircleButton: View {
+    @Environment(\.isEnabled) private var isEnabled
+
+    let systemImage: String
+    var label: LocalizedStringKey
+    let action: () -> Void
+
+    init(_ systemImage: String, label: LocalizedStringKey, action: @escaping () -> Void) {
+        self.systemImage = systemImage
+        self.label = label
+        self.action = action
+    }
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: systemImage)
+                .glassCircleSymbol()
+        }
+        .buttonStyle(.plain)
+        .glassSurface(Circle(), interactive: true)
+        .opacity(isEnabled ? 1 : 0.4)
+        .accessibilityLabel(label)
+    }
+}
+
 /// The primary, full-width action: a capsule of tinted Liquid Glass.
 struct GymshipButtonStyle: ButtonStyle {
     @Environment(ThemeManager.self) private var theme

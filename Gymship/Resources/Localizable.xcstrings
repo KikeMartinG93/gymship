@@ -3291,6 +3291,96 @@
           }
         }
       }
+    },
+    "Previous week": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La semana anterior"
+          }
+        }
+      }
+    },
+    "Decrease weekly goal": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reducir el objetivo semanal"
+          }
+        }
+      }
+    },
+    "Increase weekly goal": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aumentar el objetivo semanal"
+          }
+        }
+      }
+    },
+    "Back": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atrás"
+          }
+        }
+      }
+    },
+    "Even circles": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Círculos a la misma medida"
+          }
+        }
+      }
+    },
+    "Weekly goal buttons": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Botones del objetivo semanal"
+          }
+        }
+      }
+    },
+    "The minus and plus on Plan are the same size now — the glass behind minus was shrinking to the thin bar.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El menos y el más en Plan ahora son del mismo tamaño: el cristal detrás del menos se encogía con la barra."
+          }
+        }
+      }
+    },
+    "iPhone Air layout": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diseño para iPhone Air"
+          }
+        }
+      }
+    },
+    "The week dial fills more of Air's screen, and the count in the middle scales with the ring.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El dial semanal aprovecha mejor la pantalla del Air, y el recuento del centro escala con el anillo."
+          }
+        }
+      }
     }
   }
 }

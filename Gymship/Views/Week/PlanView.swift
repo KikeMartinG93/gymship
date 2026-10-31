@@ -136,15 +136,9 @@ struct PlanView: View {
     private var heroCard: some View {
         VStack(spacing: 26) {
             HStack {
-                Button {
+                GlassCircleButton("chevron.left", label: "Previous week") {
                     Motion.run { weekOffset -= 1 }
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 15, weight: .semibold))
-                        .frame(width: 34, height: 34)
                 }
-                .glassButton(circle: true)
-                .buttonBorderShape(.circle)
                 .disabled(weekOffset <= -Self.maxWeeksBack)
 
                 Spacer()
@@ -160,15 +154,9 @@ struct PlanView: View {
 
                 Spacer()
 
-                Button {
+                GlassCircleButton("chevron.right", label: "Next week") {
                     Motion.run { weekOffset += 1 }
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 15, weight: .semibold))
-                        .frame(width: 34, height: 34)
                 }
-                .glassButton(circle: true)
-                .buttonBorderShape(.circle)
                 .disabled(weekOffset >= 1)
             }
 
@@ -183,41 +171,36 @@ struct PlanView: View {
                     selectedDay = selectedDay.map { Calendar.current.isDate($0, inSameDayAs: day) } == true ? nil : day
                 }
             }
-            .frame(maxWidth: 344)
+            .frame(maxWidth: Metrics.weekRingMax)
 
             HStack {
                 Label("Weekly goal", systemImage: "target")
                     .font(.display(.body, .semibold))
-                Spacer()
-                HStack(spacing: 12) {
-                    Button {
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.85)
+                Spacer(minLength: 8)
+                HStack(spacing: 10) {
+                    GlassCircleButton("minus", label: "Decrease weekly goal") {
                         weeklyGoal = max(1, weeklyGoal - 1)
-                    } label: {
-                        Image(systemName: "minus")
                     }
-                    .glassButton(circle: true)
-                    .buttonBorderShape(.circle)
                     .disabled(weeklyGoal <= 1)
 
                     Text("\(weeklyGoal)×")
                         .font(.display(.title3))
-                        .frame(minWidth: 34)
+                        .frame(minWidth: Metrics.circleButton)
+                        .multilineTextAlignment(.center)
                         .gymshipNumericText(Double(weeklyGoal))
 
-                    Button {
+                    GlassCircleButton("plus", label: "Increase weekly goal") {
                         weeklyGoal = min(7, weeklyGoal + 1)
-                    } label: {
-                        Image(systemName: "plus")
                     }
-                    .glassButton(circle: true)
-                    .buttonBorderShape(.circle)
                     .disabled(weeklyGoal >= 7)
                 }
                 .gymshipAnimation(value: weeklyGoal)
             }
-            .padding(.leading, 20)
-            .padding(.trailing, 10)
-            .padding(.vertical, 10)
+            .padding(.leading, 18)
+            .padding(.trailing, 12)
+            .padding(.vertical, 8)
             .glassCard(cornerRadius: 36)
         }
         .sensoryFeedback(.selection, trigger: weekOffset)
