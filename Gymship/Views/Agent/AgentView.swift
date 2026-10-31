@@ -23,138 +23,222 @@ struct AgentView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVStack(spacing: 14) {
-                    if chat.messages.isEmpty {
-                        intro
+            ScrollViewReader { proxy in
+                ScrollView {
+                    LazyVStack(spacing: 0) {
+                        if chat.messages.isEmpty {
+                            threadIntro
+                        }
+                        ForEach(Array(chat.messages.enumerated()), id: \.element.id) { index, message in
+                            bubble(message, index: index)
+                                .id(message.id)
+                                .padding(.top, index > 0 && chat.messages[index - 1].role == message.role ? 2 : 8)
+                        }
                     }
-                    ForEach(chat.messages) { message in
-                        bubble(message)
-                    }
+                    .padding(.horizontal, 12)
+                    .padding(.top, 8)
+                    .padding(.bottom, 10)
                 }
-                .padding(.horizontal, Metrics.gutter)
-                .padding(.top, 8)
-                .padding(.bottom, 12)
+                .defaultScrollAnchor(chat.messages.isEmpty ? .top : .bottom)
+                .scrollEdgeEffectStyle(.soft, for: .all)
+                .scrollDismissesKeyboard(.interactively)
+                .onChange(of: chat.messages.count) {
+                    Motion.run(Motion.press) { scrollToLatest(proxy) }
+                }
+                .onChange(of: chat.messages.last?.text) { scrollToLatest(proxy) }
             }
-            .defaultScrollAnchor(.bottom)
-            .scrollEdgeEffectStyle(.soft, for: .all)
-            .scrollDismissesKeyboard(.interactively)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    conversationHeader
+                }
+            }
             .safeAreaBar(edge: .bottom) { composer }
             .toolbar(inputFocused ? .hidden : .automatic, for: .tabBar)
         }
     }
 
-    private var intro: some View {
-        VStack(spacing: 18) {
-            if !chat.isAvailable {
-                EmptyStateView(
-                    symbol: "sparkles",
-                    title: String(localized: "Apple Intelligence is off"),
-                    message: String(localized: "Turn on Apple Intelligence in Settings to chat with your scheduling agent.")
-                )
-                .glassCard(cornerRadius: 34)
-            } else {
-                EmptyStateView(
-                    symbol: "sparkles",
-                    title: String(localized: "Your scheduling agent"),
-                    message: String(localized: "It sees your calendar, your crews' commitments and your preferences. Ask it anything about your week.")
-                )
-                if !inputFocused {
-                    VStack(spacing: 10) {
-                        ForEach(suggestions, id: \.self) { suggestion in
-                            Button {
-                                send(suggestion)
-                            } label: {
-                                Text(suggestion)
-                                    .font(.system(.subheadline, weight: .medium))
-                                    .multilineTextAlignment(.leading)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(16)
-                            }
-                            .buttonStyle(.plain)
-                            .glassSurface(Metrics.concentric(minimum: 22), interactive: true)
-                        }
-                    }
-                    .transition(.opacity.combined(with: .move(edge: .bottom)))
-                }
-            }
+    private var conversationHeader: some View {
+        VStack(spacing: 3) {
+            GlyphBadge(symbol: "sparkles", size: 28)
+            Text("Agent")
+                .font(.system(size: 11, weight: .semibold))
         }
-        .gymshipAnimation(Motion.ui, value: inputFocused)
+        .accessibilityElement(children: .combine)
     }
 
-    private func bubble(_ message: AgentChat.Message) -> some View {
+    /// Quiet thread chrome — identity lives in the nav bar, like Messages.
+    private var threadIntro: some View {
+        VStack(spacing: 6) {
+            if !chat.isAvailable {
+                Text("Apple Intelligence is off")
+                    .font(.system(.subheadline, weight: .semibold))
+                Text("Turn on Apple Intelligence in Settings to chat with your scheduling agent.")
+                    .font(.system(.footnote))
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+            } else {
+                Text("Apple Intelligence · On This iPhone")
+                    .font(.system(.caption))
+                    .foregroundStyle(.tertiary)
+                    .multilineTextAlignment(.center)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.top, 24)
+        .padding(.bottom, 12)
+        .padding(.horizontal, 28)
+    }
+
+    private func bubble(_ message: AgentChat.Message, index: Int) -> some View {
         let mine = message.role == .user
-        return HStack {
-            if mine { Spacer(minLength: 48) }
+        let first = index == 0 || chat.messages[index - 1].role != message.role
+        let last = index == chat.messages.count - 1 || chat.messages[index + 1].role != message.role
+        return HStack(alignment: .bottom, spacing: 0) {
+            if mine { Spacer(minLength: 64) }
             SwiftUI.Group {
                 if message.text.isEmpty {
-                    ProgressView()
+                    typingDots
                 } else {
                     Text(message.text)
+                        .font(.system(.body))
                         .foregroundStyle(mine ? theme.onAccent : .primary)
                 }
             }
-            .font(.system(.body))
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-            .background {
-                // User bubbles are static — glass is cheap once. Agent bubbles
-                // grow on every stream tick; a solid fill stays at 60/120 without
-                // a glass sampling pass per token.
-                if mine {
-                    Metrics.concentric(minimum: 22).fill(theme.accent)
-                } else {
-                    Metrics.concentric(minimum: 22).fill(theme.washStrong)
-                }
-            }
-            if !mine { Spacer(minLength: 48) }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
+            .background(mine ? AnyShapeStyle(theme.accent) : AnyShapeStyle(incomingFill), in: bubbleShape(incoming: !mine, first: first, last: last))
+            if !mine { Spacer(minLength: 64) }
         }
         .frame(maxWidth: .infinity, alignment: mine ? .trailing : .leading)
+    }
+
+    private var incomingFill: Color {
+        theme.highContrast
+            ? theme.washStrong
+            : Color(.systemGray5)
+    }
+
+    private func bubbleShape(incoming: Bool, first: Bool, last: Bool) -> UnevenRoundedRectangle {
+        let round: CGFloat = 18
+        let tight: CGFloat = 5
+        if incoming {
+            return UnevenRoundedRectangle(
+                topLeadingRadius: first ? round : tight,
+                bottomLeadingRadius: last ? tight : tight,
+                bottomTrailingRadius: round,
+                topTrailingRadius: round,
+                style: .continuous
+            )
+        }
+        return UnevenRoundedRectangle(
+            topLeadingRadius: round,
+            bottomLeadingRadius: round,
+            bottomTrailingRadius: last ? tight : tight,
+            topTrailingRadius: first ? round : tight,
+            style: .continuous
+        )
+    }
+
+    private var typingDots: some View {
+        TimelineView(.periodic(from: .now, by: 0.35)) { context in
+            let phase = Int(context.date.timeIntervalSinceReferenceDate / 0.35) % 3
+            HStack(spacing: 5) {
+                ForEach(0..<3, id: \.self) { index in
+                    Circle()
+                        .fill(Color.secondary)
+                        .frame(width: 7, height: 7)
+                        .opacity(index == phase ? 1 : 0.28)
+                }
+            }
+            .padding(.vertical, 4)
+            .accessibilityLabel(Text("Agent is typing"))
+        }
     }
 
     private var canSend: Bool {
         !input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !chat.isResponding && chat.isAvailable
     }
 
-    /// Capsule field on a solid plate so the keyboard and chips never show through.
     private var composer: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            if chat.messages.isEmpty, chat.isAvailable {
+                suggestionStrip
+            }
+            composerField
+        }
+        .padding(.horizontal, 12)
+        .padding(.top, 8)
+        .padding(.bottom, 6)
+        .frame(maxWidth: .infinity)
+        .background {
+            if inputFocused {
+                Rectangle().fill(.bar).ignoresSafeArea(edges: .bottom)
+            }
+        }
+    }
+
+    private var suggestionStrip: some View {
+        ScrollView(.horizontal) {
+            HStack(spacing: 8) {
+                ForEach(suggestions, id: \.self) { suggestion in
+                    Button {
+                        send(suggestion)
+                    } label: {
+                        Text(suggestion)
+                            .font(.system(.subheadline))
+                            .foregroundStyle(.primary)
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 8)
+                            .background(incomingFill, in: Capsule())
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(chat.isResponding)
+                }
+            }
+            .padding(.horizontal, 2)
+        }
+        .scrollEdgeEffectStyle(.soft, for: .all)
+        .scrollIndicators(.hidden)
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(Text("Suggestions"))
+    }
+
+    /// Field and send sit side by side, like Messages — not a single fat pill.
+    private var composerField: some View {
         HStack(alignment: .bottom, spacing: 8) {
             TextField("Ask about your week", text: $input, axis: .vertical)
                 .textFieldStyle(.plain)
                 .font(.system(.body))
-                .lineLimit(1...5)
+                .lineLimit(1...6)
                 .focused($inputFocused)
                 .submitLabel(.send)
                 .onSubmit { send(input) }
                 .disabled(!chat.isAvailable)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .background(incomingFill, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
 
             Button {
                 send(input)
             } label: {
                 Image(systemName: "arrow.up")
-                    .font(.system(size: 15, weight: .bold))
+                    .font(.system(size: 16, weight: .bold))
                     .foregroundStyle(canSend ? theme.onAccent : Color.secondary)
-                    .frame(width: Metrics.circleButton, height: Metrics.circleButton)
-                    .background(canSend ? theme.accent : theme.washStrong, in: Circle())
+                    .frame(width: 32, height: 32)
+                    .background(canSend ? theme.accent : incomingFill, in: Circle())
             }
             .buttonStyle(.plain)
             .disabled(!canSend)
             .accessibilityLabel(Text("Send"))
+            .padding(.bottom, 2)
         }
-        .padding(.leading, 16)
-        .padding(.trailing, 6)
-        .padding(.vertical, 6)
-        .background(theme.washStrong, in: Capsule())
-        .padding(.horizontal, 16)
-        .padding(.top, 10)
-        .padding(.bottom, 8)
-        .frame(maxWidth: .infinity)
-        .background {
-            if inputFocused {
-                theme.baseColor.ignoresSafeArea(edges: .bottom)
-            }
-        }
+        .gymshipAnimation(Motion.ui, value: canSend)
+    }
+
+    private func scrollToLatest(_ proxy: ScrollViewProxy) {
+        guard let last = chat.messages.last else { return }
+        proxy.scrollTo(last.id, anchor: .bottom)
     }
 
     private func send(_ text: String) {

@@ -17,13 +17,22 @@
       "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/gymship/main/flarestore/icon.png",
       "tintColor": "#244EF2",
       "category": "lifestyle",
-      "version": "1.2.6",
-      "buildVersion": "18",
-      "versionDate": "2026-10-31T20:48:00-07:00",
-      "versionDescription": "Light theme, the runner icon in Liquid Glass, and a cleaner What's New dismiss.",
-      "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.6/Gymship.ipa",
-      "size": 7228658,
+      "version": "1.2.7",
+      "buildVersion": "19",
+      "versionDate": "2026-10-31T21:30:00-07:00",
+      "versionDescription": "The Agent tab is a conversation now, like Messages.",
+      "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.7/Gymship.ipa",
+      "size": 7237905,
       "versions": [
+        {
+          "version": "1.2.7",
+          "buildVersion": "19",
+          "date": "2026-10-31T21:30:00-07:00",
+          "localizedDescription": "The Agent tab is a conversation now, like Messages.",
+          "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.7/Gymship.ipa",
+          "size": 7237905,
+          "minOSVersion": "27.0"
+        },
         {
           "version": "1.2.6",
           "buildVersion": "18",
@@ -99,10 +108,10 @@
   ],
   "news": [
     {
-      "title": "Gymship 1.2.6",
-      "identifier": "gymship-1.2.6",
-      "caption": "Light theme, the runner icon, and a cleaner What's New dismiss.",
-      "date": "2026-10-31T20:48:00-07:00",
+      "title": "Gymship 1.2.7",
+      "identifier": "gymship-1.2.7",
+      "caption": "The Agent tab is a conversation now, like Messages.",
+      "date": "2026-10-31T21:30:00-07:00",
       "tintColor": "#244EF2",
       "notify": true,
       "appID": "com.gymship.app"

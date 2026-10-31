@@ -238,6 +238,15 @@ enum ReleaseNotes {
                      detail: String(localized: "Closing it no longer flashes an empty mesh over You.")),
             ]
         ),
+        Release(
+            build: 19,
+            version: "1.2.7",
+            headline: String(localized: "A real chat"),
+            items: [
+                Item(kind: .improved, symbol: "bubble.left.and.bubble.right.fill", title: String(localized: "Agent chat"),
+                     detail: String(localized: "The Agent tab is a conversation now, like Messages — bubbles, a field, and suggested questions above it.")),
+            ]
+        ),
     ]
 
     /// Newest first — the order people want to read them in.

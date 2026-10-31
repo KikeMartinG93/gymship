@@ -3501,6 +3501,76 @@
           }
         }
       }
+    },
+    "Apple Intelligence · On This iPhone": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence · En este iPhone"
+          }
+        }
+      }
+    },
+    "Send": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviar"
+          }
+        }
+      }
+    },
+    "Suggestions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sugerencias"
+          }
+        }
+      }
+    },
+    "Agent is typing": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El agente está escribiendo"
+          }
+        }
+      }
+    },
+    "A real chat": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un chat de verdad"
+          }
+        }
+      }
+    },
+    "Agent chat": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chat del agente"
+          }
+        }
+      }
+    },
+    "The Agent tab is a conversation now, like Messages — bubbles, a field, and suggested questions above it.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La pestaña Agente es una conversación ahora, como Mensajes: globos, un campo, y preguntas sugeridas encima."
+          }
+        }
+      }
     }
   }
 }

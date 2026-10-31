@@ -1,0 +1,19 @@
+---
+description: When Kike says "push an update", bump, build the IPA, and publish to FlareStore
+alwaysApply: true
+---
+
+# Push an update
+
+When the user says **push an update** (or "build a new IPA and push"), ship a FlareStore build. Do not ask whether to bump or commit.
+
+1. Patch-bump `MARKETING_VERSION` and increment `CURRENT_PROJECT_VERSION` in `project.yml`.
+2. Append a `ReleaseNotes` entry for the new build (what testers will see) and Spanish strings in `Localizable.xcstrings`.
+3. Build with `./Scripts/build-ipa.sh` (needs unrestricted permissions). Do not commit `build/` or the IPA.
+4. Update `flarestore/apps.json`:
+   - Set the **app-level** `version`, `buildVersion`, `versionDate`, `versionDescription`, `downloadURL`, and `size` (older FlareStore clients read these).
+   - Prepend a matching object to `versions` (newest first).
+   - Use an ISO datetime with time (`2026-10-31T14:20:00-07:00`), not a date-only string.
+   - Point `downloadURL` at `https://github.com/KikeMartinG93/gymship/releases/download/vVERSION/Gymship.ipa`.
+5. Commit all shipping source (including `project.yml` after xcodegen), push `main`, then `gh release create vVERSION build/Gymship.ipa`.
+6. Return the IPA URL and the source: `https://raw.githubusercontent.com/KikeMartinG93/gymship/main/flarestore/apps.json`.
