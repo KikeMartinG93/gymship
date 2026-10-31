@@ -84,7 +84,7 @@ struct CalendarSetupView: View {
             HStack(alignment: .firstTextBaseline, spacing: 8) {
                 Text("\(Int(free.rounded()))")
                     .font(.display(48))
-                    .contentTransition(.numericText(value: free))
+                    .gymshipNumericText(Double(free))
                 Text("free hours\nthis week")
                     .font(.display(.subheadline, .semibold))
                     .foregroundStyle(.secondary)
@@ -100,7 +100,7 @@ struct CalendarSetupView: View {
         }
         .padding(20)
         .glassCard(cornerRadius: 32)
-        .animation(.snappy, value: free)
+        .gymshipAnimation(value: free)
     }
 
     private func dayBar(index: Int, busy: Double, of total: Double) -> some View {

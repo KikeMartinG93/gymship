@@ -23,28 +23,25 @@ struct AgentView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollViewReader { proxy in
-                ScrollView {
-                    VStack(spacing: 14) {
-                        if chat.messages.isEmpty {
-                            intro
-                        }
-                        ForEach(chat.messages) { message in
-                            bubble(message).id(message.id)
-                        }
+            ScrollView {
+                LazyVStack(spacing: 14) {
+                    if chat.messages.isEmpty {
+                        intro
                     }
-                    .padding(.horizontal, Metrics.gutter)
-                    .padding(.top, 8)
-                    .padding(.bottom, 16)
+                    ForEach(chat.messages) { message in
+                        bubble(message)
+                    }
                 }
-                .scrollEdgeEffectStyle(.soft, for: .all)
-                .scrollDismissesKeyboard(.interactively)
-                .onChange(of: chat.messages.last?.text) {
-                    if let last = chat.messages.last { proxy.scrollTo(last.id, anchor: .bottom) }
-                }
+                .padding(.horizontal, Metrics.gutter)
+                .padding(.top, 8)
+                .padding(.bottom, 12)
             }
+            .defaultScrollAnchor(.bottom)
+            .scrollEdgeEffectStyle(.soft, for: .all)
+            .scrollDismissesKeyboard(.interactively)
             .navigationBarTitleDisplayMode(.inline)
-            .safeAreaInset(edge: .bottom) { inputBar }
+            .safeAreaBar(edge: .bottom) { composer }
+            .toolbar(inputFocused ? .hidden : .automatic, for: .tabBar)
         }
     }
 
@@ -63,23 +60,27 @@ struct AgentView: View {
                     title: String(localized: "Your scheduling agent"),
                     message: String(localized: "It sees your calendar, your crews' commitments and your preferences. Ask it anything about your week.")
                 )
-                VStack(spacing: 10) {
-                    ForEach(suggestions, id: \.self) { suggestion in
-                        Button {
-                            send(suggestion)
-                        } label: {
-                            Text(suggestion)
-                                .font(.system(.subheadline, weight: .medium))
-                                .multilineTextAlignment(.leading)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(16)
+                if !inputFocused {
+                    VStack(spacing: 10) {
+                        ForEach(suggestions, id: \.self) { suggestion in
+                            Button {
+                                send(suggestion)
+                            } label: {
+                                Text(suggestion)
+                                    .font(.system(.subheadline, weight: .medium))
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(16)
+                            }
+                            .buttonStyle(.plain)
+                            .glassSurface(Metrics.concentric(minimum: 22), interactive: true)
                         }
-                        .buttonStyle(.plain)
-                        .glassSurface(Metrics.concentric(minimum: 22), interactive: true)
                     }
+                    .transition(.opacity.combined(with: .move(edge: .bottom)))
                 }
             }
         }
+        .gymshipAnimation(Motion.ui, value: inputFocused)
     }
 
     private func bubble(_ message: AgentChat.Message) -> some View {
@@ -97,34 +98,63 @@ struct AgentView: View {
             .font(.system(.body))
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
-            .glassCard(cornerRadius: 22, tint: mine ? theme.accent : nil)
+            .background {
+                // User bubbles are static — glass is cheap once. Agent bubbles
+                // grow on every stream tick; a solid fill stays at 60/120 without
+                // a glass sampling pass per token.
+                if mine {
+                    Metrics.concentric(minimum: 22).fill(theme.accent)
+                } else {
+                    Metrics.concentric(minimum: 22).fill(.white.opacity(theme.highContrast ? 0.16 : 0.10))
+                }
+            }
             if !mine { Spacer(minLength: 48) }
         }
         .frame(maxWidth: .infinity, alignment: mine ? .trailing : .leading)
     }
 
-    private var inputBar: some View {
-        HStack(spacing: 10) {
+    private var canSend: Bool {
+        !input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && !chat.isResponding && chat.isAvailable
+    }
+
+    /// Capsule field on a solid plate so the keyboard and chips never show through.
+    private var composer: some View {
+        HStack(alignment: .bottom, spacing: 8) {
             TextField("Ask about your week", text: $input, axis: .vertical)
-                .lineLimit(1...4)
+                .textFieldStyle(.plain)
+                .font(.system(.body))
+                .lineLimit(1...5)
                 .focused($inputFocused)
-                .glassTextFieldStyle()
                 .submitLabel(.send)
                 .onSubmit { send(input) }
+                .disabled(!chat.isAvailable)
 
             Button {
                 send(input)
             } label: {
                 Image(systemName: "arrow.up")
-                    .font(.system(size: 17, weight: .bold))
-                    .frame(width: 34, height: 34)
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundStyle(canSend ? theme.onAccent : Color.white.opacity(0.35))
+                    .frame(width: 32, height: 32)
+                    .background(canSend ? theme.accent : Color.white.opacity(0.12), in: Circle())
             }
-            .glassButton(circle: true)
-            .buttonBorderShape(.circle)
-            .disabled(input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || chat.isResponding || !chat.isAvailable)
+            .buttonStyle(.plain)
+            .disabled(!canSend)
+            .accessibilityLabel(Text("Send"))
         }
-        .padding(.horizontal, Metrics.gutter)
-        .padding(.vertical, 8)
+        .padding(.leading, 16)
+        .padding(.trailing, 6)
+        .padding(.vertical, 6)
+        .background(Color.white.opacity(0.14), in: Capsule())
+        .padding(.horizontal, 16)
+        .padding(.top, 10)
+        .padding(.bottom, 8)
+        .frame(maxWidth: .infinity)
+        .background {
+            if inputFocused {
+                Color.black.ignoresSafeArea(edges: .bottom)
+            }
+        }
     }
 
     private func send(_ text: String) {
@@ -182,8 +212,18 @@ final class AgentChat {
             let session = self.session ?? LanguageModelSession(instructions: Self.instructions)
             self.session = session
             do {
+                var latest = ""
+                var lastFlush = Date.distantPast
                 for try await partial in session.streamResponse(to: prompt) {
-                    messages[index].text = partial.content
+                    latest = partial.content
+                    let now = Date()
+                    if now.timeIntervalSince(lastFlush) >= 0.08 {
+                        messages[index].text = latest
+                        lastFlush = now
+                    }
+                }
+                if messages[index].text != latest {
+                    messages[index].text = latest
                 }
                 break
             } catch LanguageModelSession.GenerationError.exceededContextWindowSize where attempt == 0 {
@@ -200,15 +240,22 @@ final class AgentChat {
 
 // MARK: - Schedule snapshot
 
+@MainActor
 enum ScheduleSnapshot {
-    @MainActor
+    private static let day: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE MMM d"
+        return formatter
+    }()
+    private static let time: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        return formatter
+    }()
+
     static func build(supabase: SupabaseService, eventKit: EventKitManager) -> String {
         let calendar = Calendar.current
         let now = Date()
-        let day = DateFormatter()
-        day.dateFormat = "EEE MMM d"
-        let time = DateFormatter()
-        time.dateFormat = "h:mm a"
         func range(_ s: Date, _ e: Date) -> String {
             "\(day.string(from: s)) \(time.string(from: s))–\(time.string(from: e))"
         }
@@ -219,9 +266,14 @@ enum ScheduleSnapshot {
         func clock(_ m: Int) -> String {
             String(format: "%d:%02d %@", (m / 60 + 11) % 12 + 1, m % 60, m < 720 ? "AM" : "PM")
         }
-        var prefLine = "Preferences: never before \(clock(prefs.earliestStart)), never after \(clock(prefs.latestEnd))"
+        var prefLine = "Preferences: "
+        if prefs.limitsHours {
+            prefLine += "never before \(clock(prefs.earliestStart)), never after \(clock(prefs.latestEnd))"
+        } else {
+            prefLine += "any hours"
+        }
         if prefs.lean != .none { prefLine += ", prefers \(prefs.lean == .before ? "before" : "after") \(clock(prefs.leanMinutes))" }
-        if !prefs.restWeekdays.isEmpty {
+        if prefs.usesRestDays, !prefs.restWeekdays.isEmpty {
             let names = prefs.restWeekdays.sorted().map { calendar.weekdaySymbols[$0 - 1] }
             prefLine += ", rest days: \(names.joined(separator: ", "))"
         }

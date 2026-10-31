@@ -215,7 +215,7 @@ struct RidePlanView: View {
         let selected = myMode == mode
         let disabled = mode == .pickedUp && otherCommittedMembers.isEmpty
         return Button {
-            withAnimation(.snappy) { myMode = mode }
+            Motion.run { myMode = mode }
         } label: {
             VStack(spacing: 8) {
                 Image(systemName: symbol)
@@ -244,7 +244,7 @@ struct RidePlanView: View {
     private func driverChoice(_ member: Profile) -> some View {
         let selected = selectedDriverId == member.id
         return Button {
-            withAnimation(.snappy) { selectedDriverId = member.id }
+            Motion.run { selectedDriverId = member.id }
         } label: {
             VStack(spacing: 8) {
                 Avatar(name: member.name, size: 52, ring: selected ? theme.accent : nil)
@@ -416,12 +416,16 @@ struct RidePlanView: View {
         }
     }
 
-    /// Looks up each committed member's ride, then resolves every member's
-    /// ETA concurrently — a crew of five otherwise means up to five sequential
-    /// MapKit direction requests (two apiece for a passenger), which visibly
-    /// crawls. Each member's own request(s) are independent of every other
-    /// member's, so there's nothing to serialize here.
+    /// Looks up each committed member's ride, then resolves ETAs two at a time
+    /// so a crew of five doesn't fire ten MapKit direction requests at once on
+    /// a thermally tight iPhone Air.
     private func calculateETAs() async {
+        switch ProcessInfo.processInfo.thermalState {
+        case .serious, .critical:
+            errorMessage = String(localized: "Your iPhone is cooling down — try ETAs again in a minute.")
+            return
+        default: break
+        }
         guard let gymLatitude = currentGroup.gymLatitude, let gymLongitude = currentGroup.gymLongitude else {
             errorMessage = String(localized: "Set the gym location first.")
             return
@@ -442,7 +446,11 @@ struct RidePlanView: View {
         let plansByUserId = Dictionary(uniqueKeysWithValues: assignments.map { ($0.userId, $0) })
 
         await withTaskGroup(of: (UUID, Result<Timing, Error>).self) { group in
-            for (memberId, plan) in plansByMember {
+            var next = 0
+            func enqueue() {
+                guard next < plansByMember.count else { return }
+                let (memberId, plan) = plansByMember[next]
+                next += 1
                 group.addTask {
                     do {
                         switch plan.mode {
@@ -472,6 +480,8 @@ struct RidePlanView: View {
                 }
             }
 
+            for _ in 0..<min(2, plansByMember.count) { enqueue() }
+
             for await (memberId, result) in group {
                 switch result {
                 case .success(let timing):
@@ -479,6 +489,7 @@ struct RidePlanView: View {
                 case .failure(let error):
                     if !error.isCancellation { etaErrorByUser[memberId] = error.localizedDescription }
                 }
+                enqueue()
             }
         }
     }

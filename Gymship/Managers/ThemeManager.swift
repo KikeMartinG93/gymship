@@ -94,10 +94,47 @@ final class ThemeManager {
         return Color(hue: backgroundHue, saturation: 0.62, brightness: 0.07)
     }
 
-    /// Nine colors for the 3x3 mesh gradient behind every screen: near-black
-    /// along the top, a luminous glow in the middle for glass to refract, and
-    /// a deeper wash along the bottom — all within the one background hue.
-    var meshColors: [Color] {
+    /// A companion color in the same family, offset in hue — used for icon
+    /// tiles and avatars so accents feel related without all being identical.
+    func companion(_ shift: Double, saturation: Double = 0.55, brightness: Double = 0.9) -> Color {
+        if highContrast { return .white }
+        return Color(hue: shiftedHue(by: shift), saturation: saturation, brightness: brightness)
+    }
+
+    private struct PaletteKey: Equatable {
+        var hue: Double
+        var highlight: Int
+        var highContrast: Bool
+    }
+
+    @ObservationIgnored private var paletteCache: (key: PaletteKey, onAccent: Color, mesh: [Color])?
+
+    private var paletteKey: PaletteKey {
+        PaletteKey(hue: backgroundHue, highlight: highlightIndex, highContrast: highContrast)
+    }
+
+    /// Readable foreground (near-black or white) for content drawn on `accent`.
+    var onAccent: Color { cachedPalette.onAccent }
+
+    /// Nine colors for the 3x3 mesh gradient behind every screen.
+    var meshColors: [Color] { cachedPalette.mesh }
+
+    private var cachedPalette: (key: PaletteKey, onAccent: Color, mesh: [Color]) {
+        let key = paletteKey
+        if let paletteCache, paletteCache.key == key { return paletteCache }
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+        UIColor(accent).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        let luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue
+        let packed = (
+            key: key,
+            onAccent: luminance > 0.62 ? Color(white: 0.06) : Color.white,
+            mesh: meshColorsUncached
+        )
+        paletteCache = packed
+        return packed
+    }
+
+    private var meshColorsUncached: [Color] {
         func tone(_ shift: Double, _ saturation: Double, _ brightness: Double) -> Color {
             Color(hue: shiftedHue(by: shift), saturation: saturation, brightness: brightness)
         }
@@ -106,21 +143,6 @@ final class ThemeManager {
             tone(0.00, 0.66, 0.24), tone(0.03, 0.74, 0.46), tone(-0.02, 0.62, 0.15),
             tone(-0.03, 0.60, 0.10), tone(0.00, 0.72, 0.34), tone(0.05, 0.70, 0.24),
         ]
-    }
-
-    /// A companion color in the same family, offset in hue — used for icon
-    /// tiles and avatars so accents feel related without all being identical.
-    func companion(_ shift: Double, saturation: Double = 0.55, brightness: Double = 0.9) -> Color {
-        if highContrast { return .white }
-        return Color(hue: shiftedHue(by: shift), saturation: saturation, brightness: brightness)
-    }
-
-    /// Readable foreground (near-black or white) for content drawn on `accent`.
-    var onAccent: Color {
-        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
-        UIColor(accent).getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        let luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue
-        return luminance > 0.62 ? Color(white: 0.06) : .white
     }
 
     private func shiftedHue(by delta: Double) -> Double {

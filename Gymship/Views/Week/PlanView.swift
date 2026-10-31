@@ -79,7 +79,7 @@ struct PlanView: View {
             .onChange(of: weeklyGoal) { refresh { await recompute() } }
             .onChange(of: durationMinutes) { refresh { await recompute() } }
             .onChange(of: supabase.myResponses) {
-                refresh { await loadWeek(); await recompute() }
+                refresh { await loadWeek() }
             }
         }
     }
@@ -137,7 +137,7 @@ struct PlanView: View {
         VStack(spacing: 26) {
             HStack {
                 Button {
-                    withAnimation(.snappy) { weekOffset -= 1 }
+                    Motion.run { weekOffset -= 1 }
                 } label: {
                     Image(systemName: "chevron.left")
                         .font(.system(size: 15, weight: .semibold))
@@ -156,12 +156,12 @@ struct PlanView: View {
                         .font(.system(.footnote))
                         .foregroundStyle(.secondary)
                 }
-                .contentTransition(.interpolate)
+                .gymshipAnimation(value: weekOffset)
 
                 Spacer()
 
                 Button {
-                    withAnimation(.snappy) { weekOffset += 1 }
+                    Motion.run { weekOffset += 1 }
                 } label: {
                     Image(systemName: "chevron.right")
                         .font(.system(size: 15, weight: .semibold))
@@ -179,7 +179,7 @@ struct PlanView: View {
                 goal: weeklyGoal,
                 selectedDay: selectedDay
             ) { day in
-                withAnimation(.snappy) {
+                Motion.run {
                     selectedDay = selectedDay.map { Calendar.current.isDate($0, inSameDayAs: day) } == true ? nil : day
                 }
             }
@@ -202,7 +202,7 @@ struct PlanView: View {
                     Text("\(weeklyGoal)×")
                         .font(.display(.title3))
                         .frame(minWidth: 34)
-                        .contentTransition(.numericText(value: Double(weeklyGoal)))
+                        .gymshipNumericText(Double(weeklyGoal))
 
                     Button {
                         weeklyGoal = min(7, weeklyGoal + 1)
@@ -213,7 +213,7 @@ struct PlanView: View {
                     .buttonBorderShape(.circle)
                     .disabled(weeklyGoal >= 7)
                 }
-                .animation(.snappy, value: weeklyGoal)
+                .gymshipAnimation(value: weeklyGoal)
             }
             .padding(.leading, 20)
             .padding(.trailing, 10)
@@ -247,7 +247,7 @@ struct PlanView: View {
                 subtitle: selectedDay == nil ? String(localized: "Say you're in — two people locks it") : nil
             ) {
                 if selectedDay != nil {
-                    Button("Show all") { withAnimation(.snappy) { selectedDay = nil } }
+                    Button("Show all") { Motion.run { selectedDay = nil } }
                         .font(.system(.footnote, weight: .semibold))
                 } else if hasLockedSessions {
                     Button {
@@ -382,6 +382,19 @@ struct PlanView: View {
         } catch {
             if !error.isCancellation { errorMessage = error.localizedDescription }
         }
+        refreshConfirmedCount()
+    }
+
+    /// Updates the dial's count without rerunning Apple Intelligence.
+    private func refreshConfirmedCount() {
+        guard weekOffset == 0 else { return }
+        let weekRange = EventKitManager.currentWeekInterval()
+        confirmedCount = supabase.myProposals.filter {
+            weekRange.contains($0.proposal.startsAt)
+                && supabase.myResponses[$0.id] == .accepted
+                && supabase.isConfirmedWorkout($0.id)
+        }.count
+        if confirmedCount >= weeklyGoal { suggestions = [] }
     }
 
     /// Recomputes solo suggestions for the current week (busy time is only

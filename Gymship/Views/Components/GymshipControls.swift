@@ -16,7 +16,7 @@ struct GymshipButtonStyle: ButtonStyle {
             .glassSurface(Capsule(), tint: theme.highContrast ? nil : theme.accent, interactive: true)
             .opacity(isEnabled ? 1 : 0.45)
             .scaleEffect(configuration.isPressed ? 0.98 : 1)
-            .animation(.snappy(duration: 0.18), value: configuration.isPressed)
+            .gymshipAnimation(Motion.press, value: configuration.isPressed)
     }
 }
 
@@ -73,7 +73,7 @@ private struct GoogleSignInChrome: ButtonStyle {
                 Capsule().strokeBorder(Self.stroke, lineWidth: 1)
             }
             .scaleEffect(configuration.isPressed ? 0.98 : 1)
-            .animation(.snappy(duration: 0.18), value: configuration.isPressed)
+            .gymshipAnimation(Motion.press, value: configuration.isPressed)
     }
 }
 
@@ -92,7 +92,7 @@ struct PillButtonStyle: ButtonStyle {
             .glassSurface(Capsule(), tint: theme.highContrast ? nil : theme.accent, interactive: true)
             .opacity(isEnabled ? 1 : 0.45)
             .scaleEffect(configuration.isPressed ? 0.96 : 1)
-            .animation(.snappy(duration: 0.18), value: configuration.isPressed)
+            .gymshipAnimation(Motion.press, value: configuration.isPressed)
     }
 }
 
@@ -190,9 +190,8 @@ struct IconTile: View {
     var size: CGFloat = 30
 
     var body: some View {
-        Image(systemName: symbol)
-            .font(.system(size: size * 0.5, weight: .semibold))
-            .foregroundStyle(.white)
+        FittedSymbol(symbol, color: .white)
+            .padding(size * Metrics.glyphInsetRatio)
             .frame(width: size, height: size)
             .background(
                 theme.highContrast
@@ -200,6 +199,43 @@ struct IconTile: View {
                     : AnyShapeStyle(LinearGradient(colors: [color, color.opacity(0.65)], startPoint: .top, endPoint: .bottom)),
                 in: RoundedRectangle(cornerRadius: size * 0.225, style: .continuous)
             )
+    }
+}
+
+/// SF Symbol scaled to the offered space so wide glyphs don't overflow.
+struct FittedSymbol: View {
+    let symbol: String
+    var color: Color
+
+    init(_ symbol: String, color: Color) {
+        self.symbol = symbol
+        self.color = color
+    }
+
+    var body: some View {
+        Image(systemName: symbol)
+            .resizable()
+            .scaledToFit()
+            .font(.body.weight(.semibold))
+            .symbolRenderingMode(.monochrome)
+            .foregroundStyle(color)
+    }
+}
+
+/// Circular glass badge. Same inset ratio at every size, so `person.3` and
+/// `sparkles` sit equally in the circle.
+struct GlyphBadge: View {
+    @Environment(ThemeManager.self) private var theme
+
+    let symbol: String
+    var size: CGFloat = 84
+
+    var body: some View {
+        FittedSymbol(symbol, color: theme.accent)
+            .padding(size * Metrics.glyphInsetRatio)
+            .frame(width: size, height: size)
+            .glassSurface(Circle())
+            .accessibilityHidden(true)
     }
 }
 
@@ -243,8 +279,6 @@ struct SettingsRow: View {
 
 /// Big, friendly placeholder for screens with nothing to show yet.
 struct EmptyStateView<Actions: View>: View {
-    @Environment(ThemeManager.self) private var theme
-
     let symbol: String
     let title: String
     let message: String
@@ -252,11 +286,7 @@ struct EmptyStateView<Actions: View>: View {
 
     var body: some View {
         VStack(spacing: 18) {
-            Image(systemName: symbol)
-                .font(.system(size: 38, weight: .semibold))
-                .foregroundStyle(theme.accent)
-                .frame(width: 84, height: 84)
-                .glassSurface(Circle())
+            GlyphBadge(symbol: symbol, size: 84)
 
             VStack(spacing: 6) {
                 Text(title)

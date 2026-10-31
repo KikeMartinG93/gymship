@@ -27,9 +27,8 @@ struct WhatsNewView: View {
                                 row(item)
                                     .opacity(appeared ? 1 : 0)
                                     .offset(y: appeared ? 0 : 18)
-                                    .animation(
-                                        .spring(duration: 0.55, bounce: 0.2)
-                                            .delay(0.25 + Double(releaseIndex * 4 + itemIndex) * 0.06),
+                                    .gymshipAnimation(
+                                        Motion.screen.delay(Double(releaseIndex * 4 + itemIndex) * 0.03),
                                         value: appeared
                                     )
                             }
@@ -71,16 +70,12 @@ struct WhatsNewView: View {
         }
         .opacity(appeared ? 1 : 0)
         .offset(y: appeared ? 0 : 12)
-        .animation(.spring(duration: 0.55, bounce: 0.15), value: appeared)
+        .gymshipAnimation(Motion.screen, value: appeared)
     }
 
     private func row(_ item: ReleaseNotes.Item) -> some View {
         HStack(alignment: .top, spacing: 16) {
-            Image(systemName: item.symbol)
-                .font(.system(size: 22, weight: .semibold))
-                .foregroundStyle(theme.accent)
-                .frame(width: 48, height: 48)
-                .glassSurface(Metrics.concentric(minimum: 16))
+            GlyphBadge(symbol: item.symbol, size: 48)
 
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 8) {

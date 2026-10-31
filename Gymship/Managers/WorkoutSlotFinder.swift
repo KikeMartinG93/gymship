@@ -36,9 +36,9 @@ enum WorkoutSlotFinder {
         while day < range.end {
             defer { day = calendar.date(byAdding: .day, value: 1, to: day) ?? range.end }
 
-            guard !preferences.restWeekdays.contains(calendar.component(.weekday, from: day)),
-                  let dayStart = calendar.date(byAdding: .minute, value: preferences.earliestStart, to: day),
-                  let dayEnd = calendar.date(byAdding: .minute, value: preferences.latestEnd, to: day),
+            guard !preferences.effectiveRestWeekdays.contains(calendar.component(.weekday, from: day)),
+                  let dayStart = calendar.date(byAdding: .minute, value: preferences.effectiveEarliestStart, to: day),
+                  let dayEnd = calendar.date(byAdding: .minute, value: preferences.effectiveLatestEnd, to: day),
                   dayEnd > dayStart else {
                 continue
             }
@@ -129,17 +129,19 @@ enum WorkoutSlotFinder {
         if ProcessInfo.processInfo.isLowPowerModeEnabled { return false }
         switch ProcessInfo.processInfo.thermalState {
         case .serious, .critical: return false
-        default: return true
+        default: break
         }
+        if case .available = SystemLanguageModel.default.availability { return true }
+        return false
     }
 
     private static func pickWithAppleIntelligence(candidates: [Candidate], preferences: WorkoutPreferences) async -> Pick? {
-        guard case .available = SystemLanguageModel.default.availability else { return nil }
-
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a"
         let list = candidates.enumerated()
-            .map { "\($0.offset): \(formatter.string(from: $0.element.interval.start)) – \(formatter.string(from: $0.element.interval.end))" }
+            .map {
+                let start = $0.element.interval.start.formatted(date: .omitted, time: .shortened)
+                let end = $0.element.interval.end.formatted(date: .omitted, time: .shortened)
+                return "\($0.offset): \(start) – \(end)"
+            }
             .joined(separator: "\n")
 
         var instructions = """

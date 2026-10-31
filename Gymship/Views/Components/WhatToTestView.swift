@@ -27,8 +27,8 @@ struct WhatToTestView: View {
                             row(step)
                                 .opacity(appeared ? 1 : 0)
                                 .offset(y: appeared ? 0 : 18)
-                                .animation(
-                                    .spring(duration: 0.55, bounce: 0.2).delay(0.25 + Double(index) * 0.06),
+                                .gymshipAnimation(
+                                    Motion.screen.delay(Double(index) * 0.03),
                                     value: appeared
                                 )
                         }
@@ -40,7 +40,7 @@ struct WhatToTestView: View {
                         .padding(16)
                         .glassCard(cornerRadius: 18)
                         .opacity(appeared ? 1 : 0)
-                        .animation(.spring(duration: 0.55, bounce: 0.2).delay(0.25 + Double(WhatToTest.steps.count) * 0.06), value: appeared)
+                        .gymshipAnimation(Motion.screen.delay(Double(WhatToTest.steps.count) * 0.03), value: appeared)
                 }
                 .padding(.horizontal, 28)
                 .padding(.top, 64)
@@ -84,16 +84,12 @@ struct WhatToTestView: View {
         }
         .opacity(appeared ? 1 : 0)
         .offset(y: appeared ? 0 : 12)
-        .animation(.spring(duration: 0.55, bounce: 0.15), value: appeared)
+        .gymshipAnimation(Motion.screen, value: appeared)
     }
 
     private func row(_ step: WhatToTest.Step) -> some View {
         HStack(alignment: .top, spacing: 16) {
-            Image(systemName: step.symbol)
-                .font(.system(size: 22, weight: .semibold))
-                .foregroundStyle(theme.accent)
-                .frame(width: 48, height: 48)
-                .glassSurface(Metrics.concentric(minimum: 16))
+            GlyphBadge(symbol: step.symbol, size: 48)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(step.title)

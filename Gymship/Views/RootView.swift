@@ -24,7 +24,7 @@ struct RootView: View {
             }
         }
         .preferredColorScheme(.dark)
-        .animation(.smooth(duration: 0.5), value: appState.isOnboarded)
+        .gymshipAnimation(Motion.screen, value: appState.isOnboarded)
         .fullScreenCover(isPresented: $isShowingWhatToTest) {
             WhatToTestView {
                 hasSeenWhatToTest = true

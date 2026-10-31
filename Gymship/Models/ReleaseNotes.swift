@@ -190,6 +190,21 @@ enum ReleaseNotes {
                      detail: String(localized: "Onboarding now uses Google's official button. Tap it to create your Gymship account in one step.")),
             ]
         ),
+        Release(
+            build: 15,
+            version: "1.2.3",
+            headline: String(localized: "Snappier, and easier to set"),
+            items: [
+                Item(kind: .improved, symbol: "hare", title: String(localized: "Faster motion"),
+                     detail: String(localized: "Taps and screen changes are shorter and snappier, and they stay still if you have Reduce Motion on.")),
+                Item(kind: .improved, symbol: "keyboard", title: String(localized: "Agent composer"),
+                     detail: String(localized: "The Agent tab now uses a rounded field above the keyboard, with nothing sitting behind it.")),
+                Item(kind: .improved, symbol: "switch.2", title: String(localized: "Hours and rest days"),
+                     detail: String(localized: "Never-outside hours and rest days on You are toggles, so you can turn them off without clearing times.")),
+                Item(kind: .fixed, symbol: "person.3.fill", title: String(localized: "Empty-state icons"),
+                     detail: String(localized: "Wide symbols like the crew icon now fill their circle instead of looking cramped.")),
+            ]
+        ),
     ]
 
     /// Newest first — the order people want to read them in.

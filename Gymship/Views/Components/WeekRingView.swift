@@ -69,8 +69,6 @@ struct WeekRingView: View {
                             style: StrokeStyle(lineWidth: isSelected ? lineWidth + 6 : lineWidth, lineCap: .round)
                         )
                         .rotationEffect(.degrees(-90))
-                        .animation(.spring(duration: 0.5, bounce: 0.25), value: committed)
-                        .animation(.spring(duration: 0.35), value: selectedDay)
                 }
 
                 if showsCenter { center(scale: k) }
@@ -88,6 +86,8 @@ struct WeekRingView: View {
             }
             .frame(width: size, height: size)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .gymshipAnimation(Motion.ui, value: committed)
+            .gymshipAnimation(Motion.ui, value: selectedDay)
         }
         .aspectRatio(1, contentMode: .fit)
     }
@@ -98,8 +98,8 @@ struct WeekRingView: View {
         VStack(spacing: 2) {
             Text("\(count)")
                 .font(.display(64 * k))
-                .contentTransition(.numericText(value: Double(count)))
-                .animation(.snappy, value: count)
+                .gymshipNumericText(Double(count))
+                .gymshipAnimation(value: count)
             Text("of \(goal) this week")
                 .font(.display(.subheadline, .semibold))
                 .foregroundStyle(.secondary)
@@ -111,7 +111,7 @@ struct WeekRingView: View {
                     .transition(.scale.combined(with: .opacity))
             }
         }
-        .animation(.snappy, value: goalHit)
+        .gymshipAnimation(value: goalHit)
     }
 
     // MARK: Days

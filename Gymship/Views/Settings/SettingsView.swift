@@ -49,7 +49,7 @@ struct SettingsView: View {
 
                         RowDivider()
 
-                        Toggle(isOn: $theme.highContrast.animation(.smooth)) {
+                        Toggle(isOn: $theme.highContrast.animation(Motion.ui)) {
                             HStack(spacing: 14) {
                                 IconTile(symbol: "circle.lefthalf.filled", color: .gray)
                                 VStack(alignment: .leading, spacing: 2) {
@@ -92,7 +92,7 @@ struct SettingsView: View {
                                 symbol: "slider.horizontal.3",
                                 color: theme.companion(0.16),
                                 title: String(localized: "Preferences"),
-                                detail: String(localized: "Hours, mornings or evenings, rest days")
+                                detail: String(localized: "Hours, rest days, mornings or evenings")
                             )
                         }
                         .buttonStyle(.plain)
@@ -211,7 +211,7 @@ struct SettingsView: View {
     private var profileHeader: some View {
         VStack(spacing: 14) {
             Avatar(name: supabase.profile?.name ?? "?", size: 88)
-                .shadow(color: theme.highContrast ? .clear : theme.accent.opacity(0.35), radius: 8)
+                .shadow(color: theme.highContrast ? .clear : theme.accent.opacity(0.28), radius: 4)
 
             if let profile = supabase.profile {
                 VStack(spacing: 2) {
@@ -368,7 +368,7 @@ private struct AppearanceView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     SectionHeader(title: String(localized: "Background"), subtitle: String(localized: "Every screen adopts the hue")) {
                         Button("Shuffle", systemImage: "shuffle") {
-                            withAnimation(.snappy) { randomHues = ThemeManager.randomHues(count: 11) }
+                            Motion.run { randomHues = ThemeManager.randomHues(count: 11) }
                         }
                         .font(.system(.footnote, weight: .semibold))
                     }
@@ -376,7 +376,7 @@ private struct AppearanceView: View {
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 14), count: 6), spacing: 14) {
                         ForEach(Array(backgroundHues.enumerated()), id: \.offset) { _, hue in
                             swatch(color: Color(hue: hue, saturation: 0.6, brightness: 0.85), selected: abs(hue - theme.backgroundHue) < 0.0005) {
-                                withAnimation(.smooth) { theme.backgroundHue = hue }
+                                Motion.run { theme.backgroundHue = hue }
                             }
                         }
                     }
@@ -392,7 +392,7 @@ private struct AppearanceView: View {
                         ForEach(Array(ThemeManager.highlightVariations.enumerated()), id: \.offset) { index, variation in
                             VStack(spacing: 8) {
                                 swatch(color: theme.highlightColor(variation), selected: theme.highlightIndex == index) {
-                                    withAnimation(.smooth) { theme.highlightIndex = index }
+                                    Motion.run { theme.highlightIndex = index }
                                 }
                                 Text(variation.name)
                                     .font(.system(.caption, weight: .medium))
@@ -494,14 +494,22 @@ private struct PreferencesView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 28) {
                 VStack(alignment: .leading, spacing: 12) {
-                    SectionHeader(title: String(localized: "Never outside"), subtitle: String(localized: "Workouts are never suggested beyond these hours"))
                     GlassGroup {
-                        DatePicker(String(localized: "Never before"), selection: timeBinding(\.earliestStart), displayedComponents: .hourAndMinute)
-                            .padding(16)
-                        RowDivider().padding(.leading, 16)
-                        DatePicker(String(localized: "Never after"), selection: timeBinding(\.latestEnd), displayedComponents: .hourAndMinute)
-                            .padding(16)
+                        preferenceToggle(
+                            String(localized: "Never outside"),
+                            subtitle: String(localized: "Keep workouts inside a time window"),
+                            isOn: $prefs.limitsHours
+                        )
+                        if prefs.limitsHours {
+                            RowDivider().padding(.leading, 16)
+                            DatePicker(String(localized: "Never before"), selection: timeBinding(\.earliestStart), displayedComponents: .hourAndMinute)
+                                .padding(16)
+                            RowDivider().padding(.leading, 16)
+                            DatePicker(String(localized: "Never after"), selection: timeBinding(\.latestEnd), displayedComponents: .hourAndMinute)
+                                .padding(16)
+                        }
                     }
+                    .gymshipAnimation(value: prefs.limitsHours)
                 }
 
                 VStack(alignment: .leading, spacing: 12) {
@@ -530,24 +538,26 @@ private struct PreferencesView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 12) {
-                    SectionHeader(title: String(localized: "Rest days"), subtitle: String(localized: "No workouts on these days"))
-                    HStack(spacing: 8) {
-                        ForEach(weekdayOrder, id: \.self) { weekday in
-                            let off = prefs.restWeekdays.contains(weekday)
-                            Button {
-                                if off { prefs.restWeekdays.remove(weekday) } else { prefs.restWeekdays.insert(weekday) }
-                            } label: {
-                                Text(Calendar.current.veryShortWeekdaySymbols[weekday - 1])
-                                    .font(.system(.subheadline, weight: .semibold))
-                                    .foregroundStyle(off ? .primary : .secondary)
-                                    .frame(maxWidth: .infinity, minHeight: 44)
-                                    .background(off ? Color.white.opacity(0.18) : Color.white.opacity(0.06), in: Capsule())
+                    GlassGroup {
+                        preferenceToggle(
+                            String(localized: "Rest days"),
+                            subtitle: String(localized: "Skip these weekdays entirely"),
+                            isOn: $prefs.usesRestDays
+                        )
+                        if prefs.usesRestDays {
+                            ForEach(weekdayOrder, id: \.self) { weekday in
+                                RowDivider().padding(.leading, 16)
+                                Toggle(isOn: restDayBinding(weekday)) {
+                                    Text(Calendar.current.weekdaySymbols[weekday - 1])
+                                        .font(.system(.body, weight: .medium))
+                                }
+                                .adaptiveToggle()
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 12)
                             }
-                            .buttonStyle(.plain)
-                            .accessibilityLabel(Calendar.current.weekdaySymbols[weekday - 1])
-                            .accessibilityValue(off ? String(localized: "Rest day") : "")
                         }
                     }
+                    .gymshipAnimation(value: prefs.usesRestDays)
                 }
 
                 Text("These apply to suggestions made on this device, for you and for your crews.")
@@ -564,5 +574,29 @@ private struct PreferencesView: View {
             if prefs.latestEnd <= prefs.earliestStart { prefs.latestEnd = min(24 * 60, prefs.earliestStart + 60) }
             stored = prefs.json
         }
+    }
+
+    private func restDayBinding(_ weekday: Int) -> Binding<Bool> {
+        Binding(
+            get: { prefs.restWeekdays.contains(weekday) },
+            set: { on in
+                if on { prefs.restWeekdays.insert(weekday) } else { prefs.restWeekdays.remove(weekday) }
+            }
+        )
+    }
+
+    private func preferenceToggle(_ title: String, subtitle: String, isOn: Binding<Bool>) -> some View {
+        Toggle(isOn: isOn.animation(Motion.ui)) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.system(.body, weight: .medium))
+                Text(subtitle)
+                    .font(.system(.footnote))
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .adaptiveToggle()
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
     }
 }

@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 // MARK: - Tokens
 
@@ -11,6 +12,10 @@ enum Metrics {
     static func concentric(minimum: CGFloat = cardRadius) -> ConcentricRectangle {
         ConcentricRectangle(corners: .concentric(minimum: .fixed(minimum)), isUniform: true)
     }
+
+    /// Padding inside a circular glyph badge, as a fraction of diameter.
+    /// Wide symbols like `person.3` scale down to this box instead of overflowing.
+    static let glyphInsetRatio: CGFloat = 0.28
 }
 
 extension Font {
@@ -25,6 +30,23 @@ extension Font {
     }
 }
 
+/// Shared timing. Snappy and short — springs with bounce feel slow on ProMotion
+/// and fight Liquid Glass, which already interpolates.
+enum Motion {
+    static let press = Animation.snappy(duration: 0.14)
+    static let ui = Animation.snappy(duration: 0.22)
+    static let screen = Animation.snappy(duration: 0.28)
+
+    @MainActor
+    static func run(_ animation: Animation = ui, _ updates: () -> Void) {
+        if UIAccessibility.isReduceMotionEnabled {
+            updates()
+        } else {
+            withAnimation(animation, updates)
+        }
+    }
+}
+
 extension View {
     /// Soft scroll-edge dissolve on every edge. Required on every `ScrollView`,
     /// `List`, and `Form` in the app.
@@ -35,6 +57,16 @@ extension View {
     /// Bounce only when motion and power budget allow it.
     func symbolBounceIfAllowed<V: Equatable>(value: V) -> some View {
         modifier(SymbolBounceIfAllowed(value: value))
+    }
+
+    /// Value animation that no-ops under Reduce Motion.
+    func gymshipAnimation<V: Equatable>(_ animation: Animation = Motion.ui, value: V) -> some View {
+        modifier(GymshipAnimation(animation: animation, value: value))
+    }
+
+    /// Counting transitions are expensive on ProMotion; skip them when motion is reduced.
+    func gymshipNumericText(_ value: Double) -> some View {
+        modifier(GymshipNumericText(value: value))
     }
 }
 
@@ -49,6 +81,25 @@ private struct SymbolBounceIfAllowed<V: Equatable>: ViewModifier {
         } else {
             content.symbolEffect(.bounce, value: value)
         }
+    }
+}
+
+private struct GymshipAnimation<V: Equatable>: ViewModifier {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    let animation: Animation
+    let value: V
+
+    func body(content: Content) -> some View {
+        content.animation(reduceMotion ? nil : animation, value: value)
+    }
+}
+
+private struct GymshipNumericText: ViewModifier {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    let value: Double
+
+    func body(content: Content) -> some View {
+        content.contentTransition(reduceMotion ? .identity : .numericText(value: value))
     }
 }
 
@@ -299,9 +350,12 @@ struct GymshipBackground: View {
             } else if shouldAnimate {
                 TimelineView(.periodic(from: .now, by: 0.5)) { context in
                     mesh(at: context.date.timeIntervalSinceReferenceDate)
+                        // Never interpolate between 2fps samples — that would pin ProMotion at 120.
+                        .transaction { $0.animation = nil }
                 }
             } else {
                 mesh(at: (reduceMotion || !allowsMotion) ? 0 : frozenDate.timeIntervalSinceReferenceDate)
+                    .transaction { $0.animation = nil }
             }
         }
         .ignoresSafeArea()
@@ -316,12 +370,10 @@ struct GymshipBackground: View {
             settled = true
         }
         .onChange(of: scenePhase) { _, phase in
-            if phase == .active {
-                settled = false
-            } else {
-                frozenDate = Date()
-                settled = true
-            }
+            guard phase != .active else { return }
+            // Don't restart the 2fps timeline when returning from Control Center.
+            frozenDate = Date()
+            settled = true
         }
     }
 

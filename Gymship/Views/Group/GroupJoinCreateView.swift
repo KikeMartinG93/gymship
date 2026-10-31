@@ -79,7 +79,7 @@ struct GroupJoinCreateView: View {
                 .disabled(!canSubmit)
             }
             .padding(Metrics.gutter)
-            .animation(.snappy, value: mode)
+            .gymshipAnimation(value: mode)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

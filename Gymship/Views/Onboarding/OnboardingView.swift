@@ -82,7 +82,7 @@ struct OnboardingView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 28)
         .padding(.bottom, 20)
-        .animation(.smooth(duration: 0.45), value: step)
+        .gymshipAnimation(Motion.screen, value: step)
     }
 
     // MARK: Chrome
@@ -122,7 +122,7 @@ struct OnboardingView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .animation(.snappy, value: step)
+        .gymshipAnimation(value: step)
     }
 
     private func headline(_ title: String, _ body: String) -> some View {
@@ -139,11 +139,7 @@ struct OnboardingView: View {
     }
 
     private func glyph(_ symbol: String) -> some View {
-        Image(systemName: symbol)
-            .font(.system(size: 30, weight: .semibold))
-            .foregroundStyle(theme.accent)
-            .frame(width: 72, height: 72)
-            .glassSurface(Metrics.concentric(minimum: 24))
+        GlyphBadge(symbol: symbol, size: 72)
     }
 
     // MARK: Steps
@@ -239,7 +235,7 @@ struct OnboardingView: View {
                 .buttonStyle(GymshipButtonStyle())
             }
         }
-        .animation(.smooth(duration: 0.35), value: tutorialPage)
+        .gymshipAnimation(Motion.ui, value: tutorialPage)
     }
 
     // MARK: Actions
