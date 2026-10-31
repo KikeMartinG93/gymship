@@ -3,6 +3,7 @@
   "subtitle": "Find a time your crew can actually work out.",
   "description": "Sideload Gymship with FlareStore, AltStore, SideStore, or Feather. After you add this source, download the IPA and sign it with your own Apple ID — no paid developer account required. Sign in uses Google, so it works after you re-sign.",
   "identifier": "com.gymship.flarestore",
+  "sourceURL": "https://raw.githubusercontent.com/KikeMartinG93/gymship/main/flarestore/apps.json",
   "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/gymship/main/flarestore/icon.png",
   "website": "https://github.com/KikeMartinG93/gymship",
   "tintColor": "#244EF2",
@@ -16,11 +17,17 @@
       "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/gymship/main/flarestore/icon.png",
       "tintColor": "#244EF2",
       "category": "lifestyle",
+      "version": "1.2.6",
+      "buildVersion": "18",
+      "versionDate": "2026-10-31T20:48:00-07:00",
+      "versionDescription": "Light theme, the runner icon in Liquid Glass, and a cleaner What's New dismiss.",
+      "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.6/Gymship.ipa",
+      "size": 7228658,
       "versions": [
         {
           "version": "1.2.6",
           "buildVersion": "18",
-          "date": "2026-10-31",
+          "date": "2026-10-31T20:48:00-07:00",
           "localizedDescription": "Light theme, the runner icon in Liquid Glass, and a cleaner What's New dismiss.",
           "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.6/Gymship.ipa",
           "size": 7228658,
@@ -29,7 +36,7 @@
         {
           "version": "1.2.5",
           "buildVersion": "17",
-          "date": "2026-10-31",
+          "date": "2026-10-31T12:00:00-07:00",
           "localizedDescription": "The weekly goal minus and plus are the same size, and the week dial fills more of iPhone Air.",
           "downloadURL": "https://github.com/KikeMartinG93/gymship/releases/download/v1.2.5/Gymship.ipa",
           "size": 2510185,
@@ -88,6 +95,17 @@
           "NSCalendarsFullAccessUsageDescription": "Gymship reads your calendars to find when you're busy and schedules your confirmed workout sessions on a dedicated Workout calendar."
         }
       }
+    }
+  ],
+  "news": [
+    {
+      "title": "Gymship 1.2.6",
+      "identifier": "gymship-1.2.6",
+      "caption": "Light theme, the runner icon, and a cleaner What's New dismiss.",
+      "date": "2026-10-31T20:48:00-07:00",
+      "tintColor": "#244EF2",
+      "notify": true,
+      "appID": "com.gymship.app"
     }
   ]
 }
