@@ -338,7 +338,7 @@ struct SectionHeader<Trailing: View>: View {
     @ViewBuilder var trailing: Trailing
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline) {
+        HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
                     .font(.title3.weight(.semibold))
@@ -346,9 +346,11 @@ struct SectionHeader<Trailing: View>: View {
                     Text(subtitle)
                         .font(.footnote)
                         .foregroundStyle(theme.highContrast ? Color.primary.opacity(0.8) : Color.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
-            Spacer(minLength: 8)
+            .layoutPriority(1)
+            Spacer(minLength: 12)
             trailing
         }
         .padding(.horizontal, 4)

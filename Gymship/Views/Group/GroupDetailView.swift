@@ -35,18 +35,40 @@ struct GroupDetailView: View {
         !supabase.groupMembers.isEmpty && supabase.groupMembers.allSatisfy { submittedMemberIds.contains($0.id) }
     }
 
+    /// Crewmates who still need to open the app and push busy slots — not you.
+    private var membersNeedingSync: [Profile] {
+        supabase.groupMembers.filter {
+            !submittedMemberIds.contains($0.id) && $0.id != supabase.currentUserId
+        }
+    }
+
+    private var nudgeFirstNames: [String] {
+        membersNeedingSync.map { $0.name.split(separator: " ").first.map(String.init) ?? $0.name }
+    }
+
+    private var nudgeMessage: String {
+        let names = nudgeFirstNames.formatted(.list(type: .and))
+        return String(localized: "Hey \(names) — open Gymship and sync your calendar so we can pick a time for \"\(group.name)\".")
+    }
+
     var body: some View {
         ScrollView {
-            VStack(spacing: 28) {
+            VStack(spacing: 0) {
                 crewCard
                 syncSection
+                    .padding(.top, 28)
                 sessionsSection
+                    // Nudge sits on the Sessions row — pull it a touch closer to the
+                    // waiting card so the new trailing control doesn't float.
+                    .padding(.top, membersNeedingSync.isEmpty ? 28 : 20)
 
                 if let message = errorMessage ?? coordinator.errorMessage {
                     InlineMessage(text: message, isError: true)
+                        .padding(.top, 28)
                 }
                 if let infoMessage {
                     InlineMessage(text: infoMessage)
+                        .padding(.top, 28)
                 }
             }
             .padding(.horizontal, Metrics.gutter)
@@ -149,14 +171,16 @@ struct GroupDetailView: View {
                 let waitingOn = supabase.groupMembers
                     .filter { !submittedMemberIds.contains($0.id) }
                     .map { $0.name.split(separator: " ").first.map(String.init) ?? $0.name }
-                HStack(spacing: 14) {
+                HStack(alignment: .top, spacing: 14) {
                     Image(systemName: "hourglass")
                         .font(.system(.title3))
                         .foregroundStyle(theme.accent)
+                        .padding(.top, 1)
                     Text(waitingOn.isEmpty
                          ? "Syncing everyone's calendars…"
                          : "Waiting on \(waitingOn.formatted(.list(type: .and))) to open Gymship and sync their calendar.")
                         .font(.system(.subheadline))
+                        .fixedSize(horizontal: false, vertical: true)
                     Spacer(minLength: 0)
                 }
                 .padding(16)
@@ -168,8 +192,21 @@ struct GroupDetailView: View {
     // MARK: Sessions
 
     private var sessionsSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: String(localized: "Sessions"), subtitle: String(localized: "Two people in locks a workout"))
+        VStack(alignment: .leading, spacing: membersNeedingSync.isEmpty ? 12 : 14) {
+            SectionHeader(
+                title: String(localized: "Sessions"),
+                subtitle: String(localized: "Two people in locks a workout")
+            ) {
+                if !membersNeedingSync.isEmpty {
+                    ShareLink(item: nudgeMessage) {
+                        Label("Nudge", systemImage: "bell.badge")
+                            .font(.system(.footnote, weight: .semibold))
+                            .labelStyle(.titleAndIcon)
+                    }
+                    .glassButton()
+                    .accessibilityHint(Text("Sends a reminder to \(nudgeFirstNames.formatted(.list(type: .and))) to sync their calendar"))
+                }
+            }
 
             if sessions.isEmpty {
                 HintTile(symbol: "sparkles", text: String(localized: "No sessions yet. Find best times, or tap + to propose your own."))
