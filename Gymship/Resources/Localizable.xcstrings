@@ -1992,6 +1992,36 @@
         }
       }
     },
+    "Nudge": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avisar"
+          }
+        }
+      }
+    },
+    "Hey %@ — open Gymship and sync your calendar so we can pick a time for \"%@\".": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hola %@ — abre Gymship y sincroniza tu calendario para que podamos elegir un horario para \"%@\"."
+          }
+        }
+      }
+    },
+    "Sends a reminder to %@ to sync their calendar": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envía un recordatorio a %@ para que sincronice su calendario"
+          }
+        }
+      }
+    },
     "No shared free time of that length was found this week.": {
       "localizations": {
         "es": {
